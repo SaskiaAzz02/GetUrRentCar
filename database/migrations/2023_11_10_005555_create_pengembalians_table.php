@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengembalians', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->integer('id_pengembalian_mobil', true)->autoIncrement();
+            $table->integer('id_super_admin')->nullable();
+            $table->integer('id_admin')->nullable();
+            $table->date('tanggal_pengembalian')->nullable();
+
+            // Foreign Key
+
+            $table->foreign('id_super_admin')->on('super_admin')
+            ->references('id_super_admin')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_admin')->on('admin')
+            ->references('id_admin')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

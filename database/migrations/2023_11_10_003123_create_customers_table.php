@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->integer('id_customer');
-            $table->integer('id_akun');
-            $table->integer('no_telp');
+            $table->integer('id_customer')->autoIncrement();
+            $table->integer('id_akun')->nullable();
+            $table->integer('no_telp')->nullable();
             $table->string('alamat', 100);
             $table->string('nama', 100);
             $table->text('sim');

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('super_admin', function (Blueprint $table) {
-            $table->integer('id_super_admin', true);
-            $table->integer('id_akun');
+            $table->integer('id_super_admin', true)->autoIncrement();
+            $table->integer('id_akun')->nullable();
             $table->string('nama', 100);
             $table->integer('nomor_hp');
         
