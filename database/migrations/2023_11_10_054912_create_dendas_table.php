@@ -19,8 +19,8 @@ return new class extends Migration
 
             // Foreign Key
 
-            $table->foreign('id_pembayaran')->on('pembayaran')
-            ->references('id_pembayaran')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('id_pembayaran')->on('pembayaran')
+            // ->references('id_pembayaran')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

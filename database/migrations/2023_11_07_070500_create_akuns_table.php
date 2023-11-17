@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun', function (Blueprint $table) {
-            $table->integer(id_akun)->autoIncrement();
-            $table->string('name');
-            $table->string('no_hp')->unique(); 
+            $table->integer('id_akun')->autoIncrement();
+            $table->string('username')->unique();
+            $table->string('password'); 
+            $table->string('role');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

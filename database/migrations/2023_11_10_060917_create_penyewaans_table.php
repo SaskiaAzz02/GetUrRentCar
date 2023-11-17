@@ -18,8 +18,8 @@ return new class extends Migration
 
             // Foreign Key
 
-            $table->foreign('id_customer')->on('customer')
-            ->references('id_customer')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('id_customer')->on('customer')
+            // ->references('id_customer')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

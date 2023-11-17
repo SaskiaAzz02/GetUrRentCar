@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('foto_kondisi_mobil',30)->nullable();
 
             // Foreign Key
-            $table->foreign('id_super_admin')->on('super_admin')
-            ->references('id_super_admin')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('id_super_admin')->on('super_admin')
+            // ->references('id_super_admin')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

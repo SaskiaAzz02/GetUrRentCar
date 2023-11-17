@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Akun extends Model
 {
     use HasFactory;
+    protected $table = 'akun';
+    protected $fillable = ['username', 'password', 'role'];
+    protected $primarykey = 'id_akun';
+    public $timestamps = false;
+
+    public function akun(){
+        return $this->hasMany(akun::class, 'id_akun');
+    }
 }

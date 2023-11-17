@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('jenis_pembayaran', 100);
 
             // Foreign Key
-            $table->foreign('id_kondisi')->on('kondisi')
-            ->references('id_kondisi')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('id_kondisi')->on('kondisi')
+            // ->references('id_kondisi')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
