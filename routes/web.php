@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('login')->group(function () {
+    Route::get('/', [AkunController::class, 'index'])->name('login');
+    // Route::post('/', [AuthController::class, 'login']);
 });
