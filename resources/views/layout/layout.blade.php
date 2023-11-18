@@ -1,47 +1,183 @@
-<nav class="flex items-center bg-gray-900 text-white justify-between p-5 shadow-lg text-sm font-medium">
-  <a href="#">
-    <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" class="w-10 h-10" />
-  </a>
-  <ul class="flex gap-3 items-center">
-    <li>
-      <a href="#">
-        <button class="px-4 py-2 hover:bg-gray-800 transition-colors rounded-lg">
-          Home
-        </button>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <button class="px-4 py-2 hover:bg-gray-800 transition-colors rounded-lg">
-          Blog
-        </button>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <button class="px-4 py-2 hover:bg-gray-800 transition-colors rounded-lg">
-          Shop
-        </button>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <button class="px-4 py-2 hover:bg-gray-800 transition-colors rounded-lg">
-          Services
-        </button>
-      </a>
-    </li>
-  </ul>
-  <ul class="flex items-center gap-3">
-    <li>
-      <button class="w-10 h-10 grid place-content-center hover:bg-gray-800 rounded-lg transition-colors">
-        <i class="fa-solid fa-bell"></i>
-      </button>
-    </li>
-    <li>
-      <button>
-        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTgyNDMzOTN8&ixlib=rb-4.0.3&q=85" alt="avatar" class="w-10 h-10 rounded-full" />
-      </button>
-    </li>
-  </ul>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/*these classes are nessesary if you want to Use navbar only*/
+:root {
+    --white: white;
+    --black: rgb(0, 0, 0);
+    --links: 18px;
+    --paragraph: 24px;
+    --heading: 40px;
+    --logoS: 100px;
+}
+
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    backdrop-filter: invert(20%);
+    position: fixed;
+    background-color: rgba(0, 175, 206, 250);
+
+}
+
+.logo {
+    width: var(--logoS);
+    padding: 15px 20px;
+}
+
+.container-nav {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data-icons {
+    display: none;
+    padding: 10px 15px;
+}
+
+a {
+    font-size: var(--links);
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 10px;
+    transition: all 0.5s;
+    color: var(--white);
+    border-radius: 25px;
+}
+
+i {
+    color: var(--white);
+}
+
+a:hover {
+    background-color: var(--white);
+
+    color: var(--black);
+    transform: scale(1.05);
+}
+
+.data-links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.size {
+    font-size: 25px;
+    padding: 5px 7px;
+}
+h1 i{
+    color: rgb(255, 96, 123);
+}
+@media (max-width:860px) {
+    a {
+        padding: 5px 7px;
+        margin: 5px;
+    }
+
+    .logo {
+        padding: 3px 5px;
+    }
+
+}
+
+@media (max-width:730px) {
+    .data-links {
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.678);
+        transform: translateY(-200%);
+        filter: blur(20px);
+        transition: all 0.5s;
+        text-align: center;
+    }
+    a {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    .data-icons {
+        display: block;
+        padding: 5px 7px;
+    }
+}
+
+/*these classes are temporary to just have a rich view of sreen*/
+.header {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /*temporary you can remove it, i just applied it to have a full screen view of my work*/
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.hero-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+}
+
+.hero-section h1 {
+    font-size: var(--heading);
+    text-transform: capitalize;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.hero-section p {
+    font-size: var(--paragraph);
+    color: rgb(165, 165, 165);
+    text-transform: capitalize;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar">
+            <div class="container-nav">
+            <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo">
+            <div class="data-links nav-links">
+                <a href="">Mobil</a>
+                <a href="">Penyewaan</a>
+                <a href="">Pengembalian</a>
+                <!-- <a href="">Contact Us</a> -->
+                <!-- <a href="">Search</a> -->
+            </div>
+            <div class="data-icons">
+           <i onclick="menu()" class="menu-icon size fa-solid fa-bars"></i>
+           <i onclick="Mclose()" class="close-icon size fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        </nav>
+    </div>
+   
+</body>
+</html>
