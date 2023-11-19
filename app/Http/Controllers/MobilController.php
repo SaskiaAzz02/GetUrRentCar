@@ -10,18 +10,26 @@ class MobilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Mobil $mobil)
     {
         //
+        $data = [
+            'mobil' => $mobil->with('jenis')->get()
+        ];
+
         return view('mobil.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(JenisMobil $jenis)
     {
-        //
+        $jenisMobil = $jenis->all();
+
+        return view('mobil.tambah', [
+            'jenisMobil' => $jenisMobil,
+        ]);
     }
 
     /**
