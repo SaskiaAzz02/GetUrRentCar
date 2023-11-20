@@ -6,6 +6,7 @@ use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\DetailSewaController;
 use App\Models\DetailSewa;
 use App\Models\Mobil;
+use App\Models\Pengembalian;
 use App\Models\Penyewaan;
 use Illuminate\Support\Facades\Route;
 
@@ -55,5 +56,15 @@ Route::prefix('penyewaan')->group(function(){
     Route::get('/edit{id}',[PenyewaanController::class,'edit'])->name('editPenyewaan');
     Route::post('/edit/simpan',[PenyewaanController::class,'update'])->name('simpanEditPenyewaan');
     Route::delete('/hapus',[PenyewaanController::class,'destroy'])->name('hapusPenyewaan');
+
+});
+
+Route::prefix('pengembalian')->group(function(){
+    Route::get('/',[PengembalianController::class,'index'])->name('dataPengembalian');
+    Route::get('/tambah',[PengembalianController::class,'create'])->name('tambahPengembalian');
+    Route::post('/simpan',[PengembalianController::class,'store'])->name('simpanPenyegembali');
+    Route::get('/edit{id}',[PengembalianController::class,'edit'])->name('editPengembalian');
+    Route::post('/edit/simpan',[PengembalianController::class,'update'])->name('simpanEditPengembalian');
+    Route::delete('/hapus',[PengembalianController::class,'destroy'])->name('hapusPengembalian');
 
 });

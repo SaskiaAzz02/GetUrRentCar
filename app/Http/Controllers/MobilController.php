@@ -85,6 +85,8 @@ class MobilController extends Controller
         return view('mobil.edit', $data);
     }
 
+    // DETAIL
+
     public function detail(Mobil $mobil, string $id)
     {
         $data = Mobil::where('id_mobil', $id)->get();

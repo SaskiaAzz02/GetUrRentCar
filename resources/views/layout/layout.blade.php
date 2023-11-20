@@ -170,7 +170,7 @@ h1 i{
                 <a href="/mobil">Mobil</a>
                 <a href="/detail">Detail Sewa</a>
                 <a href="/penyewaan">Penyewaan</a>
-                <a href="">Pengembalian</a>
+                <a href="/pengembalian">Pengembalian</a>
                 <!-- <a href="">Contact Us</a> -->
                 <!-- <a href="">Search</a> -->
             </div>

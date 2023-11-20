@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Pengembalian extends Model
 {
     use HasFactory;
+    protected $table = 'pengembalian';
+    protected $fillable = ['tanggal_pengembalian'];
+    protected $primarykey = 'id_pengembalian';
+    public $timestamps = false;
 }
