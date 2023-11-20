@@ -1,69 +1,46 @@
 @extends('layout.layout')
+
 @section('title', 'Data Penyewaan')
+
 @section('content')
-<div class="row">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="h1">
-                        DATA PENYEWAAN
-                    </span>
+                    <h1>DATA PENYEWAAN</h1>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="penyewaan/tambah">
-                                <btn class="btn btn-success">LAKUKAN PENYEWAAN</btn>
-                            </a>
-                            <br><br>
+                            <a href="penyewaan/tambah" class="btn btn-success">LAKUKAN PENYEWAAN</a>
                         </div>
-                            <hr>
-                            <div class=></div>
-                        <table class="table table-hover table-bordered DataTable">
-                            <thead>
-                                <tr>
-                                    <th>JENIS MOBIL</th>
-                                    <th>MERK</th>
-                                    <th>PLAT MOBIL</th>
-                                    <th>NOMOR RANGKA</th>
-                                    <th>FOTO MOBIL</th>
-                                    <th>HARGA SEWA PER HARI</th>
-                                    <th>AKSI</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($penyewaan as $p)
-                                    <tr>
-                                        <td>{{ $p->jenis_mobil }}</td>
-                                        <td>{{ $p->merk }}</td>
-                                        <td>{{ $p->plat_mobil }}</td>
-                                        <td>{{ $p->nomor_rangka }}</td>
-                                        <td>
-                                            @if ($p->file)
-                                                <img src="{{ url('foto') . '/' . $p->foto_mobil }} "
-                                                    style="max-width: 250px; height: auto;" />
-                                            @endif
-                                        </td>
-                                        <td>{{ $p->harga_sewa_per_hari }}</td>
-
-                                        <td>
-                                        <a href="penyewaan/edit/{{ $p->id_penyewaan }}">
-                                                <btn class="btn btn-primary">PESAN</btn>
-                                            </a>
-                                            <a href="mobil/edit/{{ $p->id_mobil }}">
-                                                <btn class="btn btn-primary">EDIT</btn>
-                                            </a>
-                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $p->id_mobil }}">HAPUS</btn>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
+                    <hr>
+                    <table class="table table-hover table-bordered DataTable">
+                        <thead>
+                            <tr>
+                                <th>MOBIL</th>
+                                <th>TANGGAL PEMINJAMAN</th>
+                                <th>JUMLAH MEMINJAM</th>
+                                <th>AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($info as $p)
+                                <tr>
+                                    <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td>
+                                    <td>{{ $p->tanggal_peminjaman }}</td>
+                                    <td>{{ $p->jumlah_meminjam }}</td>
+                                    <td>
+                                        <a href="penyewaan/edit/{{ $p->id_penyewaan }}" class="btn btn-primary">EDIT</a>
+                                        <button class="btn btn-danger btnHapus"
+                                            idPenyewa="{{ $p->id_penyewaan }}">HAPUS</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <!-- <div class="card-footer">
-
-                </div> -->
             </div>
         </div>
     </div>
@@ -71,28 +48,27 @@
     <script type="module">
         $('tbody').on('click', '.btnHapus', function(a) {
             a.preventDefault();
-            let idPenyewaan = $(this).closest('.btnHapus').attr('idPenyewaan');
+            let idPenyewa = $(this).attr('idPenyewa');
             swal.fire({
                 title: "Apakah anda ingin menghapus data ini?",
                 showCancelButton: true,
                 confirmButtonText: 'Setuju',
                 cancelButtonText: `Batal`,
                 confirmButtonColor: 'green'
-
             }).then((result) => {
                 if (result.isConfirmed) {
-                    //Ajax Delete
+                    // Ajax Delete
                     $.ajax({
                         type: 'DELETE',
                         url: 'penyewaan/hapus',
                         data: {
-                            id_penyewaan: idPenyewaan,
+                            id_penyewaan: idPenyewa,
                             _token: "{{ csrf_token() }}"
                         },
                         success: function(data) {
                             if (data.success) {
                                 swal.fire('Berhasil di hapus!', '', 'success').then(function() {
-                                    //Refresh Halaman
+                                    // Refresh Halaman
                                     location.reload();
                                 });
                             }

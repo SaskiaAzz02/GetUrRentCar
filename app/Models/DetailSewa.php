@@ -9,7 +9,8 @@ class DetailSewa extends Model
 {
     use HasFactory;
     protected $table = 'detail';
-    protected $fillable = ['tanggal_peminjaman','jumlah_meminjam'];
-    protected $primaryKey = 'id_penyewaan';
+    protected $fillable = ['lampu', 'dongkrak_kit', 'klakson', 'head_rest', 'kebersihan_mobil', 
+    'seat_belt', 'audio', 'karpet_mobil', 'ban_serep', 'stnk', 'foto_kondisi_mobil'];
+    protected $primaryKey = 'id_detail';
     public $timestamps = false;
 }

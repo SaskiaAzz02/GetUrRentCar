@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('id_penyewaan')->autoIncrement();
             $table->integer('id_detail');
             $table->date('tanggal_peminjaman');
-            $table->integer('jumlah_meminjam');
+            $table->integer('jumlah_sewa');
 
             // Foreign Key
 

@@ -15,7 +15,7 @@
                             <div class="col-md-5">
                             <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" class="form-control" name="id" value="{{ $mobil[0]->id }}" />
+                                    <input type="text" class="form-control" name="id" />
                                 </div>
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
