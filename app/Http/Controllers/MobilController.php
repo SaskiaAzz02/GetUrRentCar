@@ -117,7 +117,7 @@ class MobilController extends Controller
             $dataUpdate = $mobil->where('id_mobil', $id_mobil)->update($data);
 
             if ($dataUpdate) {
-                return redirect('mobil/index')->with('success', 'Data mobil berhasil diupdate');
+                return redirect('mobil')->with('success', 'Data mobil berhasil diupdate');
             }
 
             return back()->with('error', 'Data jenis mobil gagal diupdate');

@@ -11,30 +11,31 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="simpan" enctype="multipart/form-data">
+                        <input type="hidden" class="form-control" name="id_mobil" value="{{$mobil[0]->id_mobil}}" />
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
-                                    <input type="text" class="form-control" name="jenis_mobil" />
+                                    <input type="text" class="form-control" name="jenis_mobil" value="{{ $mobil[0]->jenis_mobil }}" />
                                     @csrf
                                 </div>
                                 <div class="form-group">
                                     <label>MERK</label>
-                                    <input type="text" class="form-control" name="merk" />
+                                    <input type="text" class="form-control" name="merk" value="{{ $mobil[0]->merk }}" />
                                 </div>
                                 <div class="form-group">
                                     <label>PLAT MOBIL</label>
-                                    <input type="text" class="form-control" name="plat_mobil" />
+                                    <input type="text" class="form-control" name="plat_mobil" value="{{ $mobil[0]->plat_mobil }}" />
                                 </div> <div class="form-group">
                                     <label>NOMOR RANGKA</label>
-                                    <input type="text" class="form-control" name="nomor_rangka" />
+                                    <input type="text" class="form-control" name="nomor_rangka" value="{{ $mobil[0]->nomor_rangka }}"/>
                                 </div>
                                 <div class="form-group">
                                     <label>FOTO MOBIL</label>
-                                    <input type="file" class="form-control" name="foto_mobil" />
+                                    <input type="file" class="form-control" name="foto_mobil" value="{{ $mobil[0]->foto_mobil }}" />
                                 </div>  </div> <div class="form-group">
                                     <label>HARGA SEWA PER HARI</label>
-                                    <input type="text" class="form-control" name="harga_sewa_per_hari" />
+                                    <input type="text" class="form-control" name="harga_sewa_per_hari" value="{{ $mobil[0]->harga_sewa_per_hari }}" />
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">SIMPAN</button>

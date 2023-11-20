@@ -30,7 +30,7 @@ Route::prefix('mobil')->group(function(){
     Route::get('/',[MobilController::class,'index'])->name('dataMobil');
     Route::get('/tambah',[MobilController::class,'create'])->name('tambahMobil');
     Route::post('/simpan',[MobilController::class,'store'])->name('simpanMobil');
-    Route::get('edit/(id)',[MobilController::class,'edit'])->name('editMobil');
+    Route::get('/edit/{id}',[MobilController::class,'edit'])->name('editMobil');
     Route::post('/edit/simpan',[MobilController::class,'update'])->name('simpanEditMobil');
     Route::delete('/hapus',[MobilController::class,'destroy'])->name('hapusMobil');
 });
@@ -39,7 +39,7 @@ Route::prefix('penyewaan')->group(function(){
     Route::get('/',[PenyewaanController::class,'index'])->name('dataPenyewaan');
     Route::post('/simpan',[PenyewaanController::class,'store'])->name('simpanPenyewaan');
     Route::get('/edit(id)',[PenyewaanController::class,'edit'])->name('editPenyewaan');
-    Route::post('/edit/simpan',[PenyewaanController::class,'update'])->name('simpanEditPenyewaan');
+    Route::post('/edit/update',[PenyewaanController::class,'update'])->name('simpanEditPenyewaan');
     Route::delete('/hapus',[PenyewaanController::class,'destroy'])->name('hapusPenyewaan');
 
 });
