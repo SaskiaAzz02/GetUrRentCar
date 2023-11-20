@@ -3,6 +3,8 @@
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PenyewaanController;
+use App\Http\Controllers\DetailSewaController;
+use App\Models\DetailSewa;
 use App\Models\Mobil;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +30,21 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('mobil')->group(function(){
     Route::get('/',[MobilController::class,'index'])->name('dataMobil');
+    Route::get('/detail/{id}',[MobilController::class,'detail']);
     Route::get('/tambah',[MobilController::class,'create'])->name('tambahMobil');
     Route::post('/simpan',[MobilController::class,'store'])->name('simpanMobil');
     Route::get('/edit/{id}',[MobilController::class,'edit'])->name('editMobil');
     Route::post('/edit/simpan',[MobilController::class,'update'])->name('simpanEditMobil');
     Route::delete('/hapus',[MobilController::class,'destroy'])->name('hapusMobil');
+});
+Route::prefix('detail')->group(function(){
+    Route::get('/',[DetailSewaController::class,'index'])->name('dataDetail');
+    Route::get('/detail/{id}',[DetailSewaController::class,'detail']);
+    Route::get('/tambah',[DetailSewaController::class,'create'])->name('tambahDetail');
+    Route::post('/simpan',[DetailSewaController::class,'store'])->name('simpanDetail');
+    Route::get('/edit/{id}',[DetailSewaController::class,'edit'])->name('editDetail');
+    Route::post('/edit/simpan',[DetailSewaController::class,'update'])->name('simpanEditDetail');
+    Route::delete('/hapus',[DetailSewaController::class,'destroy'])->name('hapusDetail');
 });
 
 Route::prefix('penyewaan')->group(function(){

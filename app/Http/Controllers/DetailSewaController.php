@@ -10,9 +10,14 @@ class DetailSewaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Detail $detail)
     {
         //
+        $data = [
+            'detail' => $detail->all()
+        ];
+
+        return view('detail.index', $data);
     }
 
     /**

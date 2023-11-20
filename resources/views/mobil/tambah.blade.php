@@ -13,6 +13,10 @@
                     <form method="POST" action="simpan" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-5">
+                            <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" class="form-control" name="id" value="{{ $mobil[0]->id }}" />
+                                </div>
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
                                     <input type="text" class="form-control" name="jenis_mobil" />

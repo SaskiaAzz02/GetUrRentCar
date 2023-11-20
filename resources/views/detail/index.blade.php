@@ -1,19 +1,19 @@
 @extends('layout.layout')
-@section('title', 'Data Penyewaan')
+@section('title', 'Detail Sewa')
 @section('content')
 <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <span class="h1">
-                        DATA PENYEWAAN
+                        DETAIL SEWA
                     </span>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="penyewaan/tambah">
-                                <btn class="btn btn-success">LAKUKAN PENYEWAAN</btn>
+                            <a href="detail/tambah">
+                                <btn class="btn btn-success">TAMBAH DETAIL SEWA</btn>
                             </a>
                             <br><br>
                         </div>
@@ -32,28 +32,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penyewaan as $p)
+                                @foreach ($detail as $m)
                                     <tr>
-                                        <td>{{ $p->jenis_mobil }}</td>
-                                        <td>{{ $p->merk }}</td>
-                                        <td>{{ $p->plat_mobil }}</td>
-                                        <td>{{ $p->nomor_rangka }}</td>
+                                        <td>{{ $m->jenis_mobil }}</td>
+                                        <td>{{ $m->merk }}</td>
+                                        <td>{{ $m->plat_mobil }}</td>
+                                        <td>{{ $m->nomor_rangka }}</td>
                                         <td>
-                                            @if ($p->file)
-                                                <img src="{{ url('foto') . '/' . $p->foto_mobil }} "
+                                            @if ($m->file)
+                                                <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
                                                     style="max-width: 250px; height: auto;" />
                                             @endif
                                         </td>
-                                        <td>{{ $p->harga_sewa_per_hari }}</td>
+                                        <td>{{ $m->harga_sewa_per_hari }}</td>
 
                                         <td>
-                                        <a href="penyewaan/edit/{{ $p->id_penyewaan }}">
-                                                <btn class="btn btn-primary">PESAN</btn>
-                                            </a>
-                                            <a href="mobil/edit/{{ $p->id_mobil }}">
+                                            <a href="detail/edit/{{ $m->id_mobil }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
-                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $p->id_mobil }}">HAPUS</btn>
+                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -71,7 +68,7 @@
     <script type="module">
         $('tbody').on('click', '.btnHapus', function(a) {
             a.preventDefault();
-            let idPenyewaan = $(this).closest('.btnHapus').attr('idPenyewaan');
+            let idMobil = $(this).closest('.btnHapus').attr('idMobil');
             swal.fire({
                 title: "Apakah anda ingin menghapus data ini?",
                 showCancelButton: true,
@@ -84,9 +81,9 @@
                     //Ajax Delete
                     $.ajax({
                         type: 'DELETE',
-                        url: 'penyewaan/hapus',
+                        url: 'mobil/hapus',
                         data: {
-                            id_penyewaan: idPenyewaan,
+                            id_mobil: idMobil,
                             _token: "{{ csrf_token() }}"
                         },
                         success: function(data) {

@@ -168,6 +168,7 @@ h1 i{
             <!-- <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo"> -->
             <div class="data-links nav-links">
                 <a href="/mobil">Mobil</a>
+                <a href="/detail">Detail Sewa</a>
                 <a href="/penyewaan">Penyewaan</a>
                 <a href="">Pengembalian</a>
                 <!-- <a href="">Contact Us</a> -->

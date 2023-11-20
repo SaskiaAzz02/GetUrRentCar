@@ -22,6 +22,7 @@
                         <table class="table table-hover table-bordered DataTable">
                             <thead>
                                 <tr>
+                                <th>ID</th>
                                     <th>JENIS MOBIL</th>
                                     <th>MERK</th>
                                     <th>PLAT MOBIL</th>
@@ -34,6 +35,7 @@
                             <tbody>
                                 @foreach ($mobil as $m)
                                     <tr>
+                                        <td>{{ $m->id }}</td>
                                         <td>{{ $m->jenis_mobil }}</td>
                                         <td>{{ $m->merk }}</td>
                                         <td>{{ $m->plat_mobil }}</td>
@@ -47,6 +49,9 @@
                                         <td>{{ $m->harga_sewa_per_hari }}</td>
 
                                         <td>
+                                        <a href="mobil/detail/{{ $m->id_mobil }}">
+                                            <button class="btn btn-warning">DETAIL</button>
+                                        </a>
                                             <a href="mobil/edit/{{ $m->id_mobil }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
