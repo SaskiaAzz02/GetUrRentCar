@@ -6,46 +6,51 @@
             <div class="card">
                 <div class="card-header">
                     <span class="h1">
-                        Data Mobil
+                        DATA MOBIL
                     </span>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
                             <a href="mobil/tambah">
-                                <btn class="btn btn-success">Tambah Jenis Mobil</btn>
+                                <btn class="btn btn-success">TAMBAH JENIS MOBIL</btn>
                             </a>
-
+                            <br><br>
                         </div>
-                        <p>
                             <hr>
+                            <div class=></div>
                         <table class="table table-hover table-bordered DataTable">
                             <thead>
                                 <tr>
-                                    <th>TANGGAL SURAT</th>
-                                    <th>JENIS SURAT</th>
-                                    <th>RINGKASAN</th>
+                                    <th>JENIS MOBIL</th>
+                                    <th>MODEL</th>
+                                    <th>PLAT MOBIL</th>
+                                    <th>NOMOR RANGKA</th>
                                     <th>FOTO SURAT</th>
+                                    <th>HARGA SEWA PER HARI</th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($mobil as $mobil)
+                                @foreach ($mobil as $m)
                                     <tr>
-                                        <td>{{ $s->tanggal_surat }}</td>
-                                        <td>{{ $s->jenis_surat }}</td>
-                                        <td>{{ $s->ringkasan }}</td>
+                                        <td>{{ $m->jenis_mobil }}</td>
+                                        <td>{{ $m->model }}</td>
+                                        <td>{{ $m->plat_mobil }}</td>
+                                        <td>{{ $m->nomor_rangka }}</td>
                                         <td>
-                                            @if ($s->file)
-                                                <img src="{{ url('foto') . '/' . $s->file }} "
+                                            @if ($m->file)
+                                                <img src="{{ url('foto') . '/' . $m->file }} "
                                                     style="max-width: 250px; height: auto;" />
                                             @endif
                                         </td>
+                                        <td>{{ $m->harga_sewa_per_hari }}</td>
+
                                         <td>
-                                            <a href="mobil/edit/{{ $s->id_mobil }}">
+                                            <a href="mobil/edit/{{ $m->id_mobil }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
-                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $s->id_mobil }}">HAPUS</btn>
+                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -53,9 +58,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
+                <!-- <div class="card-footer">
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -71,7 +76,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Setuju',
                 cancelButtonText: `Batal`,
-                confirmButtonColor: 'red'
+                confirmButtonColor: 'green'
 
             }).then((result) => {
                 if (result.isConfirmed) {

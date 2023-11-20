@@ -122,7 +122,7 @@ h1 i{
 .header {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 10vh;
     /*temporary you can remove it, i just applied it to have a full screen view of my work*/
     width: 100%;
     background-position: center;
@@ -158,12 +158,14 @@ h1 i{
 
 
     </style>
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 <body>
     <div class="header">
         <nav class="navbar">
             <div class="container-nav">
-            <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo">
+            <!-- <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo"> -->
             <div class="data-links nav-links">
                 <a href="">Mobil</a>
                 <a href="">Penyewaan</a>
@@ -178,6 +180,8 @@ h1 i{
         </div>
         </nav>
     </div>
-   
+    <div class="">
+        @yield('content')
+    </div>
 </body>
 </html>

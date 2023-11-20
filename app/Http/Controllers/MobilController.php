@@ -14,21 +14,24 @@ class MobilController extends Controller
     {
         //
         $data = [
-            'mobil' => $mobil->with('jenis')->get()
+            'mobil' => $mobil->all()
         ];
 
-        return view('mobil.index');
+        return view('mobil.index', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(JenisMobil $jenis)
+    public function create(Mobil $mobil)
     {
-        $jenisMobil = $jenis->all();
+        $mobil = $mobil->all();
+        $data = [
+            'mobil' => $mobil,
+        ];
 
         return view('mobil.tambah', [
-            'jenisMobil' => $jenisMobil,
+            'mobil' => $mobil,
         ]);
     }
 

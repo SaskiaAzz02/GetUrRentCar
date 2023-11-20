@@ -28,7 +28,7 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('mobil')->group(function(){
     Route::get('/',[MobilController::class,'index'])->name('dataMobil');
-    Route::get('/mobil/tambah',[MobilController::class,'create'])->name('tambahMobil');
+    Route::get('/tambah',[MobilController::class,'create'])->name('tambahMobil');
     Route::post('/mobil/simpan',[MobilController::class,'store'])->name('simpanMobil');
     Route::get('/mobil/edit(id)',[MobilController::class,'edit'])->name('editMobil');
     Route::post('/mobil/edit/simpan',[MobilController::class,'update'])->name('simpanEditMobil');

@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mobil', function (Blueprint $table) {
+        Schema::create('jenis_mobil', function (Blueprint $table) {
             // $table->id();
             // $table->timestamps();
-            $table->integer('id_mobil')->autoIncrement();
-            $table->integer('id_detail');
-            $table->string('plat_mobil',10);
-            $table->text('foto_mobil');
-            $table->string('nomor_rangka',30);
+            $table->integer('id_jenis_mobil')->autoIncrement();
+            $table->integer('id_mobil');
+            $table->string('nama_jenis',100);
+            $table->string('model',100);
+            $table->decimal('harga');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mobil');
+        Schema::dropIfExists('jenis_mobil');
     }
 };
