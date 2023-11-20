@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mobil', function (Blueprint $table) {
-            // $table->id();
-            // $table->timestamps();
             $table->integer('id_mobil')->autoIncrement();
-            $table->integer('id_detail');
+            $table->string('jenis_mobil');
+            $table->string('merk');
+            $table->string('nomor_rangka',30);
             $table->string('plat_mobil',10);
             $table->text('foto_mobil');
-            $table->string('nomor_rangka',30);
+            $table->decimal('harga_sewa_per_hari');
         });
     }
+
 
     /**
      * Reverse the migrations.

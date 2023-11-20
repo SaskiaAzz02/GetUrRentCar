@@ -167,8 +167,8 @@ h1 i{
             <div class="container-nav">
             <!-- <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo"> -->
             <div class="data-links nav-links">
-                <a href="">Mobil</a>
-                <a href="">Penyewaan</a>
+                <a href="/mobil">Mobil</a>
+                <a href="/penyewaan">Penyewaan</a>
                 <a href="">Pengembalian</a>
                 <!-- <a href="">Contact Us</a> -->
                 <!-- <a href="">Search</a> -->

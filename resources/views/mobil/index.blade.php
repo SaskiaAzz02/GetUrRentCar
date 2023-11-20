@@ -23,10 +23,10 @@
                             <thead>
                                 <tr>
                                     <th>JENIS MOBIL</th>
-                                    <th>MODEL</th>
+                                    <th>MERK</th>
                                     <th>PLAT MOBIL</th>
                                     <th>NOMOR RANGKA</th>
-                                    <th>FOTO SURAT</th>
+                                    <th>FOTO MOBIL</th>
                                     <th>HARGA SEWA PER HARI</th>
                                     <th>AKSI</th>
                                 </tr>
@@ -35,12 +35,12 @@
                                 @foreach ($mobil as $m)
                                     <tr>
                                         <td>{{ $m->jenis_mobil }}</td>
-                                        <td>{{ $m->model }}</td>
+                                        <td>{{ $m->merk }}</td>
                                         <td>{{ $m->plat_mobil }}</td>
                                         <td>{{ $m->nomor_rangka }}</td>
                                         <td>
                                             @if ($m->file)
-                                                <img src="{{ url('foto') . '/' . $m->file }} "
+                                                <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
                                                     style="max-width: 250px; height: auto;" />
                                             @endif
                                         </td>
@@ -64,11 +64,9 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('footer')
     <script type="module">
-        $('.DataTable tbody').on('click', '.btnHapus', function(a) {
+        $('tbody').on('click', '.btnHapus', function(a) {
             a.preventDefault();
             let idMobil = $(this).closest('.btnHapus').attr('idMobil');
             swal.fire({
@@ -101,5 +99,4 @@
             });
         });
     </script>
-
 @endsection

@@ -11,7 +11,7 @@ class AkunSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Akun $akun): void
     {
         //
         $useData = [
@@ -31,7 +31,7 @@ class AkunSeeder extends Seeder
         ];
         
         // melakukan looping data dengan foreach
-        foreach ($userData as $user => $val) {
+        foreach ($akun as $user => $val) {
             Akun::create($val);
         }
     }

@@ -10,10 +10,11 @@ class PenyewaanController extends Controller
     //
     public function index(Penyewaan $penyewaan)
     {
-        // $data = [
-        //     'penyewaan' => $penyewaan->with('jenis_mobil')->get()
-        // ];
-        return view('penyewaan.index');
+        $data = [
+            'penyewaan' => $penyewaan->all()
+        ];
+
+        return view('penyewaan.index', $data);
     }
 
     public function create()
