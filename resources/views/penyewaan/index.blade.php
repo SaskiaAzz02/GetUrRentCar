@@ -32,15 +32,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penyewaan as $m)
+                                @foreach ($penyewaan as $p)
                                     <tr>
-                                        <td>{{ $m->jenis_mobil }}</td>
-                                        <td>{{ $m->merk }}</td>
-                                        <td>{{ $m->plat_mobil }}</td>
-                                        <td>{{ $m->nomor_rangka }}</td>
+                                        <td>{{ $p->jenis_mobil }}</td>
+                                        <td>{{ $p->merk }}</td>
+                                        <td>{{ $p->plat_mobil }}</td>
+                                        <td>{{ $p->nomor_rangka }}</td>
                                         <td>
-                                            @if ($m->file)
-                                                <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
+                                            @if ($p->file)
+                                                <img src="{{ url('foto') . '/' . $p->foto_mobil }} "
                                                     style="max-width: 250px; height: auto;" />
                                             @endif
                                         </td>
