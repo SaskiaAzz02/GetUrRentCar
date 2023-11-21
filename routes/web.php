@@ -26,9 +26,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::prefix('login')->group(function () {
-    Route::get('/', [AkunController::class, 'index'])->name('login');
+    Route::get('/', [AkunController::class, 'index'])->name('login'); 
     // Route::post('/', [AuthController::class, 'login']);
+    Route::post('/proseslogin', [AkunController::class, 'login'])->name('proseslogin'); 
 });
 
 Route::prefix('mobil')->group(function(){

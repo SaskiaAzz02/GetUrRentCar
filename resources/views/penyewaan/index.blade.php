@@ -28,7 +28,8 @@
                         <tbody>
                             @foreach ($info as $p)
                                 <tr>
-                                    <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td>
+                                    {{-- <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td> --}}
+                                    <td>{{ $p->mobil }}</td>
                                     <td>{{ $p->tanggal_peminjaman }}</td>
                                     <td>{{ $p->jumlah_meminjam }}</td>
                                     <td>

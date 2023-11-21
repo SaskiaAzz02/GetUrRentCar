@@ -1,44 +1,47 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Akun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AkunController extends Controller
 {
     //
-    public function index(Akun $akun){
-    return view('login.login');
+    public function index(Akun $akun)
+    {
+        return view('login.login');
     }
 
-    
-    function login(Request $request)
+
+    public function login(Akun $akun, Request $request)
     {
         $validatedData = $request->validate([
             'username' => 'required',
             'password' => 'required',
-            'role' => 'required',
         ], [
             'username.required' => 'Username harus diisi',
             'password.required' => 'Password harus diisi',
-            'role.required' => 'Role harus diisi',
         ]);
 
         $credentials = [
             'username' => $validatedData['username'],
             'password' => $validatedData['password'],
-            'role' => $validatedData['role'],
         ];
 
-        if (Akun::attempt($credentials)) {
-            $user = Akun::user();
+        $login = Auth::attempt($credentials) ;
 
-            if ($user->role == 'super_admin' || $user->role == 'admin' || $user->role == 'customer') {
-                return redirect('mobil.index')->with('_token', Session::token());
-            } 
+        if ($login) {
+            $user = Auth::user();
+
+            return redirect('mobil')->with('_token', Session::token());
+        }else {
+            return redirect()->back()->withErrors('Terdapat kesalahan Username atau Password')->withInput()->with('_token', Session::token());
         }
 
-        return redirect()->back()->withErrors('Terdapat kesalahan Username atau Password')->withInput()->with('_token', Session::token());
+       
     }
 
     function logout()

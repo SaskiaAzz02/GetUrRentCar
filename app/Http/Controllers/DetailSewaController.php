@@ -14,7 +14,7 @@ class DetailSewaController extends Controller
     {
         //
         $data = [
-            'detail' => $detailSewa->all()
+            'detailSewa' => $detailSewa->all()
         ];
 
         return view('detail.index', $data);

@@ -35,6 +35,7 @@ class PenyewaanController extends Controller
     {
         $request->validate([
             'id_detail' => 'required',
+            'pilih_merk_mobil' => 'required',
             'tanggal_peminjaman' => 'required',
             'jumlah_meminjam' => 'required',
         ]);
@@ -48,6 +49,13 @@ class PenyewaanController extends Controller
         $penyewaan->save();
 
         return redirect('/penyewaan');
+        
+        if ($penyewaan->create($request)) {
+            return redirect('penyewaan')->with('success', 'Data Mobil baru berhasil ditambah');
+        }
+
+        return back()->with('error', 'Data mobil gagal ditambahkan');
+    
     }
 
     public function edit(Penyewaan $penyewaan, string $id)

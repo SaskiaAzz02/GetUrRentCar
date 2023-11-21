@@ -15,14 +15,15 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>PILIH KENDARAAN</label>
-                                    <select name="id_detail" id="" class="form-control">
+                                    <label>PILIH MERK MOBIL</label>
+                                    <input type="text" class="form-control" name="pilih_merk_mobil" />
+                                    {{-- <select name="id_detail" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
                                         @foreach ($info as $s)
                                             <option value="{{ $s->id_jenis_mobil }}">{{ $s->nama_jenis }}
                                             </option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>TANGGAL PEMINJAMAN</label>
