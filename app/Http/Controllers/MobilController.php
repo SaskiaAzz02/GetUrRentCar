@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mobil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MobilController extends Controller
 {
@@ -17,6 +18,7 @@ class MobilController extends Controller
             'mobil' => $mobil->all()
         ];
 
+        // dd(Auth::user());`
         return view('mobil.index', $data);
     }
 

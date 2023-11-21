@@ -11,10 +11,6 @@ class Akun extends Authenticatable
     use HasFactory;
     protected $table = 'akun';
     protected $fillable = ['username', 'password', 'role'];
-    protected $primarykey = 'id_akun';
+    protected $primaryKey = 'id_akun';
     public $timestamps = false;
-
-    public function akun(){
-        return $this->hasMany(akun::class, 'id_akun');
-    }
 }

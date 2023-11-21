@@ -15,39 +15,41 @@ class AkunController extends Controller
         return view('login.login');
     }
 
-
-    public function login(Akun $akun, Request $request)
+    function login(Request $request)
     {
-        $validatedData = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ], [
-            'username.required' => 'Username harus diisi',
-            'password.required' => 'Password harus diisi',
-        ]);
+        $validatedData = $request->validate(
+            [
+                'username' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'username.required' => 'Username harus diisi',
+                'password.required' => 'Password harus diisi',
+            ],
+        );
 
         $credentials = [
             'username' => $validatedData['username'],
             'password' => $validatedData['password'],
         ];
 
-        $login = Auth::attempt($credentials) ;
-
-        if ($login) {
+        if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
-            return redirect('mobil')->with('_token', Session::token());
-        }else {
-            return redirect()->back()->withErrors('Terdapat kesalahan Username atau Password')->withInput()->with('_token', Session::token());
+            // Session::regenerate();
+            if ($user->role == 'superadmin') {
+                return redirect('mobil');
+            } elseif ($user->role == 'admin') {
+                return redirect('penyewaan');
+            }
         }
 
-       
+        return redirect()->back();
     }
 
     function logout()
     {
         Auth::logout();
         Session::regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 }

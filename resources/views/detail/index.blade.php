@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($detail as $m)
+                                @foreach ($detailSewa as $m)
                                     <tr>
                                         <td>{{ $m->jenis_mobil }}</td>
                                         <td>{{ $m->merk }}</td>
