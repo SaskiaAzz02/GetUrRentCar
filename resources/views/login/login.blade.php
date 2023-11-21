@@ -25,11 +25,26 @@
               <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
             </div>
 
-            <!-- Checkbox -->
+            <!-- <div class="form-outline mb-4">
+              <label class="form-label" for="typeRoleX-2">Role</label><br> 
+              <input type="text" id="typePasswordX-2" class="form-control form-control-lg" />
+            </div> -->
+
             <div class="form-check d-flex justify-content-start mb-4">
+            <input class="form-check-input" type="radio" value="cust" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Customer </label>
+              <input class="form-check-input" type="radio" value="admin" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Admin </label>
+              <input class="form-check-input" type="radio" value="s_admin" id="form1Example3" />
+              <label class="form-check-label" for="form1Example3"> Super Admin </label>
+            </div>
+            </div>
+
+            <!-- Checkbox -->
+            <!-- <div class="form-check d-flex justify-content-start mb-4">
               <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
               <label class="form-check-label" for="form1Example3"> Remember password </label>
-            </div>
+            </div> -->
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 
