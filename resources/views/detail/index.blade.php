@@ -23,11 +23,10 @@
                             <thead>
                                 <tr>
                                     <th>JENIS MOBIL</th>
-                                    <th>MERK</th>
-                                    <th>PLAT MOBIL</th>
-                                    <th>NOMOR RANGKA</th>
-                                    <th>FOTO MOBIL</th>
-                                    <th>HARGA SEWA PER HARI</th>
+                                    <th>LAMPU</th>
+                                    <th>KLAKSON</th>
+                                    <th>AUDIO</th>
+                                    <th>KEBERSIHAN MOBIL</th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>

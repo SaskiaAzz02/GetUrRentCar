@@ -10,7 +10,7 @@ class Denda extends Model
     use HasFactory;
     protected $table = 'denda';
     protected $fillable = ['jenis', 'tarif'];
-    protected $primarykey = 'id_denda';
+    protected $primaryKey = 'id_denda';
     public $timestamps = false;
 
     public function denda(){
