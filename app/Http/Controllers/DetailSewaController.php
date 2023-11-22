@@ -59,9 +59,9 @@ class DetailSewaController extends Controller
 
         if ($request->hasFile('foto_kondisi_mobil')) {
             $foto_file = $request->file('foto_kondisi_mobil');
-            $foto_nama = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
-            $foto_file->move(public_path('foto'), $foto_nama);
-            $data['foto_kondisi_mobil'] = $foto_nama;
+            $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
+            $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
+            $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
         }
 
         if ($detailSewa->create($data)) {
