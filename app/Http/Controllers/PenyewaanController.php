@@ -60,7 +60,7 @@ class PenyewaanController extends Controller
     
     }
 
-    public function edit(Penyewaan $penyewaan, string $id)
+    public function edit(Penyewaan $penyewaan, string $id, Mobil $mobil)
     {
         $jenis_mobil = DB::table('jenis_mobil')->get(); 
 
@@ -69,7 +69,7 @@ class PenyewaanController extends Controller
                 ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
                 ->where('penyewaan.id_penyewaan', $id)
                 ->first(),
-            'jenis_mobil' => $jenis_mobil,
+                'mobil' => $mobil->all(),
         ];
 
         return view('penyewaan.edit', $data);

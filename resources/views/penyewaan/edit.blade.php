@@ -18,11 +18,9 @@
                                     <label>PILIH KENDARAAN</label>
                                     <select name="id_detail" class="form-control">
                                         <option value="" disabled>Pilih Jenis</option>
-                                        @foreach ($jenis_mobil as $jenis)
-                                            <option value="{{ $jenis->id_jenis_mobil }}"
-                                                @if ($jenis->id_jenis_mobil == $info->id_jenis_mobil) selected @endif>
-                                                {{ $jenis->nama_jenis }}
-                                            </option>
+                                        @foreach ($mobil as $s)
+                                        <option value="{{ $s->id_mobil }}">{{ $s->plat_mobil }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
