@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [MobilController::class, 'index'])->name('dataMobil');
             Route::get('/detail/{id}', [MobilController::class, 'detail']);
+            Route::get('/unduh', [MobilController::class, 'unduh']);
             Route::get('/tambah', [MobilController::class, 'create'])->name('tambahMobil');
             Route::post('/simpan', [MobilController::class, 'store'])->name('simpanMobil');
             Route::get('/edit/{id}', [MobilController::class, 'edit'])->name('editMobil');
@@ -59,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware(['akses:admin,superadmin'])
         ->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
+            Route::get('/detail/{id}', [PenyewaanController::class, 'detail']);
             Route::get('/tambah', [PenyewaanController::class, 'create'])->name('tambahPenyewaan');
             Route::post('/simpan', [PenyewaanController::class, 'store'])->name('simpanPenyewaan');
             Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');

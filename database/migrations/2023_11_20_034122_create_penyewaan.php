@@ -15,13 +15,13 @@ return new class extends Migration
             // $table->id();
             // $table->timestamps();
             $table->integer('id_penyewaan')->autoIncrement();
-            $table->integer('id_detail');
+            $table->integer('id_mobil');
             $table->date('tanggal_peminjaman');
             $table->integer('jumlah_sewa');
 
             // Foreign Key
 
-            $table->foreign('id_detail')->on('mobil')
+            $table->foreign('id_mobil')->on('mobil')
             ->references('id_mobil')->onDelete('cascade')->onUpdate('cascade');
         });
     }

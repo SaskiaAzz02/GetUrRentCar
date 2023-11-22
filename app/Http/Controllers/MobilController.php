@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mobil;
+use Barryvdh\DomPDF\Facade\pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -93,6 +94,16 @@ class MobilController extends Controller
     {
         $data = Mobil::where('id_mobil', $id)->get();
         return view('mobil.detail', ['mobil' => $data]);
+    }
+
+    // UNDUH
+
+    public function unduh(Mobil $mobil)
+    {
+    	$mobil = Mobil::all();
+ 
+    	$pdf = PDF::loadview('mobil.unduh',['mobil'=>$mobil]);
+    	return $pdf->download('laporan-mobil.pdf');
     }
 
     /**
