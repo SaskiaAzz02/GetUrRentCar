@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('id_detail')->autoIncrement();
             $table->integer('id_mobil');
             $table->string('lampu',30);
-            $table->string('dongrak_kit',30);
+            $table->string('dongkrak_kit',30);
             $table->string('klakson',30);
             $table->string('head_rest',30);
             $table->string('kebersihan_mobil',30);

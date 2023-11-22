@@ -15,15 +15,16 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>PILIH MERK MOBIL</label>
-                                    <input type="text" class="form-control" name="pilih_merk_mobil" />
-                                    {{-- <select name="id_detail" id="" class="form-control">
+                                    <label>PILIH MOBIL</label>
+                                    <select name="id_detail" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($info as $s)
-                                            <option value="{{ $s->id_jenis_mobil }}">{{ $s->nama_jenis }}
-                                            </option>
+                                        @foreach ($mobil as $s)
+                                        <option value="{{ $s->id_mobil }}">{{ $s->plat_mobil }}
+                                        </option>
                                         @endforeach
-                                    </select> --}}
+                                    </select>
+                                    {{-- <label>PILIH MERK MOBIL</label>
+                                    <input type="text" class="form-control" name="pilih_merk_mobil" /> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>TANGGAL PEMINJAMAN</label>
@@ -31,7 +32,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_meminjam" />
+                                    <input type="number" class="form-control" name="jumlah_sewa" />
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">SIMPAN</button>

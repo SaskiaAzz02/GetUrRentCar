@@ -41,7 +41,7 @@
                                         <td>{{ $m->plat_mobil }}</td>
                                         <td>{{ $m->nomor_rangka }}</td>
                                         <td>
-                                            @if ($m->file)
+                                            @if ($m->foto_mobil)
                                                 <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
                                                     style="max-width: 250px; height: auto;" />
                                             @endif

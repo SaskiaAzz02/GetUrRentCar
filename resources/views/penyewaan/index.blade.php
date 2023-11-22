@@ -19,6 +19,7 @@
                     <table class="table table-hover table-bordered DataTable">
                         <thead>
                             <tr>
+                                <th>Id Penyewaan</th>
                                 <th>MOBIL</th>
                                 <th>TANGGAL PEMINJAMAN</th>
                                 <th>JUMLAH MEMINJAM</th>
@@ -28,10 +29,12 @@
                         <tbody>
                             @foreach ($info as $p)
                                 <tr>
-                                    {{-- <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td> --}}
-                                    <td>{{ $p->mobil }}</td>
+                                    <td>{{ $p->id_penyewaan }}</td>
+                                    <td>{{ $p->merk . ' ' . $p->plat_mobil }}</td>
+
+                                    {{-- <td>{{ $p->merk }}</td> --}}
                                     <td>{{ $p->tanggal_peminjaman }}</td>
-                                    <td>{{ $p->jumlah_meminjam }}</td>
+                                    <td>{{ $p->jumlah_sewa }}</td>
                                     <td>
                                         <a href="penyewaan/edit/{{ $p->id_penyewaan }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"

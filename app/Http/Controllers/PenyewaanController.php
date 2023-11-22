@@ -20,13 +20,15 @@ class PenyewaanController extends Controller
         return view('penyewaan.index', $data);
     }
 
-    public function create(Mobil $mobil)
+    public function create(Mobil $mobil, Penyewaan $penyewaan)
     {
         $data = [
-            'info' => $mobil
-                ->join('jenis_mobil', 'mobil.id_mobil', '=', 'jenis_mobil.id_jenis_mobil')
-                ->get()
+            'info' => DB::table('penyewaan')
+                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->get(),
+                'mobil' => $mobil->all(),
         ];
+        // dd($data);
 
         return view('penyewaan.tambah', $data);
     }
@@ -35,26 +37,26 @@ class PenyewaanController extends Controller
     {
         $request->validate([
             'id_detail' => 'required',
-            'pilih_merk_mobil' => 'required',
+            // 'pilih_merk_mobil' => 'required',
             'tanggal_peminjaman' => 'required',
-            'jumlah_meminjam' => 'required',
+            'jumlah_sewa' => 'required',
         ]);
 
         $penyewaan = new Penyewaan();
 
         $penyewaan->id_detail = $request->id_detail;
         $penyewaan->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $penyewaan->jumlah_meminjam = $request->jumlah_meminjam;
+        $penyewaan->jumlah_sewa = $request->jumlah_sewa;
 
         $penyewaan->save();
 
         return redirect('/penyewaan');
         
         if ($penyewaan->create($request)) {
-            return redirect('penyewaan')->with('success', 'Data Mobil baru berhasil ditambah');
+            return redirect('penyewaan')->with('success', 'Data sewa baru berhasil ditambah');
         }
 
-        return back()->with('error', 'Data mobil gagal ditambahkan');
+        return back()->with('error', 'Data sewa gagal ditambahkan');
     
     }
 

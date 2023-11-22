@@ -21,8 +21,8 @@ return new class extends Migration
 
             // Foreign Key
 
-            $table->foreign('id_detail')->on('detail_sewa')
-            ->references('id_detail')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_detail')->on('mobil')
+            ->references('id_mobil')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

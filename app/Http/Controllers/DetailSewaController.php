@@ -42,7 +42,7 @@ class DetailSewaController extends Controller
     {
         $data = $request->validate([
             'lampu' => 'required',
-            'dongjrak_kit' => 'required',
+            'dongkrak_kit' => 'required',
             'klakson' => 'required',
             'head_rest' => 'required',
             'kebersihan_mobil' => 'required',

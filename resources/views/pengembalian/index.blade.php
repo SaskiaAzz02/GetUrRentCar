@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title', 'Data Pengembalian)
+@section('title', 'Data Pengembalian')
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -30,7 +30,7 @@
                                     <td>
                                         <a href="pengembalian/edit/{{ $p->id_pengembalian }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"
-                                            idPenyewa="{{ $p->id_pengembalian }}">HAPUS</button>
+                                            idPengembalian="{{ $p->id_pengembalian }}">HAPUS</button>
                                     </td>
                                 </tr>
                             @endforeach

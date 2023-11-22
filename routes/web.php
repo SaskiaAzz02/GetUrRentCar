@@ -61,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
             Route::get('/tambah', [PenyewaanController::class, 'create'])->name('tambahPenyewaan');
             Route::post('/simpan', [PenyewaanController::class, 'store'])->name('simpanPenyewaan');
-            Route::get('/edit{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');
+            Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');
             Route::post('/edit/simpan', [PenyewaanController::class, 'update'])->name('simpanEditPenyewaan');
             Route::delete('/hapus', [PenyewaanController::class, 'destroy'])->name('hapusPenyewaan');
         });
