@@ -15,6 +15,9 @@
                             <a href="mobil/tambah">
                                 <btn class="btn btn-success">TAMBAH JENIS MOBIL</btn>
                             </a>
+                            <a href="mobil/unduh">
+                                <btn class="btn btn-primary">CETAK PDF</btn>
+                            </a>
                             <br><br>
                         </div>
                             <hr>
