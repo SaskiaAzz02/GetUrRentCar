@@ -25,7 +25,6 @@
                         <table class="table table-hover table-bordered DataTable">
                             <thead>
                                 <tr>
-                                <th>ID</th>
                                     <th>JENIS MOBIL</th>
                                     <th>MERK</th>
                                     <th>PLAT MOBIL</th>
@@ -38,7 +37,6 @@
                             <tbody>
                                 @foreach ($mobil as $m)
                                     <tr>
-                                        <td>{{ $m->id }}</td>
                                         <td>{{ $m->jenis_mobil }}</td>
                                         <td>{{ $m->merk }}</td>
                                         <td>{{ $m->plat_mobil }}</td>
@@ -106,5 +104,9 @@
                 }
             });
         });
+        $(document).ready(function() {
+            $('.DataTable').DataTable();
+        });
+
     </script>
 @endsection

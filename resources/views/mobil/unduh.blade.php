@@ -12,7 +12,7 @@
 			<h5><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5>
 		</center>
 		<br/>
-		<a href="/pegawai/cetak_pdf" class="btn btn-primary" target="_blank">CETAK PDF</a>
+		<a href="mobil/unduh" class="btn btn-primary" target="_blank">CETAK PDF</a>
 		<table class='table table-bordered'>
 			<thead>
 				<tr>
@@ -28,7 +28,6 @@
 				@php $i=1 @endphp
 				@foreach($mobil as $m)
 				<tr>
-                    <td>{{ $m->id }}</td>
                     <td>{{ $m->jenis_mobil }}</td>
                     <td>{{ $m->merk }}</td>
                     <td>{{ $m->plat_mobil }}</td>

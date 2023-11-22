@@ -22,10 +22,7 @@
                                         @endif
                                         <table class="table table-bordered mt-3">
                                             <tbody>
-                                            <tr>
-                                                    <td class="fw-bolder">ID</td>
-                                                    <td>: {{$m->id}}</td>
-                                                </tr>
+                                        
                                                 <tr>
                                                     <td class="fw-bolder">JENIS MOBIL</td>
                                                     <td>: {{$m->jenis_mobil}}</td>
