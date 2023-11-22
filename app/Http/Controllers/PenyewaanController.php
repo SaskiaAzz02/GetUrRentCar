@@ -88,7 +88,7 @@ class PenyewaanController extends Controller
         $id_penyewaan = $request->input('id_penyewaan');
 
         $data = $request->validate([
-            'id_detail' => 'required',
+            'id_mobil' => 'required',
             'tanggal_peminjaman' => 'required|date',
             'jumlah_meminjam' => 'required|integer',
         ]);

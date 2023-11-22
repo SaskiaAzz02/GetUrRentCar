@@ -9,7 +9,7 @@ class Penyewaan extends Model
 {
     use HasFactory;
     protected $table = 'penyewaan';
-    protected $fillable = ['id_detail', 'tanggal_peminjaman','jumlah_sewa'];
+    protected $fillable = ['id_mobil', 'tanggal_peminjaman','jumlah_sewa'];
     protected $primaryKey = 'id_penyewaan';
     public $timestamps = false;
 }
