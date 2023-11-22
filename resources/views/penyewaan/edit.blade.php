@@ -32,8 +32,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_meminjam"
-                                        value="{{ $info->jumlah_meminjam }}" />
+                                    <input type="number" class="form-control" name="jumlah_sewa"
+                                        value="{{ $info->jumlah_sewa }}" />
                                 </div>
                                 <input type="hidden" class="form-control" name="id_penyewaan"
                                     value="{{ $info->id_penyewaan }}" />
