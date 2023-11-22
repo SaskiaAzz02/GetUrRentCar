@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($info as $p)
+                            @foreach ($pengembalian as $p)
                                 <tr>
                                     <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td>
                                     <td>{{ $p->tanggal_pengembalian }}</td>

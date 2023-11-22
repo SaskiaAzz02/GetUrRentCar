@@ -19,7 +19,7 @@
                     <table class="table table-hover table-bordered DataTable">
                         <thead>
                             <tr>
-                                <th>Id Penyewaan</th>
+                                <th>ID PENYEWAAN</th>
                                 <th>MOBIL</th>
                                 <th>TANGGAL PEMINJAMAN</th>
                                 <th>JUMLAH MEMINJAM</th>
@@ -36,6 +36,9 @@
                                     <td>{{ $p->tanggal_peminjaman }}</td>
                                     <td>{{ $p->jumlah_sewa }}</td>
                                     <td>
+                                        <a href="penyewaan/detail/{{ $p->id_penyewaan }}" >
+                                            <button class="btn btn-warning">DETAIL</button>
+                                        </a>
                                         <a href="penyewaan/edit/{{ $p->id_penyewaan }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"
                                             idPenyewa="{{ $p->id_penyewaan }}">HAPUS</button>
