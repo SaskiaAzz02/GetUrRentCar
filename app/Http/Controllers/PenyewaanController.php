@@ -75,6 +75,14 @@ class PenyewaanController extends Controller
         return view('penyewaan.edit', $data);
     }
 
+     // DETAIL
+
+     public function detail(Penyewaan $penyewaan, string $id)
+     {
+         $data = Penyewaan::where('id_penyewaan', $id)->get();
+         return view('penyewaan.detail', ['penyewaan' => $data]);
+     }
+
     public function update(Request $request, Penyewaan $penyewaan)
     {
         $id_penyewaan = $request->input('id_penyewaan');
