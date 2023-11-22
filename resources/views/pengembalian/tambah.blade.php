@@ -25,12 +25,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL PEMINJAMAN</label>
-                                    <input type="date" class="form-control" name="tanggal_peminjaman" />
-                                </div>
-                                <div class="form-group">
-                                    <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_meminjam" />
+                                    <label>TANGGAL PENGEMBALIAN</label>
+                                    <input type="date" class="form-control" name="tanggal_pengembalian" />
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">SIMPAN</button>
