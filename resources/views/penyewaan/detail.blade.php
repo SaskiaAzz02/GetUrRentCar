@@ -23,12 +23,12 @@
                                         <table class="table table-bordered mt-3">
                                             <tbody>
                                             <tr>
-                                                    <td class="fw-bolder">ID PEMINJAMAN</td>
-                                                    <td>: {{$p->id_peminjaman}}</td>
+                                                    <td class="fw-bolder">ID PENYEWAAN</td>
+                                                    <td>: {{$p->id_penyewaan}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">MOBIL</td>
-                                                    <td>: {{$p->mobil}}</td>
+                                                    <td>: {{ $p->merk . ' ' . $p->plat_mobil }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TANGGAL PEMINJAMAN</td>
@@ -36,7 +36,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">JUMLAH MEMINJAM</td>
-                                                    <td>: {{$p->jumlah_meminjam}}</td>
+                                                    <td>: {{$p->jumlah_sewa}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
