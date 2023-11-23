@@ -80,6 +80,13 @@ class PenyewaanController extends Controller
      public function detail(Penyewaan $penyewaan, string $id)
      {
          $data = Penyewaan::where('id_penyewaan', $id)->get();
+         $data = [
+            'info' => $penyewaan
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
+                ->where('penyewaan.id_penyewaan', $id)
+                ->first(),  
+        ];
+
          return view('penyewaan.detail', ['penyewaan' => $data]);
      }
 
