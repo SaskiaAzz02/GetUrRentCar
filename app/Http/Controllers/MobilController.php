@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Mobil;
 use Barryvdh\DomPDF\Facade\pdf;
 use Illuminate\Http\Request;
@@ -12,11 +13,12 @@ class MobilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Mobil $mobil)
+    public function index(Mobil $mobil, Log $log)
     {
         //
         $data = [
-            'mobil' => $mobil->all()
+            'mobil' => $mobil->all(),
+            'log' => $log->all()
         ];
 
         // dd(Auth::user());`
@@ -159,7 +161,7 @@ class MobilController extends Controller
             // Pesan Berhasil
             $pesan = [
                 'success' => true,
-                'pesan'   => 'Data jenis surat berhasil dihapus'
+                'pesan'   => 'Data mobil berhasil dihapus'
             ];
         } else {
             // Pesan Gagal

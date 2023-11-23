@@ -44,7 +44,7 @@
     <script type="module">
         $('tbody').on('click', '.btnHapus', function(a) {
             a.preventDefault();
-            let idPenyewa = $(this).attr('idPenyewa');
+            let idPengembalian = $(this).attr('idPengembalian');
             swal.fire({
                 title: "Apakah anda ingin menghapus data ini?",
                 showCancelButton: true,
@@ -56,9 +56,9 @@
                     // Ajax Delete
                     $.ajax({
                         type: 'DELETE',
-                        url: 'penyewaan/hapus',
+                        url: 'pengembalian/hapus',
                         data: {
-                            id_penyewaan: idPenyewa,
+                            id_pengembalian: idPengembalian,
                             _token: "{{ csrf_token() }}"
                         },
                         success: function(data) {
@@ -73,7 +73,7 @@
                 }
             });
         });
-        
+
         $(document).ready(function() {
             $('.DataTable').DataTable();
         });

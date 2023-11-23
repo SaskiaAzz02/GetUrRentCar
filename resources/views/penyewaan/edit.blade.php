@@ -16,7 +16,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>PILIH KENDARAAN</label>
-                                    <select name="id_detail" class="form-control">
+                                    <select name="id_mobil" class="form-control">
                                         <option value="" disabled>Pilih Jenis</option>
                                         @foreach ($jenis_mobil as $jenis)
                                             <option value="{{ $jenis->id_jenis_mobil }}"

@@ -43,4 +43,56 @@ class PengembalianController extends Controller
 
         return redirect('/pengembalian');
     }
+
+    public function edit(Pengembalian $pengembalian, string $id)
+    {
+        $data = [
+            'pengembalian' => Pengembalian::where('id_pengembalian', $id)->get()
+        ];
+        return view('pengembalian.edit', $data);
+    }
+
+    // DETAIL
+
+    public function detail(Mobil $mobil, string $id)
+    {
+        $data = Mobil::where('id_mobil', $id)->get();
+        return view('mobil.detail', ['mobil' => $data]);
+    }
+
+    // UNDUH
+
+    public function unduh(Pengembalian $pengembalian)
+    {
+    	$pengembalian = Pengembalian::all();
+ 
+    	$pdf = PDF::loadview('mobil.unduh',['pengembalian'=>$pengembalian]);
+    	return $pdf->download('laporan-mobil.pdf');
+    }
+
+    // Hapus 
+
+    public function destroy(Request $request, Pengembalian $pengembalian)
+    {
+
+    $id_pengembalian = $request->input('id_pengembalian');
+
+    $aksi = $pengembalian->where('id_pengembalian', $id_pengembalian)->delete();
+
+    if ($aksi) {
+        // Pesan Berhasil
+        $pesan = [
+            'success' => true,
+            'pesan'   => 'Data pengembalian berhasil dihapus'
+        ];
+    } else {
+        // Pesan Gagal
+        $pesan = [
+            'success' => false,
+            'pesan'   => 'Data gagal dihapus'
+        ];
+        return response()->json($pesan);
+
+    }
+} 
 }

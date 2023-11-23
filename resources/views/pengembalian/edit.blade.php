@@ -16,7 +16,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>PILIH KENDARAAN</label>
-                                    <select name="id_detail" class="form-control">
+                                    <select name="id_pengembalian" class="form-control">
                                         <option value="" disabled>Pilih Jenis</option>
                                         @foreach ($jenis_mobil as $jenis)
                                             <option value="{{ $jenis->id_jenis_mobil }}"
@@ -37,8 +37,8 @@
                                     <input type="number" class="form-control" name="jumlah_meminjam"
                                         value="{{ $info->jumlah_meminjam }}" />
                                 </div>
-                                <input type="hidden" class="form-control" name="id_penyewaan"
-                                    value="{{ $info->id_penyewaan }}" />
+                                <input type="hidden" class="form-control" name="id_pengembalian"
+                                    value="{{ $info->id_pengembalian }}" />
                                 <div class="col-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">SIMPAN</button>
                                     <a href="#" onclick="window.history.back();" class="btn btn-success">KEMBALI</a>

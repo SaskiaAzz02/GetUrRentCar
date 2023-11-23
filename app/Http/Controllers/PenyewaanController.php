@@ -13,8 +13,8 @@ class PenyewaanController extends Controller
     {
         $data = [
             'info' => $penyewaan
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
-                ->get()
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
+                ->get(),
         ];
 
         return view('penyewaan.index', $data);
@@ -24,7 +24,7 @@ class PenyewaanController extends Controller
     {
         $data = [
             'info' => DB::table('penyewaan')
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
                 ->get(),
                 'mobil' => $mobil->all(),
         ];
@@ -36,7 +36,7 @@ class PenyewaanController extends Controller
     public function store(Request $request, Penyewaan $penyewaan)
     {
         $request->validate([
-            'id_detail' => 'required',
+            'id_mobil' => 'required',
             // 'pilih_merk_mobil' => 'required',
             'tanggal_peminjaman' => 'required',
             'jumlah_sewa' => 'required',
@@ -44,7 +44,7 @@ class PenyewaanController extends Controller
 
         $penyewaan = new Penyewaan();
 
-        $penyewaan->id_detail = $request->id_detail;
+        $penyewaan->id_mobil = $request->id_mobil;
         $penyewaan->tanggal_peminjaman = $request->tanggal_peminjaman;
         $penyewaan->jumlah_sewa = $request->jumlah_sewa;
 
@@ -66,7 +66,7 @@ class PenyewaanController extends Controller
 
         $data = [
             'info' => $penyewaan
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
                 ->where('penyewaan.id_penyewaan', $id)
                 ->first(),
             'jenis_mobil' => $jenis_mobil,
