@@ -28,6 +28,9 @@
                                     <td>{{ $p->merk . ' ' . $p->nomor_rangka }}</td>
                                     <td>{{ $p->tanggal_pengembalian }}</td>
                                     <td>
+                                        <a href="pengembalian/detail/{{ $p->id_pengembalian }}" >
+                                            <button class="btn btn-warning">DETAIL</button>
+                                        </a>
                                         <a href="pengembalian/edit/{{ $p->id_pengembalian }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"
                                             idPengembalian="{{ $p->id_pengembalian }}">HAPUS</button>

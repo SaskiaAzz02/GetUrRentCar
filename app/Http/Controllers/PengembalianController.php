@@ -54,10 +54,10 @@ class PengembalianController extends Controller
 
     // DETAIL
 
-    public function detail(Mobil $mobil, string $id)
+    public function detail(Pengembalian $pengembalian, string $id)
     {
-        $data = Mobil::where('id_mobil', $id)->get();
-        return view('mobil.detail', ['mobil' => $data]);
+        $data = Pengembalian::where('id_pengembalian', $id)->get();
+        return view('pengembalian.detail', ['pengembalian' => $data]);
     }
 
     // UNDUH
@@ -66,8 +66,8 @@ class PengembalianController extends Controller
     {
     	$pengembalian = Pengembalian::all();
  
-    	$pdf = PDF::loadview('mobil.unduh',['pengembalian'=>$pengembalian]);
-    	return $pdf->download('laporan-mobil.pdf');
+    	$pdf = PDF::loadview('pengembalian.unduh',['pengembalian'=>$pengembalian]);
+    	return $pdf->download('laporan-pengembalian.pdf');
     }
 
     // Hapus 

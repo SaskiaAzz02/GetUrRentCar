@@ -114,7 +114,7 @@ class PenyewaanController extends Controller
             // Pesan Berhasil
             $pesan = [
                 'success' => true,
-                'pesan'   => 'Data jenis surat berhasil dihapus'
+                'pesan'   => 'Data penyewaan berhasil dihapus'
             ];
         } else {
             // Pesan Gagal

@@ -14,28 +14,16 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-5">
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>PILIH KENDARAAN</label>
-                                    <select name="id_pengembalian" class="form-control">
-                                        <option value="" disabled>Pilih Jenis</option>
-                                        @foreach ($jenis_mobil as $jenis)
-                                            <option value="{{ $jenis->id_jenis_mobil }}"
-                                                @if ($jenis->id_jenis_mobil == $info->id_jenis_mobil) selected @endif>
-                                                {{ $jenis->nama_jenis }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    <td class="fw-bolder">MOBIL</td>
+                                                    <td>: {{$p->merk . ' ' . $p->nomor_rangka }}</td>
+                                </div> --}}
 
                                 <div class="form-group">
-                                    <label>TANGGAL PEMINJAMAN</label>
-                                    <input type="date" class="form-control" name="tanggal_peminjaman"
-                                        value="{{ $info->tanggal_peminjaman }}" />
-                                </div>
-                                <div class="form-group">
-                                    <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_meminjam"
-                                        value="{{ $info->jumlah_meminjam }}" />
+                                    <label>TANGGAL PENGEMBALIAN</label>
+                                    <input type="date" class="form-control" name="tanggal_pengembalian"
+                                        value="{{ $info->tanggal_pengembalian }}" />
                                 </div>
                                 <input type="hidden" class="form-control" name="id_pengembalian"
                                     value="{{ $info->id_pengembalian }}" />
