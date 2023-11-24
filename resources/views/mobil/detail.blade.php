@@ -41,7 +41,10 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">FOTO MOBIL</td>
-                                                    <td>: {{$m->foto_mobil}}</td>
+                                                   <td>: @if ($m->foto_mobil)
+                                                    <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
+                                                        style="max-width: 250px; height: auto;" />
+                                                @endif</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">HARGA SEWA PER HARI</td>
