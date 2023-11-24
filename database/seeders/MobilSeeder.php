@@ -12,26 +12,19 @@ class MobilSeeder extends Seeder
      */
     public function run(): void
     {
-        $userData = [
-            [
-                'username' => 'superadmin',
-                'role' => 'superadmin',
-                'password' => Hash::make('superadmin')
-            ],
-            [
-                'username' => 'admin',
-                'role' => 'admin',
-                'password' => Hash::make('admin')
-            ],
-            [
-                'username' => 'customer',
-                'role' => 'customer',
-                'password' => Hash::make('customer')
-            ]
-        ];
+        {
+            $jenisData = [
+                ['jenis_surat' => 'Sakit'],
+                ['jenis_surat' => 'Izin'],
+            ];
+    
+            foreach ($jenisData as $data) {
+                JenisSurat::create($data);
+            }
+        }
 
         // Melakukan looping data dengan foreach
-        foreach ($userData as $user => $val) {
+        foreach ($akun as $user => $val) {
             Akun::create($val);
         }
     }
