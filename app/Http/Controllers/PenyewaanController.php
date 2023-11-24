@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mobil;
 use App\Models\Penyewaan;
+use Barryvdh\DomPDF\Facade\pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,28 @@ class PenyewaanController extends Controller
         return view('penyewaan.index', $data);
     }
 
-    public function create(Mobil $mobil, Penyewaan $penyewaan)
+    public function detail(penyewaan $penyewaan, string $id)
+    {
+        $data = Penyewaan::where('id_penyewaan', $id)->get();
+
+        $data = [
+            'info' => DB::table('penyewaan')
+                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->get(),
+        ];
+
+        return view('penyewaan.detail', ['penyewaan' => $data]);
+    }
+
+    public function unduh(penyewaan $penyewaan)
+    {
+    	$penyewaan = penyewaan::all();
+ 
+    	$pdf = PDF::loadview('penyewaan.unduh',['penyewaan'=>$penyewaan]);
+    	return $pdf->download('laporan-penyewaan.pdf');
+    }
+
+    public function create(penyewaan $mobil, Penyewaan $penyewaan)
     {
         $data = [
             'info' => DB::table('penyewaan')

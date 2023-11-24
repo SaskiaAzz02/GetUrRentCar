@@ -14,6 +14,9 @@
                         <div class="col-md-4">
                             <a href="penyewaan/tambah" class="btn btn-success">LAKUKAN PENYEWAAN</a>
                         </div>
+                        <div class="col-md-4">
+                            <a href="penyewaan/unduh" class="btn btn-primary">CETAK PDF</a>
+                        </div>
                     </div>
                     <hr>
                     <table class="table table-hover table-bordered DataTable">

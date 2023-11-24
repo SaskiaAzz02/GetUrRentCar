@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');
             Route::post('/edit/update', [PenyewaanController::class, 'update'])->name('simpanEditPenyewaan');
             Route::delete('/hapus', [PenyewaanController::class, 'destroy'])->name('hapusPenyewaan');
+            Route::get('/unduh', [PenyewaanController::class, 'unduh']);
         });
 
     Route::prefix('pengembalian')
