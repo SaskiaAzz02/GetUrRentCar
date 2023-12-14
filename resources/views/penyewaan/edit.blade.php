@@ -18,8 +18,9 @@
                                     <label>PILIH MOBIL</label>
                                     <select name="id_mobil" id="" class="form-control">
                                         <option value="" selected disabled> Pilih Jenis</option>
-                                        @foreach ($mobil as $s)
-                                        <option value="{{ $s->id_mobil }}{{ $s->plat_mobil }}">
+                                        @foreach ($mobil as $m)
+                                        <option value="{{ $m->id_mobil }}">
+                                            {{ $m->plat_mobil }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -34,8 +35,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_meminjam"
-                                        value="{{ $info->jumlah_meminjam }}" />
+                                    <input type="number" class="form-control" name="jumlah_sewa"
+                                        value="{{ $info->jumlah_sewa }}" />
                                 </div>
                                 <input type="hidden" class="form-control" name="id_penyewaan"
                                     value="{{ $info->id_penyewaan }}" />

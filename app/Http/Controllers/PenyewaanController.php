@@ -60,16 +60,15 @@ class PenyewaanController extends Controller
     
     }
 
-    public function edit(Penyewaan $penyewaan, string $id)
+    public function edit(Penyewaan $penyewaan, Mobil $mobil,  string $id)
     {
-        $jenis_mobil = DB::table('jenis_mobil')->get(); 
+        $dataMobil = $mobil->all(); 
 
         $data = [
             'info' => $penyewaan
-                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
-                ->where('penyewaan.id_penyewaan', $id)
+                ->where('id_penyewaan', $id)
                 ->first(),
-            'jenis_mobil' => $jenis_mobil,
+            'mobil' => $dataMobil,
         ];
 
         return view('penyewaan.edit', $data);
@@ -97,12 +96,12 @@ class PenyewaanController extends Controller
         $data = $request->validate([
             'id_mobil' => 'required',
             'tanggal_peminjaman' => 'required|date',
-            'jumlah_meminjam' => 'required|integer',
+            'jumlah_sewa' => 'required|integer',
         ]);
 
         if ($id_penyewaan !== null) {
             $dataUpdate = $penyewaan->where('id_penyewaan', $id_penyewaan)->update($data);
-
+            return redirect('/penyewaan');
             if ($dataUpdate) {
                 return redirect('/penyewaan');
             }

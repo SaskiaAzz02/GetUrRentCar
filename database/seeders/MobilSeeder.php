@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mobil;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,21 +13,20 @@ class MobilSeeder extends Seeder
      */
     public function run(): void
     {
-        {
-            $jenisData = [
-                ['jenis_surat' => 'Sakit'],
-                ['jenis_surat' => 'Izin'],
+        $userData = [
+            [
+                'jenis_mobil' =>'matic',
+                'merk' =>'honda',
+                'plat_mobil' =>'B 1234 RPL',
+                'nomor_rangka' =>'W9296482519B9356IDN',
+                'foto_mobil' =>'mobil.jpeg',
+                'harga_sewa_per_hari' =>'123000', 
+            ]
             ];
-    
-            foreach ($jenisData as $data) {
-                JenisSurat::create($data);
-            }
-        }
 
-        // Melakukan looping data dengan foreach
-        foreach ($akun as $user => $val) {
-            Akun::create($val);
-        }
+            foreach ($userData as $user => $val) {
+                Mobil::create($val);
+            }
     }
     }
 

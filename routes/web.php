@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
             Route::get('/detail/{id}', [PenyewaanController::class, 'detail']);
+            Route::get('/unduh', [MobilController::class, 'unduh']);
             Route::get('/tambah', [PenyewaanController::class, 'create'])->name('tambahPenyewaan');
             Route::post('/simpan', [PenyewaanController::class, 'store'])->name('simpanPenyewaan');
             Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');

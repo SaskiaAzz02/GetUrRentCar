@@ -69,6 +69,12 @@ class MobilController extends Controller
         }
 
         return back()->with('error', 'Data mobil gagal ditambahkan');
+
+        if (DB::statement("CALL CreateMobil(?,?,?,?,?,?)", [$data['jenis_mobil'], $data['merk'],  $data['plat_mobil'], $data['nomor_rangka'], $data['foto_mobil'], $data['harga_sewa_per_hari']])) {
+            return redirect('/mobil')->with('success', 'Data Mobil Baru Berhasil Ditambah');
+        }
+        return back()->with('error','Data Mobil Gagal Ditambahkan');
+
     }
 
     /**
