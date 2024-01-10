@@ -7,6 +7,9 @@
                 <div class="card-header">
                     <span class="h1">
                         DATA MOBIL
+                    </span><br>
+                    <span class="h5">
+                        Jumlah Mobil Yang Terdaftar : {{$jumlahMobil}}
                     </span>
                 </div>
                 <div class="card-body">

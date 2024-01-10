@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>FOTO MOBIL</label>
-                                    <input type="file" class="form-control" name="foto_mobil" value="{{ $mobil[0]->foto_mobil }}" />
+                                    <input type="file" class="form-control" name="foto_mobil" value="{{ $mobil[0]->foto_mobil }} " />
                                 </div>  </div> <div class="form-group">
                                     <label>HARGA SEWA PER HARI</label>
                                     <input type="text" class="form-control" name="harga_sewa_per_hari" value="{{ $mobil[0]->harga_sewa_per_hari }}" />
