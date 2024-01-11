@@ -15,9 +15,15 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
-                                    <input type="text" class="form-control" name="jenis_mobil" />
-                                    @csrf
-                                </div>
+                                    <select name="id_jenis_mobil" id="" class="form-control">
+                                        <option value="" selected disabled>Pilih Jenis</option>
+                                        @foreach ($jenis_mobil as $j)
+                                        <option value="{{ $j->id_jenis_mobil }}">{{ $j->nama_jenis }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div><br>
+                                @csrf 
                                 <div class="form-group">
                                     <label>MERK</label>
                                     <input type="text" class="form-control" name="merk" />

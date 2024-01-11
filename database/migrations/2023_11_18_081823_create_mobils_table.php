@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mobil', function (Blueprint $table) {
             $table->integer('id_mobil')->autoIncrement();
             // $table->string('id');
-            $table->string('jenis_mobil');
+            $table->integer('id_jenis_mobil', false);
             $table->string('merk');
             $table->string('nomor_rangka',30);
             $table->string('plat_mobil',10);

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailSewa;
+use App\Models\JenisMobil;
+use App\Models\mobil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DetailSewaController extends Controller
 {
@@ -26,13 +30,21 @@ class DetailSewaController extends Controller
     public function create(DetailSewa $detailSewa)
     {
         $detailSewa = $detailSewa->all();
+        // $data = [
+        //     'detailSewa' => $detailSewa,
+        // ];
+
         $data = [
-            'detailSewa' => $detailSewa,
+            'jenis_mobil'=>JenisMobil::all(),
+            'merek'=>DB::table('mobil')
+            ->select('merk')
+            ->get(),
+            'plat'=>DB::table('mobil')
+            ->select('plat_mobil')
+            ->get()
         ];
 
-        return view('detail.tambah', [
-            'detailSewa' => $detailSewa,
-        ]);
+        return view('detail.tambah', $data);
     }
 
     /**

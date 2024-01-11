@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisMobil;
 use App\Models\Log;
 use App\Models\Mobil;
 use Barryvdh\DomPDF\Facade\pdf;
@@ -37,11 +38,10 @@ class MobilController extends Controller
         $mobil = $mobil->all();
         $data = [
             'mobil' => $mobil,
+            'jenis_mobil'=> JenisMobil::all()
         ];
 
-        return view('mobil.tambah', [
-            'mobil' => $mobil,
-        ]);
+        return view('mobil.tambah', $data);
     }
 
     /**
@@ -50,7 +50,7 @@ class MobilController extends Controller
     public function store(Request $request, Mobil $mobil)
     {
         $data = $request->validate([
-            'jenis_mobil' => 'required',
+            'id_jenis_mobil' => 'required',
             'merk' => 'required',
             'plat_mobil' => 'required',
             'nomor_rangka' => 'required',
