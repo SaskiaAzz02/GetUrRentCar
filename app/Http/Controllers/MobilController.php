@@ -50,7 +50,7 @@ class MobilController extends Controller
     public function store(Request $request, Mobil $mobil)
     {
         $data = $request->validate([
-            'jenis_mobil' => 'required',
+            'id_jenis_mobil' => 'required',
             'merk' => 'required',
             'plat_mobil' => 'required',
             'nomor_rangka' => 'required',
