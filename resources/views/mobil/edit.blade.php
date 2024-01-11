@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="simpan" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" name="id_mobil" value="{{$mobil[0]->id_mobil}}" />
+                        <input type="hidden" class="form-control" name="id_mobil" value="{{$jenisMobil[0]->id_jenis_mobil}}" />
                         <div class="row">
                             <div class="col-md-5">
                             <div class="form-group">
