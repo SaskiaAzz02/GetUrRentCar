@@ -130,13 +130,13 @@
                                 <label>SEAT BELT</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="seat_belt" id="seat_belt">
-                                    <label class="form-check-label" for="seat_belt">
+                                    <label class="form-check-label" for="seat_belt" checked>
                                       Baik
                                     </label>
                                   </div>
                                   <div class="form-check">
                                     <input class="form-check-input" type="radio" name="seat_belt" id="seat_belt">
-                                    <label class="form-check-label" for="seat_belt">
+                                    <label class="form-check-label" for="seat_belt" checked>
                                       Tidak Baik
                                     </label>
                                   </div>
@@ -146,13 +146,13 @@
                                 <label>AUDIO</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="audio" id="audio">
-                                    <label class="form-check-label" for="audio">
+                                    <label class="form-check-label" for="audio" checked>
                                       Baik
                                     </label>
                                   </div>
                                   <div class="form-check">
                                     <input class="form-check-input" type="radio" name="audio" id="audio">
-                                    <label class="form-check-label" for="audio">
+                                    <label class="form-check-label" for="audio" checked>
                                       Tidak Baik
                                     </label>
                                   </div><br>
@@ -160,7 +160,7 @@
                             <div class="form-group">
                                 <label>KARPET MOBIL</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="karpet_mobil" id="karpet_mobil">
+                                    <input class="form-check-input" type="radio" name="karpet_mobil" id="karpet_mobil" checked>
                                     <label class="form-check-label" for="karpet_mobil">
                                       Baik
                                     </label>
@@ -175,7 +175,7 @@
                             <div class="form-group">
                                 <label>BAN SEREP</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ban_serep" id="ban_serep">
+                                    <input class="form-check-input" type="radio" name="ban_serep" id="ban_serep" checked>
                                     <label class="form-check-label" for="ban_serep">
                                       Baik
                                     </label>
@@ -191,7 +191,7 @@
                                 <label>STNK</label>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="stnk" id="stnk">
-                                    <label class="form-check-label" for="stnk">
+                                    <label class="form-check-label" for="stnk" checked>
                                       Baik
                                     </label>
                                   </div>
