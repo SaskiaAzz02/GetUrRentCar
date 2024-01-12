@@ -40,10 +40,10 @@
                                         <td>{{ $m->kebersihan_mobil }}</td>
 
                                         <td>
-                                            <a href="detail/edit/{{ $m->id_mobil }}">
+                                            <a href="detail/edit/{{ $m->id_detail }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
-                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
+                                            <btn class="btn btn-danger btnHapus" idDetail="{{ $m->id_detail }}">HAPUS</btn>
                                         </td>
                                     </tr>
                                 @endforeach

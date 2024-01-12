@@ -11,39 +11,43 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="simpan" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" name="id_mobil" value="{{$mobil[0]->id_mobil}}" />
+                      {{-- {{dd($detailSewa)}} --}}
+                        <input type="hidden" class="form-control" name="id_detail" value="{{$info->id_detail}}" />
                         <div class="row">
                             <div class="col-md-5">
-                            <div class="form-group">
+                              <div class="form-group">
                                 <label>JENIS MOBIL</label>
                                 <select name="id_jenis_mobil" id="" class="form-control">
-                                    <option value="" selected disabled>Pilih Jenis</option>
                                     @foreach ($jenis_mobil as $j)
-                                    <option value="{{ $j->id_jenis_mobil }}">{{ $j->nama_jenis }}
-                                    </option>
+                                        <option value="{{ $j->id_jenis_mobil }}" {{ $info->nama_jenis == $j->nama_jenis ? 'selected' : '' }}>
+                                            {{ $j->nama_jenis }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div><br>
+                            
                             <div class="form-group">
                                 <label>MERK MOBIL</label>
                                 <select name="merk" id="" class="form-control">
-                                    <option value="" selected disabled>Pilih Jenis</option>
-                                    @foreach ($merk as $s)
-                                    <option value="{{ $s->merk }}">{{ $s->merk }}
-                                    </option>
+                                    @foreach ($mobil as $s)
+                                        <option value="{{ $s->merk }}" {{ $info->merk == $s->merk ? 'selected' : '' }}>
+                                            {{ $s->merk }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div><br>
+                            
                             <div class="form-group">
                                 <label>PLAT MOBIL</label>
                                 <select name="plat" id="" class="form-control">
-                                    <option value="" selected disabled>Pilih Jenis</option>
-                                    @foreach ($plat as $s)
-                                    <option value="{{ $s->plat_mobil }}">{{ $s->plat_mobil }}
-                                    </option>
+                                    @foreach ($mobil as $s)
+                                        <option value="{{ $s->plat_mobil }}" {{ $info->plat == $s->plat_mobil ? 'selected' : '' }}>
+                                            {{ $s->plat_mobil }}
+                                        </option>
                                     @endforeach
                                 </select>
-                            </div><br>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <label>LAMPU</label>
                                 <div class="form-check">
@@ -201,12 +205,17 @@
                             <div class="form-group">
                                 <label>FOTO KONDISI MOBIL</label>
                                 <input type="file" class="form-control" name="foto_kondisi_mobil" />
+                                @csrf
                             </div> 
+                            <div class="col-md-4 mt-3">
+                              <button type="submit" class="btn btn-primary">SIMPAN</button>
+                              <a href="#" onclick="window.history.back();" class="btn btn-success">KEMBALI</a>
+                          </div>
                             </div>
+                  
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>

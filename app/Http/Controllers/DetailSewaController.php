@@ -158,20 +158,58 @@ return back()->with('error', 'Detail sewa gagal ditambahkan');
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DetailSewa $detailSewa)
+    public function edit(DetailSewa $detail, Mobil $mobil, JenisMobil $jenis, string $id)
     {
+        $dataMobil = $mobil->all(); 
+        $jenis = $jenis->all(); 
+
         $data = [
-            'detailSewa' => DetailSewa::where('id_detail', $detailSewa)->get()
+            'info' => $detail
+                ->where('id_detail', $id)
+                ->first(),
+            'mobil' => $dataMobil,
+            'jenis_mobil' => $jenis,
         ];
+
         return view('detail.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DetailSewa $detailSewa)
+    public function update( Request $request, DetailSewa $detailSewa)
     {
-        //
+
+        $id_detail = $request->input('id_detail');
+
+
+        $data = [
+            'id_detail' => $request->input('id_detail'),
+            // 'id_mobil' => $request->input('id_mobil'),
+            'id_jenis_mobil' => $request->input('id_jenis_mobil'),
+            'lampu' => $request->input('lampu'),
+            'dongkrak_kit' => $request->input('dongkrak_kit'),
+            'klakson' => $request->input('klakson'),
+            'head_rest' => $request->input('head_rest'),
+            'kebersihan_mobil' => $request->input('kebersihan_mobil'),
+            'seat_belt' => $request->input('seat_belt'),
+            'audio' => $request->input('audio'),
+            'karpet_mobil' => $request->input('karpet_mobil'),
+            'ban_serep' => $request->input('ban_serep'),
+            'stnk' => $request->input('stnk'),
+            'merk' => $request->input('merk'),
+            'plat' => $request->input('plat'),
+        ];
+        
+        $dataUpdate = $detailSewa->where('id_detail', $id_detail)->update($data);
+
+
+        if ($dataUpdate) {
+            return redirect('detail')->with('success', 'Data mobil berhasil diupdate');
+        }
+else {
+        return back()->with('error', 'Data jenis mobil gagal diupdate');
+    }
     }
 
     /**
