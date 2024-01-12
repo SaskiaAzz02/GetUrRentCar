@@ -53,6 +53,8 @@ class DetailSewaController extends Controller
     public function store(Request $request, DetailSewa $detailSewa)
     {
         $request->validate([
+            'id_detail' => 'required',
+            'id_jenis_mobil' => 'required',
             'lampu' => 'required',
             'dongkrak_kit' => 'required',
             'klakson' => 'required',
@@ -65,9 +67,6 @@ class DetailSewaController extends Controller
             'stnk' => 'required',
             'foto_kondisi_mobil' => 'required|file',
         ]);
-
-        // $user = Auth::user();
-        // $data['id_user'] = $user->id_user;
 
         if ($request->hasFile('foto_kondisi_mobil')) {
             $foto_file = $request->file('foto_kondisi_mobil');
