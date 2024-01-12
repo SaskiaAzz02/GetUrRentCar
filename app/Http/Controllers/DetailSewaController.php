@@ -53,35 +53,39 @@ class DetailSewaController extends Controller
     public function store(Request $request, DetailSewa $detailSewa)
     {
         $request->validate([
-            'id_detail' => 'required',
-            'id_jenis_mobil' => 'required',
-            'lampu' => 'required',
-            'dongkrak_kit' => 'required',
-            'klakson' => 'required',
-            'head_rest' => 'required',
-            'kebersihan_mobil' => 'required',
-            'seat_belt' => 'required',
-            'audio' => 'required',
-            'karpet_mobil' => 'required',
-            'ban_serep' => 'required',
-            'stnk' => 'required',
-            'foto_kondisi_mobil' => 'required|file',
+            // ... validasi lainnya
         ]);
-
+        
+        // Setelah validasi, gunakan data yang telah divalidasi
+        $data = [
+            'id_detail' => $request->input('id_detail'),
+            'id_mobil' => $request->input('id_mobil'),
+            'lampu' => $request->input('lampu'),
+            'dongkrak_kit' => $request->input('dongkrak_kit'),
+            'klakson' => $request->input('klakson'),
+            'head_rest' => $request->input('head_rest'),
+            'kebersihan_mobil' => $request->input('kebersihan_mobil'),
+            'seat_belt' => $request->input('seat_belt'),
+            'audio' => $request->input('audio'),
+            'karpet_mobil' => $request->input('karpet_mobil'),
+            'ban_serep' => $request->input('ban_serep'),
+            'stnk' => $request->input('stnk'),
+        ];
+        
         if ($request->hasFile('foto_kondisi_mobil')) {
             $foto_file = $request->file('foto_kondisi_mobil');
             $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
             $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
             $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
         }
-
-        return redirect('/detail');
-
+        
+        // Menyimpan data ke database
         if ($detailSewa->create($data)) {
             return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
         }
-
+        
         return back()->with('error', 'Detail sewa gagal ditambahkan');
+        
 
         // $request->validate([
         //     'id_mobil' => 'required',
