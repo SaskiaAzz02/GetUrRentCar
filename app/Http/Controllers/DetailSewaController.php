@@ -52,7 +52,8 @@ class DetailSewaController extends Controller
      */
     public function store(Request $request, DetailSewa $detailSewa)
     {
-        $request->validate([
+
+                $request->validate([
             // ... validasi lainnya
         ]);
         
@@ -85,7 +86,36 @@ class DetailSewaController extends Controller
         }
         
         return back()->with('error', 'Detail sewa gagal ditambahkan');
-        
+        // $request->validate([
+        //     'id_detail' => 'required',
+        //     'id_jenis_mobil' => 'required',
+        //     'lampu' => 'required',
+        //     'dongkrak_kit' => 'required',
+        //     'klakson' => 'required',
+        //     'head_rest' => 'required',
+        //     'kebersihan_mobil' => 'required',
+        //     'seat_belt' => 'required',
+        //     'audio' => 'required',
+        //     'karpet_mobil' => 'required',
+        //     'ban_serep' => 'required',
+        //     'stnk' => 'required',
+        //     'foto_kondisi_mobil' => 'required|file',
+        // ]);
+
+        // if ($request->hasFile('foto_kondisi_mobil')) {
+        //     $foto_file = $request->file('foto_kondisi_mobil');
+        //     $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
+        //     $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
+        //     $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
+        // }
+
+        // return redirect('/detail');
+
+        // if ($detailSewa->create($data)) {
+        //     return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
+        // }
+
+        // return back()->with('error', 'Detail sewa gagal ditambahkan');
 
         // $request->validate([
         //     'id_mobil' => 'required',
