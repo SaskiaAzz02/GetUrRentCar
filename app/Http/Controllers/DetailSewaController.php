@@ -80,12 +80,13 @@ class DetailSewaController extends Controller
             $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
         }
         
-        // Menyimpan data ke database
-        if ($detailSewa->create($data)) {
-            return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
-        }
-        
-        return back()->with('error', 'Detail sewa gagal ditambahkan');
+        // Simpan data ke database
+if ($detailSewa->create($data)) {
+    return redirect('/detail')->with('success', 'Detail sewa baru berhasil ditambah');
+}
+
+// Jika pembuatan gagal
+return back()->with('error', 'Detail sewa gagal ditambahkan');
         // $request->validate([
         //     'id_detail' => 'required',
         //     'id_jenis_mobil' => 'required',

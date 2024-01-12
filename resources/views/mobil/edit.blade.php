@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="simpan" enctype="multipart/form-data">
-                        <input type="hidden" class="form-control" name="id_mobil" value="{{$jenisMobil[0]->id_jenis_mobil}}" />
+                        <input type="hidden" class="form-control" name="id_mobil" value="{{$mobil[0]->id_mobil}}" />
                         <div class="row">
                             <div class="col-md-5">
                             <div class="form-group">
@@ -21,7 +21,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
-                                    <input type="text" class="form-control" name="jenis_mobil" value="{{ $mobil[0]->jenis_mobil }}" />
+                                    <select name="id_jenis_mobil" id="" class="form-control">
+                                        <option value="" selected disabled>Pilih Jenis</option>
+                                        @foreach ($mobil as $j)
+                                        <option value="{{ $j->id_jenis_mobil }}">{{ $j->nama_jenis }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                     @csrf
                                 </div>
                                 <div class="form-group">
