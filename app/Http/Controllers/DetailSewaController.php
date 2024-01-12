@@ -61,6 +61,7 @@ class DetailSewaController extends Controller
         $data = [
             'id_detail' => $request->input('id_detail'),
             'id_mobil' => $request->input('id_mobil'),
+            'id_jenis_mobil' => $request->input('id_jenis_mobil'),
             'lampu' => $request->input('lampu'),
             'dongkrak_kit' => $request->input('dongkrak_kit'),
             'klakson' => $request->input('klakson'),
@@ -71,6 +72,8 @@ class DetailSewaController extends Controller
             'karpet_mobil' => $request->input('karpet_mobil'),
             'ban_serep' => $request->input('ban_serep'),
             'stnk' => $request->input('stnk'),
+            'merk' => $request->input('merk'),
+            'plat' => $request->input('plat'),
         ];
         
         if ($request->hasFile('foto_kondisi_mobil')) {
@@ -149,7 +152,7 @@ return back()->with('error', 'Detail sewa gagal ditambahkan');
      */
     public function show(DetailSewa $detailSewa)
     {
-        //
+       
     }
 
     /**
@@ -157,7 +160,10 @@ return back()->with('error', 'Detail sewa gagal ditambahkan');
      */
     public function edit(DetailSewa $detailSewa)
     {
-        //
+        $data = [
+            'detailSewa' => DetailSewa::where('id_detail', $detailSewa)->get()
+        ];
+        return view('detail.edit', $data);
     }
 
     /**
