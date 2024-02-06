@@ -36,7 +36,7 @@ return new class extends Migration
             IF pesan_error != '000' THEN ROLLBACK TO satu;
             END IF;
             COMMIT;
-        END
+        END");
     }
 
     /**
