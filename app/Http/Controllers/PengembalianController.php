@@ -12,7 +12,7 @@ class PengembalianController extends Controller
     public function index(Pengembalian $pengembalian, Mobil $mobil)
     {
         $data = [
-            'pengembalian' => $pengembalian->join('$mobil')
+            'pengembalian' => $pengembalian->join('mobil', 'penyewaan')
         ];
         return view('pengembalian.index', $data);
 
