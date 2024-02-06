@@ -33,7 +33,7 @@ Route::prefix('login')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('mobil')
-        ->middleware(['akses:superadmin'])
+        ->middleware(['akses:admin,superadmin'])
         ->group(function () {
             Route::get('/', [MobilController::class, 'index'])->name('dataMobil');
             Route::get('/detail/{id}', [MobilController::class, 'detail']);
@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/hapus', [MobilController::class, 'destroy'])->name('hapusMobil');
         });
     Route::prefix('detail')
-        ->middleware(['akses:superadmin'])
+        ->middleware(['akses:admin,superadmin'])
         ->group(function () {
             Route::get('/', [DetailSewaController::class, 'index'])->name('dataDetail');
             Route::get('/detail/{id}', [DetailSewaController::class, 'detail']);

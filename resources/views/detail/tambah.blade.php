@@ -16,10 +16,30 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>JENIS MOBIL</label>
-                                    <select name="id_mobil" id="" class="form-control">
+                                    <select name="id_jenis_mobil" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($detailSewa as $s)
-                                        <option value="{{ $s->id_mobil }}">{{ $s->plat_mobil }}
+                                        @foreach ($jenis_mobil as $j)
+                                        <option value="{{ $j->id_jenis_mobil }}">{{ $j->nama_jenis }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div><br>
+                                <div class="form-group">
+                                    <label>MERK MOBIL</label>
+                                    <select name="merk" id="" class="form-control">
+                                        <option value="" selected disabled>Pilih Jenis</option>
+                                        @foreach ($merek as $s)
+                                        <option value="{{ $s->merk }}">{{ $s->merk }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div><br>
+                                <div class="form-group">
+                                    <label>PLAT MOBIL</label>
+                                    <select name="plat" id="" class="form-control">
+                                        <option value="" selected disabled>Pilih Jenis</option>
+                                        @foreach ($plat as $s)
+                                        <option value="{{ $s->plat_mobil }}">{{ $s->plat_mobil }}
                                         </option>
                                         @endforeach
                                     </select>

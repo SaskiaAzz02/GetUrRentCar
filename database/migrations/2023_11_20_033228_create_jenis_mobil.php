@@ -15,15 +15,7 @@ return new class extends Migration
             // $table->id();
             // $table->timestamps();
             $table->integer('id_jenis_mobil')->autoIncrement();
-            $table->integer('id_mobil');
             $table->string('nama_jenis',100);
-            $table->string('model',100);
-            $table->decimal('harga');
-
-            // Foreign Key
-
-            $table->foreign('id_mobil')->on('mobil')
-            ->references('id_mobil')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

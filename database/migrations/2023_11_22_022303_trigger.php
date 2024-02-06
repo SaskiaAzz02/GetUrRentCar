@@ -25,7 +25,7 @@ return new class extends Migration
          VALUES (CONCAT(
            COALESCE(aktor, ""),
            "menambahkan jenis mobil", 
-           COALESCE(new.jenis_mobil, ""),
+           COALESCE(new.id_jenis_mobil, ""),
            "menambahkan merk mobil",  
            COALESCE(new.merk, ""),
            "menambahkan plat mobil",  

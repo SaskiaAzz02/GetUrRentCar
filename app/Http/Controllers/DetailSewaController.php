@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetailSewa;
+use App\Models\JenisMobil;
+use App\Models\mobil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DetailSewaController extends Controller
 {
@@ -26,13 +30,21 @@ class DetailSewaController extends Controller
     public function create(DetailSewa $detailSewa)
     {
         $detailSewa = $detailSewa->all();
+        // $data = [
+        //     'detailSewa' => $detailSewa,
+        // ];
+
         $data = [
-            'detailSewa' => $detailSewa,
+            'jenis_mobil'=>JenisMobil::all(),
+            'merek'=>DB::table('mobil')
+            ->select('merk')
+            ->get(),
+            'plat'=>DB::table('mobil')
+            ->select('plat_mobil')
+            ->get()
         ];
 
-        return view('detail.tambah', [
-            'detailSewa' => $detailSewa,
-        ]);
+        return view('detail.tambah', $data);
     }
 
     /**
@@ -40,37 +52,74 @@ class DetailSewaController extends Controller
      */
     public function store(Request $request, DetailSewa $detailSewa)
     {
-        $request->validate([
-            'lampu' => 'required',
-            'dongkrak_kit' => 'required',
-            'klakson' => 'required',
-            'head_rest' => 'required',
-            'kebersihan_mobil' => 'required',
-            'seat_belt' => 'required',
-            'audio' => 'required',
-            'karpet_mobil' => 'required',
-            'ban_serep' => 'required',
-            'stnk' => 'required',
-            'foto_kondisi_mobil' => 'required|file',
+
+                $request->validate([
+            // ... validasi lainnya
         ]);
-
-        // $user = Auth::user();
-        // $data['id_user'] = $user->id_user;
-
+        
+        // Setelah validasi, gunakan data yang telah divalidasi
+        $data = [
+            'id_detail' => $request->input('id_detail'),
+            'id_mobil' => $request->input('id_mobil'),
+            'id_jenis_mobil' => $request->input('id_jenis_mobil'),
+            'lampu' => $request->input('lampu'),
+            'dongkrak_kit' => $request->input('dongkrak_kit'),
+            'klakson' => $request->input('klakson'),
+            'head_rest' => $request->input('head_rest'),
+            'kebersihan_mobil' => $request->input('kebersihan_mobil'),
+            'seat_belt' => $request->input('seat_belt'),
+            'audio' => $request->input('audio'),
+            'karpet_mobil' => $request->input('karpet_mobil'),
+            'ban_serep' => $request->input('ban_serep'),
+            'stnk' => $request->input('stnk'),
+            'merk' => $request->input('merk'),
+            'plat' => $request->input('plat'),
+        ];
+        
         if ($request->hasFile('foto_kondisi_mobil')) {
             $foto_file = $request->file('foto_kondisi_mobil');
             $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
             $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
             $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
         }
+        
+        // Simpan data ke database
+if ($detailSewa->create($data)) {
+    return redirect('/detail')->with('success', 'Detail sewa baru berhasil ditambah');
+}
 
-        return redirect('/detail');
+// Jika pembuatan gagal
+return back()->with('error', 'Detail sewa gagal ditambahkan');
+        // $request->validate([
+        //     'id_detail' => 'required',
+        //     'id_jenis_mobil' => 'required',
+        //     'lampu' => 'required',
+        //     'dongkrak_kit' => 'required',
+        //     'klakson' => 'required',
+        //     'head_rest' => 'required',
+        //     'kebersihan_mobil' => 'required',
+        //     'seat_belt' => 'required',
+        //     'audio' => 'required',
+        //     'karpet_mobil' => 'required',
+        //     'ban_serep' => 'required',
+        //     'stnk' => 'required',
+        //     'foto_kondisi_mobil' => 'required|file',
+        // ]);
 
-        if ($detailSewa->create($data)) {
-            return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
-        }
+        // if ($request->hasFile('foto_kondisi_mobil')) {
+        //     $foto_file = $request->file('foto_kondisi_mobil');
+        //     $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
+        //     $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
+        //     $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
+        // }
 
-        return back()->with('error', 'Detail sewa gagal ditambahkan');
+        // return redirect('/detail');
+
+        // if ($detailSewa->create($data)) {
+        //     return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
+        // }
+
+        // return back()->with('error', 'Detail sewa gagal ditambahkan');
 
         // $request->validate([
         //     'id_mobil' => 'required',
@@ -103,23 +152,64 @@ class DetailSewaController extends Controller
      */
     public function show(DetailSewa $detailSewa)
     {
-        //
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DetailSewa $detailSewa)
+    public function edit(DetailSewa $detail, Mobil $mobil, JenisMobil $jenis, string $id)
     {
-        //
+        $dataMobil = $mobil->all(); 
+        $jenis = $jenis->all(); 
+
+        $data = [
+            'info' => $detail
+                ->where('id_detail', $id)
+                ->first(),
+            'mobil' => $dataMobil,
+            'jenis_mobil' => $jenis,
+        ];
+
+        return view('detail.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DetailSewa $detailSewa)
+    public function update( Request $request, DetailSewa $detailSewa)
     {
-        //
+
+        $id_detail = $request->input('id_detail');
+
+
+        $data = [
+            'id_detail' => $request->input('id_detail'),
+            // 'id_mobil' => $request->input('id_mobil'),
+            'id_jenis_mobil' => $request->input('id_jenis_mobil'),
+            'lampu' => $request->input('lampu'),
+            'dongkrak_kit' => $request->input('dongkrak_kit'),
+            'klakson' => $request->input('klakson'),
+            'head_rest' => $request->input('head_rest'),
+            'kebersihan_mobil' => $request->input('kebersihan_mobil'),
+            'seat_belt' => $request->input('seat_belt'),
+            'audio' => $request->input('audio'),
+            'karpet_mobil' => $request->input('karpet_mobil'),
+            'ban_serep' => $request->input('ban_serep'),
+            'stnk' => $request->input('stnk'),
+            'merk' => $request->input('merk'),
+            'plat' => $request->input('plat'),
+        ];
+        
+        $dataUpdate = $detailSewa->where('id_detail', $id_detail)->update($data);
+
+
+        if ($dataUpdate) {
+            return redirect('detail')->with('success', 'Data mobil berhasil diupdate');
+        }
+else {
+        return back()->with('error', 'Data jenis mobil gagal diupdate');
+    }
     }
 
     /**

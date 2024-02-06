@@ -33,23 +33,17 @@
                             <tbody>
                                 @foreach ($detailSewa as $m)
                                     <tr>
-                                        <td>{{ $m->jenis_mobil }}</td>
-                                        <td>{{ $m->merk }}</td>
-                                        <td>{{ $m->plat_mobil }}</td>
-                                        <td>{{ $m->nomor_rangka }}</td>
-                                        <td>
-                                            @if ($m->file)
-                                                <img src="{{ url('foto') . '/' . $m->foto_mobil }} "
-                                                    style="max-width: 250px; height: auto;" />
-                                            @endif
-                                        </td>
-                                        <td>{{ $m->harga_sewa_per_hari }}</td>
+                                    <td>{{ $m->merk . ' ' . $m->plat_mobil }}</td>
+                                        <td>{{ $m->lampu }}</td>
+                                        <td>{{ $m->klakson }}</td>
+                                        <td>{{ $m->audio }}</td>
+                                        <td>{{ $m->kebersihan_mobil }}</td>
 
                                         <td>
-                                            <a href="detail/edit/{{ $m->id_mobil }}">
+                                            <a href="detail/edit/{{ $m->id_detail }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
-                                            <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
+                                            <btn class="btn btn-danger btnHapus" idDetail="{{ $m->id_detail }}">HAPUS</btn>
                                         </td>
                                     </tr>
                                 @endforeach

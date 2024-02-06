@@ -15,8 +15,10 @@ return new class extends Migration
             // $table->id();
             // $table->timestamps();
             $table->integer('id_detail')->autoIncrement();
-            $table->integer('id_mobil');
+            $table->integer('id_jenis_mobil');
             $table->string('lampu',30);
+            $table->string('merk');
+            $table->string('plat',10);
             $table->string('dongkrak_kit',30);
             $table->string('klakson',30);
             $table->string('head_rest',30);
@@ -30,8 +32,8 @@ return new class extends Migration
             
             // Foreign Key
 
-            $table->foreign('id_mobil')->on('mobil')
-            ->references('id_mobil')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_jenis_mobil')->on('jenis_mobil')
+            ->references('id_jenis_mobil')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }
