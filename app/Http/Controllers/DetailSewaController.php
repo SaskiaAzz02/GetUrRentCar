@@ -170,8 +170,16 @@ return back()->with('error', 'Detail sewa gagal ditambahkan');
             'mobil' => $dataMobil,
             'jenis_mobil' => $jenis,
         ];
-
         return view('detail.edit', $data);
+    }
+
+        // DETAIL
+
+    public function detail(DetailSewa $detailSewa, string $id)
+    {
+        $data = DetailSewa::where('id_detail', $id)->get();
+        return view('detail.detail', ['detail' => $data]);
+    
     }
 
     /**

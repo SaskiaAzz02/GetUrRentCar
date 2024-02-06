@@ -18,8 +18,8 @@
                                     <label>PILIH KENDARAAN</label>
                                     <select name="id_mobil" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($pengembalian as $s)
-                                        <option value="{{ $s->id_mobil }}">{{ $s->plat_mobil }}
+                                        @foreach ($mobil as $s)
+                                        <option value="{{ $s->id_mobil }}">{{ $s->merk }} {{ $s->plat_mobil }}
                                         </option>
                                         @endforeach
                                     </select>
