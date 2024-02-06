@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mobil;
 use App\Models\Penyewaan;
 use App\Models\Pengembalian;
 use Illuminate\Http\Request;
 
 class PengembalianController extends Controller
 {
-    public function index(Pengembalian $pengembalian)
+    public function index(Pengembalian $pengembalian, Mobil $mobil)
     {
         $data = [
-            'pengembalian' => $pengembalian->all()
+            'pengembalian' => $pengembalian->join('$mobil')
         ];
         return view('pengembalian.index', $data);
 
     }
 
-    public function create(Pengembalian $pengembalian)
+    public function create(Pengembalian $pengembalian, Mobil $mobil)
     {
-        $pengembalian = $pengembalian->all();
-        $data = [
-            'pengembalian' => $pengembalian,
-        ];
-
+        $data_pengembalian = $pengembalian->all();
+        $data_mobil = $mobil->all();
         return view('pengembalian.tambah', [
-            'pengembalian' => $pengembalian,
+            'pengembalian' => $data_pengembalian,
+            'mobil' => $data_mobil
         ]);
     }
 
