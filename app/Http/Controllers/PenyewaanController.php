@@ -14,14 +14,14 @@ class PenyewaanController extends Controller
     {
         $data = [
             'info' => $penyewaan
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
-                ->get()
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
+                ->get(),
         ];
 
         return view('penyewaan.index', $data);
     }
 
-    public function detail(penyewaan $penyewaan, string $id)
+    public function create(Mobil $mobil, Penyewaan $penyewaan)
     {
         $data = Penyewaan::where('id_penyewaan', $id)->get();
 
@@ -46,7 +46,7 @@ class PenyewaanController extends Controller
     {
         $data = [
             'info' => DB::table('penyewaan')
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
                 ->get(),
                 'mobil' => $mobil->all(),
         ];
@@ -58,7 +58,7 @@ class PenyewaanController extends Controller
     public function store(Request $request, Penyewaan $penyewaan)
     {
         $request->validate([
-            'id_detail' => 'required',
+            'id_mobil' => 'required',
             // 'pilih_merk_mobil' => 'required',
             'tanggal_peminjaman' => 'required',
             'jumlah_sewa' => 'required',
@@ -66,7 +66,7 @@ class PenyewaanController extends Controller
 
         $penyewaan = new Penyewaan();
 
-        $penyewaan->id_detail = $request->id_detail;
+        $penyewaan->id_mobil = $request->id_mobil;
         $penyewaan->tanggal_peminjaman = $request->tanggal_peminjaman;
         $penyewaan->jumlah_sewa = $request->jumlah_sewa;
 
@@ -82,34 +82,42 @@ class PenyewaanController extends Controller
     
     }
 
-    public function edit(Penyewaan $penyewaan, string $id, mobil $mobil)
+    public function edit(Penyewaan $penyewaan, string $id)
     {
-        $jenis_mobil = DB::table('jenis_mobil')->get(); 
+        $dataMobil = $mobil->all(); 
 
         $data = [
             'info' => $penyewaan
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
-                ->where('penyewaan.id_penyewaan', $id)
+                ->where('id_penyewaan', $id)
                 ->first(),
-                'mobil' => $mobil->all(),
+            'jenis_mobil' => $jenis_mobil,
         ];
 
         return view('penyewaan.edit', $data);
     }
+
+     // DETAIL
+
+     public function detail(Penyewaan $penyewaan, string $id)
+     {
+         $data = Penyewaan::where('id_penyewaan', $id)->get();
+         return view('penyewaan.detail', ['penyewaan' => $data]);
+     }
 
     public function update(Request $request, Penyewaan $penyewaan)
     {
         $id_penyewaan = $request->input('id_penyewaan');
 
         $data = $request->validate([
-            'id_detail' => 'sometimes',
-            'tanggal_peminjaman' => 'sometimes|date',
-            'jumlah_sewa' => 'sometimes|integer',
+            'id_mobil' => 'required',
+            'tanggal_peminjaman' => 'required|date',
+            'jumlah_meminjam' => 'required|integer',
         ]);
 
         if ($id_penyewaan !== null) {
-            try{
-                $dataUpdate = $penyewaan->where('id_penyewaan', $id_penyewaan)->update($data);
+            $dataUpdate = $penyewaan->where('id_penyewaan', $id_penyewaan)->update($data);
+
+            if ($dataUpdate) {
                 return redirect('/penyewaan');
             }catch(Exception $e){
                 dd($e->getMessage());
@@ -130,7 +138,7 @@ class PenyewaanController extends Controller
             // Pesan Berhasil
             $pesan = [
                 'success' => true,
-                'pesan'   => 'Data jenis surat berhasil dihapus'
+                'pesan'   => 'Data penyewaan berhasil dihapus'
             ];
         } else {
             // Pesan Gagal

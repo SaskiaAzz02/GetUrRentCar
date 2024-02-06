@@ -7,6 +7,7 @@
 <body>
  
 	<div class="container">
+
 		<br/>
 		<a href="penyewaan/unduh" class="btn btn-primary" target="_blank">CETAK PDF</a>
 		<table class='table table-bordered'>
@@ -31,8 +32,43 @@
 				@endforeach
 			</tbody>
 		</table>
- 
+		<center>
+			<h4>Membuat Laporan PDF Dengan DOMPDF Laravel</h4>
+			<h5><a target="_blank" href="https://www.malasngoding.com/membuat-laporan-…n-dompdf-laravel/">www.malasngoding.com</a></h5>
+		</center>
+		<br/>
+		<a href="mobil/unduh" class="btn btn-primary" target="_blank">CETAK PDF</a>
+        <table class="table table-hover table-bordered DataTable">
+            <thead>
+                <tr>
+                    <th>ID PENYEWAAN</th>
+                    <th>MOBIL</th>
+                    <th>TANGGAL PEMINJAMAN</th>
+                    <th>JUMLAH MEMINJAM</th>
+                    <th>AKSI</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($info as $p)
+                    <tr>
+                        <td>{{ $p->id_penyewaan }}</td>
+                        <td>{{ $p->merk . ' ' . $p->plat_mobil }}</td>
+
+                        {{-- <td>{{ $p->merk }}</td> --}}
+                        <td>{{ $p->tanggal_peminjaman }}</td>
+                        <td>{{ $p->jumlah_sewa }}</td>
+                        <td>
+                            <a href="penyewaan/detail/{{ $p->id_penyewaan }}" >
+                                <button class="btn btn-warning">DETAIL</button>
+                            </a>
+                            <a href="penyewaan/edit/{{ $p->id_penyewaan }}" class="btn btn-primary">EDIT</a>
+                            <button class="btn btn-danger btnHapus"
+                                idPenyewa="{{ $p->id_penyewaan }}">HAPUS</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 	</div>
- 
 </body>
 </html>

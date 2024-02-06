@@ -12,12 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\Akun::create([
-        //     'id_akun' => 1,
-        //     'username' => 'superadmin',
-        //     'password'=> Hash::make('123'),
-        //     'role'=> 'super admin',
-        //     'remember_token'=> 'superAdmin',
-        // ]);
+       $this->call(AkunSeeder::class);
+       $this->call(MobilSeeder::class);
     }
 }

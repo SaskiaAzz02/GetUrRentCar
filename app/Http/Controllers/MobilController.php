@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Mobil;
 use Barryvdh\DomPDF\Facade\pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class MobilController extends Controller
@@ -12,11 +14,15 @@ class MobilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Mobil $mobil)
+    public function index(Mobil $mobil, Log $log)
     {
+
+        $totalMobil = DB::select('SELECT CountTotalMobil() AS totalMobil')[0]->totalMobil;
         //
         $data = [
-            'mobil' => $mobil->all()
+            'mobil' => $mobil->all(),
+            'log' => $log->all(),
+            'jumlahMobil' => $totalMobil
         ];
 
         // dd(Auth::user());`
@@ -67,6 +73,12 @@ class MobilController extends Controller
         }
 
         return back()->with('error', 'Data mobil gagal ditambahkan');
+
+        if (DB::statement("CALL CreateMobil(?,?,?,?,?,?)", [$data['jenis_mobil'], $data['merk'],  $data['plat_mobil'], $data['nomor_rangka'], $data['foto_mobil'], $data['harga_sewa_per_hari']])) {
+            return redirect('/mobil')->with('success', 'Data Mobil Baru Berhasil Ditambah');
+        }
+        return back()->with('error','Data Mobil Gagal Ditambahkan');
+
     }
 
     /**
@@ -124,10 +136,10 @@ class MobilController extends Controller
 
         if ($id_mobil !== null) {
             if ($request->hasFile('file')) {
-                $foto_file = $request->file('file');
-                $foto_extension = $foto_file->getClientOriginalExtension();
-                $foto_nama = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_extension;
-                $foto_file->move(public_path('foto'), $foto_nama);
+                $foto_mobil = $request->file('file');
+                $foto_extension = $foto_mobil->getClientOriginalExtension();
+                $foto_nama = md5($foto_mobil->getClientOriginalName() . time()) . '.' . $foto_extension;
+                $foto_mobil->move(public_path('foto'), $foto_nama);
 
                 $update_data = $mobil->where('id_mobil', $id_mobil)->first();
                 File::delete(public_path('foto') . '/' . $update_data->file);
@@ -159,7 +171,7 @@ class MobilController extends Controller
             // Pesan Berhasil
             $pesan = [
                 'success' => true,
-                'pesan'   => 'Data jenis surat berhasil dihapus'
+                'pesan'   => 'Data mobil berhasil dihapus'
             ];
         } else {
             // Pesan Gagal

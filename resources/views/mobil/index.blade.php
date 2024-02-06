@@ -7,6 +7,9 @@
                 <div class="card-header">
                     <span class="h1">
                         DATA MOBIL
+                    </span><br>
+                    <span class="h5">
+                        Jumlah Mobil Yang Terdaftar : {{$jumlahMobil}}
                     </span>
                 </div>
                 <div class="card-body">
@@ -59,6 +62,20 @@
                                             <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
                                         </td>
                                     </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <table class="table table-hover table bordered">
+                            <thead>
+                                <tr>
+                                    <th>Log activity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($log as $l)
+                                <tr>
+                                    <td>{{ $l->log }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

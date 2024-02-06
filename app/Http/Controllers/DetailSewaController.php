@@ -40,7 +40,7 @@ class DetailSewaController extends Controller
      */
     public function store(Request $request, DetailSewa $detailSewa)
     {
-        $data = $request->validate([
+        $request->validate([
             'lampu' => 'required',
             'dongkrak_kit' => 'required',
             'klakson' => 'required',
@@ -59,16 +59,43 @@ class DetailSewaController extends Controller
 
         if ($request->hasFile('foto_kondisi_mobil')) {
             $foto_file = $request->file('foto_kondisi_mobil');
-            $foto_nama = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
-            $foto_file->move(public_path('foto'), $foto_nama);
-            $data['foto_kondisi_mobil'] = $foto_nama;
+            $foto_kondisi_mobil = md5($foto_file->getClientOriginalName() . time()) . '.' . $foto_file->getClientOriginalExtension();
+            $foto_file->move(public_path('foto'), $foto_kondisi_mobil);
+            $data['foto_kondisi_mobil'] = $foto_kondisi_mobil;
         }
+
+        return redirect('/detail');
 
         if ($detailSewa->create($data)) {
             return redirect('detail')->with('success', 'Detail sewa baru berhasil ditambah');
         }
 
         return back()->with('error', 'Detail sewa gagal ditambahkan');
+
+        // $request->validate([
+        //     'id_mobil' => 'required',
+        //     // 'pilih_merk_mobil' => 'required',
+        //     'tanggal_peminjaman' => 'required',
+        //     'jumlah_sewa' => 'required',
+        // ]);
+
+        // $penyewaan = new Penyewaan();
+
+        // $penyewaan->id_mobil = $request->id_mobil;
+        // $penyewaan->tanggal_peminjaman = $request->tanggal_peminjaman;
+        // $penyewaan->jumlah_sewa = $request->jumlah_sewa;
+
+        // $penyewaan->save();
+
+        // return redirect('/penyewaan');
+        
+        // if ($penyewaan->create($request)) {
+        //     return redirect('penyewaan')->with('success', 'Data sewa baru berhasil ditambah');
+        // }
+
+        // return back()->with('error', 'Data sewa gagal ditambahkan');
+    
+    
     }
 
     /**

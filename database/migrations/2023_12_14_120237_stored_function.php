@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('log', function (Blueprint $table) {
-            $table->integer('id_log')->autoIncrement();
-            $table->string('log')->nullable(false);
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalMobil');
 
-        });
+        DB::unprepared('
+        CREATE FUNCTION CountTotalMobil() RETURNS INT
+        BEGIN
+        DECLARE total INT;
+        SELECT COUNT(*) INTO total FROM mobil;
+        RETURN total;
+        END
+        ');
     }
 
     /**
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        //
     }
 };

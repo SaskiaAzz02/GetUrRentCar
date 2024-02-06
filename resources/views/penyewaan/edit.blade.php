@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <span class="h1">
-                        EDIT Data Sewa
+                        Edit Data Sewa
                     </span>
                 </div>
                 <div class="card-body">
@@ -20,9 +20,17 @@
                                         <option value="" disabled>Pilih Jenis</option>
                                         @foreach ($mobil as $s)
                                         <option value="{{ $s->id_mobil }}">{{ $s->plat_mobil }}
+                                    <label>PILIH MOBIL</label>
+                                    <select name="id_mobil" id="" class="form-control">
+                                        <option value="" selected disabled> Pilih Jenis</option>
+                                        @foreach ($mobil as $m)
+                                        <option value="{{ $m->id_mobil }}">
+                                            {{ $m->plat_mobil }}
                                         </option>
                                         @endforeach
                                     </select>
+                                 <label>PILIH MERK MOBIL</label>
+                                    <input type="text" class="form-control" name="pilih_merk_mobil" />
                                 </div>
 
                                 <div class="form-group">
@@ -32,7 +40,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>JUMLAH MEMINJAM</label>
-                                    <input type="number" class="form-control" name="jumlah_sewa              "
+                                    <input type="number" class="form-control" name="jumlah_sewa">
+                                    <input type="number" class="form-control" name="jumlah_sewa">
                                         value="{{ $info->jumlah_sewa }}" />
                                 </div>
                                 <input type="hidden" class="form-control" name="id_penyewaan"

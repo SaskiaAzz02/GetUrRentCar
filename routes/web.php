@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
             Route::get('/detail/{id}', [PenyewaanController::class, 'detail']);
+            Route::get('/unduh', [MobilController::class, 'unduh']);
             Route::get('/tambah', [PenyewaanController::class, 'create'])->name('tambahPenyewaan');
             Route::post('/simpan', [PenyewaanController::class, 'store'])->name('simpanPenyewaan');
             Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');
@@ -73,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware(['akses:admin,superadmin'])
         ->group(function () {
             Route::get('/', [PengembalianController::class, 'index'])->name('dataPengembalian');
+            Route::get('/detail/{id}', [PengembalianController::class, 'detail']);
             Route::get('/tambah', [PengembalianController::class, 'create'])->name('tambahPengembalian');
             Route::post('/simpan', [PengembalianController::class, 'store'])->name('simpanPengembalian');
             Route::get('/edit{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');

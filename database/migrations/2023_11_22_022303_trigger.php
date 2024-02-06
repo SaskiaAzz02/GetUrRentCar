@@ -10,28 +10,42 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    protected $trgName = 'trgSuratInsert';
 
     public function up()
     {
-        DB::unprepared('DROP TRIGGER IF EXISTS ' . $this->trgName);
+        DB::unprepared('DROP TRIGGER IF EXISTS insertMobil');
         DB::unprepared(
-            'CREATE TRIGGER ' . $this->trgName . ' AFTER INSERT ON surat
+            'CREATE TRIGGER insertMobil AFTER INSERT ON mobil
     FOR EACH ROW
     BEGIN
-        DECLARE surat_id INT;
-        DECLARE userid VARCHAR(200);
-        DECLARE jenissurat VARCHAR(200);
-        DECLARE tanggalsurat DATE;
-
-        SELECT username INTO userid FROM tbl_user WHERE id_user = NEW.id_user;
-        SELECT jenis_surat INTO jenissurat FROM jenis_surat WHERE id_jenis_surat = NEW.id_jenis_surat;
-        SELECT tanggal_surat INTO tanggalsurat FROM surat WHERE id_surat = NEW.id_surat;
-
-        SELECT id_surat INTO surat_id FROM surat WHERE id_surat = NEW.id_surat;
-        INSERT INTO logs (logs) VALUES (CONCAT(userid, ": Melakukan Penambahan Surat Dengan Nomor ", surat_id, ", Jenis Surat ", jenissurat, " dan Tanggal Surat ", tanggalsurat));
+        DECLARE aktor VARCHAR(200);
+        SELECT username INTO aktor FROM akun WHERE id_akun = 3;
+        
+        INSERT INTO log (log)
+         VALUES (CONCAT(
+           COALESCE(aktor, ""),
+           "menambahkan jenis mobil", 
+           COALESCE(new.jenis_mobil, ""),
+           "menambahkan merk mobil",  
+           COALESCE(new.merk, ""),
+           "menambahkan plat mobil",  
+           COALESCE(new.plat_mobil, ""),
+           "menambahkan nomor rangka mobil",  
+           COALESCE(new.nomor_rangka, "")
+        ));
     END'
         );
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalMobil');
+
+
+        DB::unprepared('
+        CREATE FUNCTION CountTotalPenyewaan() RETURNS INT
+        BEGIN
+        DECLARE total INT;
+        SELECT COUNT(*) INTO total FROM penyewaa;
+        RETURN total;
+        END
+        ');
     }
 
     /**
@@ -40,6 +54,6 @@ return new class extends Migration
     public function down(): void
     {
         // DROP Trigger on Rollback
-        DB::unprepared('DROP TRIGGER IF EXISTS ' . $this->trgName); //
+        DB::unprepared('DROP TRIGGER IF EXISTS insertPenyewaan');
     }
 };

@@ -14,7 +14,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                 <div class="container">
-                                    @foreach ($penyewaan as $p)
+                                    @foreach ($pengembalian as $p)
                                         @if ($p->file)
                                         <div class="photo-container" style="margin-top:-20px">
                                             <br>
@@ -22,27 +22,17 @@
                                         @endif
                                         <table class="table table-bordered mt-3">
                                             <tbody>
-                                                <tr>
-                                                    <td class="fw-bolder">ID PEMINJAMAN</td>
-                                                    <td>: {{$p->id_penyewaan}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="fw-bolder">Mobil</td>
-                                                    <td>:{{ $p->merk . ' ' . $p->plat_mobil }}</td>
-                                            <tr>
-                                                    <td class="fw-bolder">ID PENYEWAAN</td>
-                                                    <td>: {{$p->id_penyewaan}}</td>
-                                                </tr>
+                                            {{-- <tr>
+                                                    <td class="fw-bolder">MOBIL</td>
+                                                    <td>: {{$p->merk . ' ' . $p->nomor_rangka }}</td>
+                                                </tr> --}}
                                                 <tr>
                                                     <td class="fw-bolder">MOBIL</td>
-                                                    <td>: {{ $p->merk . ' ' . $p->plat_mobil }}</td                                         </tr>
-                                                <tr>
-                                                    <td class="fw-bolder">TANGGAL PEMINJAMAN</td>
-                                                    <td>: {{$p->tanggal_peminjaman}}</td>
+                                                    <td>: {{$p->mobil}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="fw-bolder">JUMLAH MEMINJAM</td>
-                                                    <td>: {{$p->jumlah_sewa}}</td>
+                                                    <td class="fw-bolder">TANGGAL PENGEMBALIAN</td>
+                                                    <td>: {{$p->tanggal_pengembalian}}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -59,6 +49,8 @@
                         </div>
                     </div>
                                 </div>
+                                
+                                
                             </div>
                         </div>
                     </form>

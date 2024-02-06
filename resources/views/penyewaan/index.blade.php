@@ -13,6 +13,9 @@
                     <div class="row">
                         <div class="col-md-4">
                             <a href="penyewaan/tambah" class="btn btn-success">LAKUKAN PENYEWAAN</a>
+                            <a href="mobil/unduh">
+                                <btn class="btn btn-primary">CETAK PDF</btn>
+                            </a>
                         </div>
                         <div class="col-md-4">
                             <a href="penyewaan/unduh" class="btn btn-primary">CETAK PDF</a>
