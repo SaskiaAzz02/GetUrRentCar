@@ -182,7 +182,9 @@
                     @if ((Auth::check() && Auth::user()->role == 'admin') || Auth::user()->role == 'superadmin')
                         <a href="/penyewaan">Penyewaan</a>
                         <a href="/pengembalian">Pengembalian</a>
+                        <a href="/pembayaran">Pembayaran</a>
                     @endif
+
 
                     <!-- <a href="">Contact Us</a> -->
                     <!-- <a href="">Search</a> -->

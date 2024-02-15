@@ -28,7 +28,7 @@
                                                 </tr> --}}
                                                 <tr>
                                                     <td class="fw-bolder">MOBIL</td>
-                                                    <td>: {{$p->mobil}}</td>
+                                                    <td>: {{ $p->id_mobil }} {{ $p->merk }} {{ $p->plat_mobil }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TANGGAL PENGEMBALIAN</td>

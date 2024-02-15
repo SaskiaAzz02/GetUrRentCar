@@ -37,6 +37,20 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <table class="table table-hover table bordered">
+                        <thead>
+                            <tr>
+                                <th>Log activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($log as $l)
+                            <tr>
+                                <td>{{ $l->log }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

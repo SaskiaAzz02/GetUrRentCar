@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 
 class PengembalianController extends Controller
 {
-    public function index(Pengembalian $pengembalian, Mobil $mobil)
+    public function index(Pengembalian $pengembalian, Mobil $mobil, Log $log)
     {
         $data = [
-            'pengembalian' => $pengembalian->join('mobil', 'penyewaan')
+            'pengembalian' => $pengembalian
+            ->join('mobil', 'pengembalian.id_mobil', 'mobil.id_mobil')->get()
         ];
+
+        // dd($data);
         return view('pengembalian.index', $data);
 
     }
@@ -30,17 +33,31 @@ class PengembalianController extends Controller
 
     public function store(Request $request, Pengembalian $pengembalian)
     {
+
+        // dd($request->all());
+
         $request->validate([
-            'tanggal_pengembalian' => 'required',
         ]);
+
+        $data = [
+            'id_mobil' => $request->input('id_mobil'),
+            'tanggal_pengembalian' => $request->input('tanggal_pengembalian'),
+            ];
 
         $pengembalian = new Pengembalian();
 
+        $pengembalian->id_mobil = $request->id_mobil;
         $pengembalian->tanggal_pengembalian = $request->tanggal_pengembalian;
 
         $pengembalian->save();
 
         return redirect('/pengembalian');
+
+        if ($pengembalian->create($data)) {
+            return redirect('pengembalian')->with('success', 'Data sewa baru berhasil ditambah');
+        }
+
+        return back()->with('error', 'Data sewa gagal ditambahkan');
     }
 
     public function edit(Pengembalian $pengembalian, string $id)

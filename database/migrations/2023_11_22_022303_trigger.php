@@ -35,6 +35,25 @@ return new class extends Migration
         ));
     END'
         );
+
+        DB::unprepared('DROP TRIGGER IF EXISTS insertPengembalian');
+        DB::unprepared(
+            'CREATE TRIGGER insertPengembalian AFTER INSERT ON pengembalian
+    FOR EACH ROW
+    BEGIN
+        DECLARE aktor VARCHAR(200);
+        SELECT username INTO aktor FROM akun WHERE id_akun = 3;
+        
+        INSERT INTO log (log)
+         VALUES (CONCAT(
+           COALESCE(aktor, ""),
+           "menambahkan jenis mobil", 
+           COALESCE(new.id_mobil, ""),
+           "menambahkan tanggal pengembalian",  
+           COALESCE(new.tanggal_pengembalian, ""),
+        ));
+    END'
+        );
     }
 
     /**
@@ -44,5 +63,6 @@ return new class extends Migration
     {
         // DROP Trigger on Rollback
         DB::unprepared('DROP TRIGGER IF EXISTS insertMobil');
+        DB::unprepared('DROP TRIGGER IF EXISTS insertPengembalian');
     }
 };
