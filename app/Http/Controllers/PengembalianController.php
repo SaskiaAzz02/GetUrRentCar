@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mobil;
 use App\Models\Penyewaan;
 use App\Models\Pengembalian;
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class PengembalianController extends Controller
@@ -13,7 +14,8 @@ class PengembalianController extends Controller
     {
         $data = [
             'pengembalian' => $pengembalian
-            ->join('mobil', 'pengembalian.id_mobil', 'mobil.id_mobil')->get()
+            ->join('mobil', 'pengembalian.id_mobil', 'mobil.id_mobil')->get(),
+            'log' => $log->all(),
         ];
 
         // dd($data);
