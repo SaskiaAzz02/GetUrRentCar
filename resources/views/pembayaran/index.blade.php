@@ -5,7 +5,10 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h1>PEMBAYARAN</h1>
+                <h1>PEMBAYARAN</h1> 
+                 <span class="h5">
+                    Jumlah Pembayaran Yang Terdaftar : {{$jumlahPembayaran}}
+                </span>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -25,9 +28,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pengembalian as $p)
+                        @foreach ($pembayaran as $p)
                             <tr>
-                                <td>{{ $p->id_pengembalian }}</td>
+                                <td>{{ $p->id_pembayaran }}</td>
                                 <td>{{ $p->total_mobil}}</td>
                                 <td>{{ $p->tanggal_pembayaran}}</td>
                                 <td>{{ $p->jenis_pembayaran}}</td>

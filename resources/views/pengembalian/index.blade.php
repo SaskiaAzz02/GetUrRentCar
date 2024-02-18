@@ -6,6 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <h1>DATA PENGEMBALIAN</h1>
+                    <span class="h5">
+                        Jumlah Pengembalian Yang Terdaftar : {{$jumlahPengembalian}}
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="row">

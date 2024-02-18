@@ -27,8 +27,7 @@ return new class extends Migration
             DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, SQLWARNING
         
             BEGIN
-            GET DIAGNOSTICS CONDITION 1
-            pesan_error = RETURNED_SQLSTATE;
+                GET DIAGNOSTICS CONDITION 1 pesan_error = RETURNED_SQLSTATE;
             END;
 
             -- Sisipkan data ke dalam tabel mobil
@@ -41,12 +40,33 @@ return new class extends Migration
             END IF;
             COMMIT;
         END
-        
-        
         ");
-        
-    
 
+        DB::unprepared('DROP Procedure IF EXISTS CreatePengembalian');
+        DB::unprepared('
+            CREATE PROCEDURE CreatePengembalian(
+                IN new_mobil VARCHAR(255),
+                IN new_tanggal_pengembalian DATE
+            )
+            BEGIN
+                DECLARE pesan_error CHAR(5) DEFAULT "000";
+                DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, SQLWARNING
+
+                BEGIN
+                    GET DIAGNOSTICS CONDITION 1 pesan_error = RETURNED_SQLSTATE;
+                END;
+
+                -- Sisipkan data ke dalam tabel pengembalian
+                START TRANSACTION;
+                savepoint satu;
+                INSERT INTO pengembalian (mobil, tanggal_pengembalian)
+                VALUES (new_mobil, new_tanggal_pengembalian); 
+
+                IF pesan_error != "000" THEN ROLLBACK TO satu;
+                END IF;
+                COMMIT;
+            END;
+        ');
     }
 
     /**

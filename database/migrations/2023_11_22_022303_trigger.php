@@ -50,7 +50,7 @@ return new class extends Migration
            "menambahkan jenis mobil", 
            COALESCE(new.id_mobil, ""),
            "menambahkan tanggal pengembalian",  
-           COALESCE(new.tanggal_pengembalian, ""),
+           COALESCE(new.tanggal_pengembalian, "")
         ));
     END'
         );

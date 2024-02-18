@@ -10,15 +10,28 @@ use Illuminate\Support\Facades\DB;
 
 class PembayaranController extends Controller
 {
-    public function index(Pembayarans $pembayarans)
+    public function index(Pembayaran $pembayaran, Log $log)
     {
 
         //
+        $totalPembayaran = DB::select('SELECT CountTotalPembayaran() AS totalPembayaran')[0]->totalPembayaran;
         $data = [
-            'pembayarans' => $pembayarans->all(),
+            'pembayaran' => $pembayaran->all(),
+            'log' => $log->all(),
+            'jumlahPembayaran'=>$totalPembayaran
         ];
 
         // dd(Auth::user());`
         return view('pembayaran.index', $data);
+    }
+
+    public function create(Pembayaran $pembayaran)
+    {
+        $mobil = $pembayaran->all();
+        $data = [
+            'pembayaran' => $pembayaran,
+        ];
+
+        return view('pembayaran.tambah', $data);
     }
 }

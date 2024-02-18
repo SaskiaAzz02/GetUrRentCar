@@ -21,6 +21,28 @@ return new class extends Migration
         RETURN total;
         END
         ');
+
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalPengembalian');
+
+        DB::unprepared('
+        CREATE FUNCTION CountTotalPengembalian() RETURNS INT
+        BEGIN
+        DECLARE total INT;
+        SELECT COUNT(*) INTO total FROM pengembalian;
+        RETURN total;
+        END
+        ');
+
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalPembayaran');
+
+        DB::unprepared('
+        CREATE FUNCTION CountTotalPembayaran() RETURNS INT
+        BEGIN
+        DECLARE total INT;
+        SELECT COUNT(*) INTO total FROM pembayaran;
+        RETURN total;
+        END
+        ');
     }
 
     
@@ -31,5 +53,7 @@ return new class extends Migration
     public function down(): void
     {
         DB::unprepared('DROP FUNCTION IF EXISTS CountTotalMobil');
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalPengembalian');
+        DB::unprepared('DROP FUNCTION IF EXISTS CountTotalPembayaran');
     }
 };

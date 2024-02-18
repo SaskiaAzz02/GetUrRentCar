@@ -77,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/detail/{id}', [PengembalianController::class, 'detail']);
             Route::get('/tambah', [PengembalianController::class, 'create'])->name('tambahPengembalian');
             Route::post('/simpan', [PengembalianController::class, 'store'])->name('simpanPengembalian');
-            Route::get('/edit{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');
+            Route::get('/edit/{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');
             Route::post('/edit/simpan', [PengembalianController::class, 'update'])->name('simpanEditPengembalian');
             Route::delete('/hapus', [PengembalianController::class, 'destroy'])->name('hapusPengembalian');
         });

@@ -6,16 +6,19 @@ use App\Models\Mobil;
 use App\Models\Penyewaan;
 use App\Models\Pengembalian;
 use App\Models\Log;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PengembalianController extends Controller
 {
     public function index(Pengembalian $pengembalian, Mobil $mobil, Log $log)
     {
+        $totalPengembalian = DB::select('SELECT CountTotalPengembalian() AS totalPengembalian')[0]->totalPengembalian;
         $data = [
             'pengembalian' => $pengembalian
             ->join('mobil', 'pengembalian.id_mobil', 'mobil.id_mobil')->get(),
             'log' => $log->all(),
+            'jumlahPengembalian'=>$totalPengembalian
         ];
 
         // dd($data);
@@ -65,7 +68,7 @@ class PengembalianController extends Controller
     public function edit(Pengembalian $pengembalian, string $id)
     {
         $data = [
-            'pengembalian' => Pengembalian::where('id_pengembalian', $id)->get()
+            'pengembalian' => Pengembalian::where('id_pengembalian', $id)->first()
         ];
         return view('pengembalian.edit', $data);
     }
