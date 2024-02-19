@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penyewaan', function (Blueprint $table) {
             // $table->id();
             // $table->timestamps();
-            $table->integer('id_penyewaan')->autoIncrement();
+            $table->integer('id_penyewaan',true);
             $table->integer('id_mobil');
             $table->date('tanggal_peminjaman');
             $table->integer('jumlah_sewa');

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SuperAdmin extends Model
 {
     use HasFactory;
+    protected $table = 'super_admin';
+    public $timestamps = false;
 }

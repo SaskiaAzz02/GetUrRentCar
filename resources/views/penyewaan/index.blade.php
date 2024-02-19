@@ -8,6 +8,9 @@
             <div class="card">
                 <div class="card-header">
                     <h1>DATA PENYEWAAN</h1>
+                    <span class="h5">
+                        Jumlah Penyewaan Yang Terdaftar : {{$jumlahPenyewaan}}
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -16,9 +19,6 @@
                             <a href="mobil/unduh">
                                 <btn class="btn btn-primary">CETAK PDF</btn>
                             </a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="penyewaan/unduh" class="btn btn-primary">CETAK PDF</a>
                         </div>
                     </div>
                     <hr>
@@ -53,6 +53,20 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Log Activity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($log as $r)
+                                    <tr>
+                                        <td>{{ $r->log }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                 </div>
             </div>
         </div>

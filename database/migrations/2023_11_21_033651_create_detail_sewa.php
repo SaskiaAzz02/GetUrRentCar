@@ -15,6 +15,7 @@ return new class extends Migration
             // $table->id();
             // $table->timestamps();
             $table->integer('id_detail')->autoIncrement();
+            $table->integer('id_penyewaan');
             $table->integer('id_jenis_mobil');
             $table->string('lampu',30);
             $table->string('merk');
@@ -34,6 +35,8 @@ return new class extends Migration
 
             $table->foreign('id_jenis_mobil')->on('jenis_mobil')
             ->references('id_jenis_mobil')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_penyewaan')->on('penyewaan')
+            ->references('id_penyewaan')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

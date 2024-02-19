@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\SuperAdmin;
+
+use App\Models\JenisMobil;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SuperAdminSeeder extends Seeder
+class JenisMobilSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +16,13 @@ class SuperAdminSeeder extends Seeder
     {
         $userData = [
             [
-                'id_akun' => '1',
-                'nama' => 'superadmin',
-                'nomor_hp' => '081311961806'
+                'id_jenis_mobil' => '1',
+                'nama_jenis' => 'toyota'
             ]
             ];
 
             foreach ($userData as $user => $val) {
-                SuperAdmin::create($val);
+                JenisMobil::create($val);
             }
     }
 }
-

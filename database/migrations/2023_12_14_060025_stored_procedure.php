@@ -45,14 +45,67 @@ return new class extends Migration
         
         ");
         
-    
+        DB::unprepared('DROP Procedure IF EXISTS CreatePenyewaan');
+        DB::unprepared("
+        CREATE PROCEDURE CreatePenyewaan(
+            IN new_jenis_mobil VARCHAR(255),
+            IN new_tanggal_penyewaan VARCHAR(225),
+            IN new_jumlah_sewa VARCHAR(225)
+        )
+        BEGIN
+            DECLARE pesan_error CHAR(5) DEFAULT '000';
+            DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, SQLWARNING
+        
+            BEGIN
+            GET DIAGNOSTICS CONDITION 1
+            pesan_error = RETURNED_SQLSTATE;
+            END;
 
+            -- Sisipkan data ke dalam tabel penyewaan
+            START TRANSACTION;
+            savepoint satu;
+            INSERT INTO penyewaan (jenis_mobil, tanggal_penyewaan, jumlah_sewa)
+            VALUES (new_jenis_mobil, new_tanggal_penyewaan, new_jumlah_sewa); 
+
+            IF pesan_error != '000' THEN ROLLBACK TO satu;
+            END IF;
+            COMMIT;
+        END"
+    );
+    
+    DB::unprepared('DROP Procedure IF EXISTS CreateDetailSewa');
+    DB::unprepared("
+    CREATE PROCEDURE CreateDetailSewa(
+        IN new_id_jenis_mobil INT(11),  IN new_lampu VARCHAR(30),  IN new_merk VARCHAR(255),  IN new_plat VARCHAR(10), 
+        IN new_dongkrak_kit VARCHAR(30),  IN new_klakson VARCHAR(30),  IN new_head_rest VARCHAR(30),  IN new_kebersihan_mobil VARCHAR(30),
+        IN new_sead_belt VARCHAR(30),  IN new_audio VARCHAR(30),  IN new_karpet_mobil VARCHAR(30),  IN new_ban_serep VARCHAR(30),  IN new_stnk VARCHAR(30),  IN new_foto_kondisi_mobil text
+
+    )
+    BEGIN
+        DECLARE pesan_error CHAR(5) DEFAULT '000';
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, SQLWARNING
+    
+        BEGIN
+        GET DIAGNOSTICS CONDITION 1
+        pesan_error = RETURNED_SQLSTATE;
+        END;
+
+        -- Sisipkan data ke dalam tabel detail sewa
+        START TRANSACTION;
+        savepoint satu;
+        INSERT INTO detail_sewa (id_jenis_mobil, lampu, merk, plat ,dongkrak_kit, klakson, head_rest, kebersihan_mobil, seat_belt, audio,
+        karpet_mobil, ban_serep, stnk, foto_kodisi_mobil)
+        VALUES (new_id_jenis_mobil,  new_lampu,  new_merk,  new_plat, 
+        new_dongkrak_kit,  new_klakson,  new_head_rest,  new_kebersihan_mobil,
+        new_sead_belt,  new_audio,  new_karpet_mobil,  new_ban_serep, new_stnk,  new_foto_kondisi_mobil); 
+
+        IF pesan_error != '000' THEN ROLLBACK TO satu;
+        END IF;
+        COMMIT;
+    END");
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+public function down(): void
     {
         //
     }

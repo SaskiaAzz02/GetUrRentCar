@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailSewa;
 use App\Models\JenisMobil;
 use App\Models\mobil;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,14 @@ class DetailSewaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(DetailSewa $detailSewa)
+    public function index(DetailSewa $detailSewa, Log $log)
     {
-        //
+        $totalDetailSewa = DB::select('SELECT CountTotalDetailSewa() AS totalDetailSewa')[0]->totalDetailSewa;
+
         $data = [
-            'detailSewa' => $detailSewa->all()
+            'detailSewa' => $detailSewa->all(),
+            'log' => $log->all(),
+            'jumlahDetailSewa' => $totalDetailSewa
         ];
 
         return view('detail.index', $data);

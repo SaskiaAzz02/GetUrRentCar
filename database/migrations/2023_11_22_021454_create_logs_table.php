@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('log', function (Blueprint $table) {
             $table->integer('id_log')->autoIncrement();
-            $table->string('log')->nullable(false);
+            $table->text('log')->nullable(false);
 
         });
     }

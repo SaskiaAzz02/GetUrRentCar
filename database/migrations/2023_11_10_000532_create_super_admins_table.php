@@ -15,7 +15,7 @@ return new class extends Migration
             $table->integer('id_super_admin', true)->autoIncrement();
             $table->integer('id_akun')->nullable();
             $table->string('nama', 100);
-            $table->integer('nomor_hp');
+            $table->string('nomor_hp', 13);
         
         // Foreign Key
 

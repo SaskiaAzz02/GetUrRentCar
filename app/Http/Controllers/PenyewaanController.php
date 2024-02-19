@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Mobil;
 use App\Models\Penyewaan;
 use Barryvdh\DomPDF\Facade\pdf;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PenyewaanController extends Controller
 {
-    public function index(Penyewaan $penyewaan)
+    public function index(Penyewaan $penyewaan, Log $log)
     {
+        $totalPenyewaan = DB::select('SELECT CountTotalPenyewaan() AS totalPenyewaan')[0]->totalPenyewaan;
+
         $data = [
             'info' => $penyewaan
                 ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
                 ->get(),
+                'log' => $log->all(),
+            'jumlahPenyewaan' => $totalPenyewaan
         ];
 
         return view('penyewaan.index', $data);
@@ -23,15 +28,16 @@ class PenyewaanController extends Controller
 
     public function create(Mobil $mobil, Penyewaan $penyewaan)
     {
-        $data = Penyewaan::where('id_penyewaan', $id)->get();
+        // $data = Penyewaan::where('id_penyewaan', $id)->get();
 
         $data = [
             'info' => DB::table('penyewaan')
-                ->join('mobil', 'penyewaan.id_detail', '=', 'mobil.id_mobil')
+                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
                 ->get(),
+                'mobil' => $mobil->all(),
         ];
 
-        return view('penyewaan.detail', ['penyewaan' => $data]);
+        return view('penyewaan.tambah', $data);
     }
 
     public function unduh(penyewaan $penyewaan)
@@ -42,18 +48,6 @@ class PenyewaanController extends Controller
     	return $pdf->download('laporan-penyewaan.pdf');
     }
 
-    public function create(penyewaan $mobil, Penyewaan $penyewaan)
-    {
-        $data = [
-            'info' => DB::table('penyewaan')
-                ->join('mobil', 'penyewaan.id_mobil', '=', 'mobil.id_mobil')
-                ->get(),
-                'mobil' => $mobil->all(),
-        ];
-        // dd($data);
-
-        return view('penyewaan.tambah', $data);
-    }
 
     public function store(Request $request, Penyewaan $penyewaan)
     {
@@ -117,13 +111,15 @@ class PenyewaanController extends Controller
         if ($id_penyewaan !== null) {
             $dataUpdate = $penyewaan->where('id_penyewaan', $id_penyewaan)->update($data);
 
-            if ($dataUpdate) {
-                return redirect('/penyewaan');
-            }catch(Exception $e){
+            try {
+                if($dataUpdate) {
+                    return redirect('/penyewaan');
+                }
+            } catch (Exception $e) {
                 dd($e->getMessage());
             }
 
-        }
+         }
 
     }
 

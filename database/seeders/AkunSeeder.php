@@ -33,7 +33,7 @@ class AkunSeeder extends Seeder
         ];
 
         // Melakukan looping data dengan foreach
-        foreach ($userData as $user => $val) {
+        foreach ($userData as $val) {
             Akun::create($val);
         }
     }

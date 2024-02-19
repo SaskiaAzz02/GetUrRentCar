@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('akun', function (Blueprint $table) {
             $table->integer('id_akun')->autoIncrement();
-            $table->string('username')->unique();
+            $table->string('username');
             $table->string('password'); 
             $table->string('role');
             // $table->rememberToken();

@@ -15,7 +15,7 @@ class MobilSeeder extends Seeder
     {
         $userData = [
             [
-                'jenis_mobil' =>'matic',
+                'id_jenis_mobil' =>'1',
                 'merk' =>'honda',
                 'plat_mobil' =>'B 1234 RPL',
                 'nomor_rangka' =>'W9296482519B9356IDN',
