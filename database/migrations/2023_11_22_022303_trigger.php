@@ -24,13 +24,13 @@ return new class extends Migration
         INSERT INTO log (log)
          VALUES (CONCAT(
            COALESCE(aktor, ""),
-           "menambahkan jenis mobil", 
+           " menambahkan jenis mobil", 
            COALESCE(new.id_jenis_mobil, ""),
-           "menambahkan merk mobil",  
+           " menambahkan merk mobil",  
            COALESCE(new.merk, ""),
-           "menambahkan plat mobil",  
+           " menambahkan plat mobil",  
            COALESCE(new.plat_mobil, ""),
-           "menambahkan nomor rangka mobil",  
+           " menambahkan nomor rangka mobil",  
            COALESCE(new.nomor_rangka, "")
         ));
     END'
@@ -47,9 +47,9 @@ return new class extends Migration
         INSERT INTO log (log)
          VALUES (CONCAT(
            COALESCE(aktor, ""),
-           "menambahkan jenis mobil", 
+           " menambahkan jenis mobil", 
            COALESCE(new.id_mobil, ""),
-           "menambahkan tanggal pengembalian",  
+           " menambahkan tanggal pengembalian",  
            COALESCE(new.tanggal_pengembalian, "")
         ));
     END'

@@ -18,7 +18,7 @@
                                     <label>YANG DIKEMBALIKAN</label>
                                     <select name="id_pengembalian" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Mobil</option>
-                                        @foreach ($pengembalian as $p)
+                                        @foreach ($pembayaran as $p)
                                         <option value="{{ $p->id_pengembalian }}">
                                         </option>
                                         @endforeach

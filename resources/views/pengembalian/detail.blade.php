@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <span class="h1">
-                        DETAIL DATA PENYEWAAN
+                        DETAIL DATA PENGEMBALIAN
                 </div>
                 <div class="card-body">
                         @csrf

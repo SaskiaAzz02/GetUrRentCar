@@ -10,14 +10,20 @@
                     </span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="update">
+                    <form method="POST" action="simpan">
                         @csrf
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>PILIH KENDARAAN</label>
-                                    <td class="fw-bolder">MOBIL</td>
-                                                    <td>: {{$pengembalian->merk . ' ' . $pengembalian->nomor_rangka }}</td>
+                                    <select name="id_mobil" id="id_mobil" class="form-select form-control">
+                                        @foreach ($mobil as $item)
+                                            <option value="{{ $item->id_mobil }}"
+                                                {{ $pengembalian->id_mobil === $item->id_mobil ? 'selected' : '' }}>
+                                                {{ $item->merk }} {{ $item->plat_mobil }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

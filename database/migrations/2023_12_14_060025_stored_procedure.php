@@ -67,6 +67,34 @@ return new class extends Migration
                 COMMIT;
             END;
         ');
+
+        DB::unprepared('DROP Procedure IF EXISTS CreatePembayaran');
+        DB::unprepared('
+            CREATE PROCEDURE CreatePembayaran(
+                IN new_yang_dikembalikan VARCHAR(255),
+                IN new_total_mobil VARCHAR(255),
+                IN new_tanggal_pembayaran DATE,
+                IN new_jenis_pembayaran VARCHAR(255)
+            )
+            BEGIN
+                DECLARE pesan_error CHAR(5) DEFAULT "000";
+                DECLARE CONTINUE HANDLER FOR SQLEXCEPTION, SQLWARNING
+
+                BEGIN
+                    GET DIAGNOSTICS CONDITION 1 pesan_error = RETURNED_SQLSTATE;
+                END;
+
+                -- Sisipkan data ke dalam tabel pembayaran
+                START TRANSACTION;
+                savepoint satu;
+                INSERT INTO pembayaran (yang_dikembalikan, total_mobil, tanggal_pembayaran, jenis_pembayaran)
+                VALUES (new_yang_dikembalikan, new_total_mobil, new_tanggal_pembayaran, new_jenis_pembayaran); 
+
+                IF pesan_error != "000" THEN ROLLBACK TO satu;
+                END IF;
+                COMMIT;
+            END;
+        ');
     }
 
     /**

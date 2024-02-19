@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\JenisMobil;
 use App\Models\Log;
 use App\Models\Mobil;

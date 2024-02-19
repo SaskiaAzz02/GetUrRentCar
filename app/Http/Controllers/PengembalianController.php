@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\Mobil;
 use App\Models\Penyewaan;
 use App\Models\Pengembalian;
 use App\Models\Log;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,10 @@ class PengembalianController extends Controller
         $data = [
             'pengembalian' => $pengembalian
             ->join('mobil', 'pengembalian.id_mobil', 'mobil.id_mobil')->get(),
-            'log' => $log->all(),
+            'log' => $log->all()
+                ->filter(function ($log) {
+                    return !Str::startsWith($log->log, 'customer');
+                }),
             'jumlahPengembalian'=>$totalPengembalian
         ];
 
@@ -65,12 +70,44 @@ class PengembalianController extends Controller
         return back()->with('error', 'Data sewa gagal ditambahkan');
     }
 
+
+    // EDIT
+
     public function edit(Pengembalian $pengembalian, string $id)
     {
         $data = [
-            'pengembalian' => Pengembalian::where('id_pengembalian', $id)->first()
+            'pengembalian' => Pengembalian::where('id_pengembalian', $id)->first(),
+            'mobil'=> Mobil::all()
         ];
         return view('pengembalian.edit', $data);
+    }
+
+    // UNDUH
+
+    // public function unduh (Pengembalian $pengembalian)
+    // {
+    // 	$pengembalian = Pengembalian::all();
+ 
+    // 	$pdf = PDF::loadview('pengembalian.unduh',['pengembalian'=>$pengembalian]);
+    // 	return $pdf->download('laporan-pengembalian.pdf');
+    // }
+
+    public function update(Pengembalian $pengembalian, Request $request)
+    {
+        $id_pengembalian = $request->input('id_pengembalian');
+
+        $data = $request->validate([
+            'id_mobil' => 'required',
+            'tanggal_pengembalian' => 'required',
+        ]);
+
+        $dataUpdate = $pengembalian->where('id_pengembalian', $id_pengembalian)->update($data);
+
+        if ($dataUpdate) {
+            return redirect('pengembalian')->with('success', 'Data Pengembalian berhasil diupdate');
+        }
+
+        return back()->with('error', 'Data Pengembalian gagal diupdate');
     }
 
     // DETAIL
