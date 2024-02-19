@@ -12,43 +12,40 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-5">
-                                <div class="card-body">
-                                    <form method="POST" action="simpan">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>YANG DIKEMBALIKAN</label>
-                                                    <select name="id_pengembalian" id="" class="form-control">
-                                                        <option value="" selected disabled>Pilih Mobil</option>
-                                                        @foreach ($mobil as $p)
-                                                        <option value="{{ $p->id_mobil }}">
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>TOTAL MOBIL</label>
-                                                    <input type="text" class="form-control" name="total_mobil" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>TANGGAL PENGEMBALIAN</label>
-                                                    <input type="date" class="form-control" name="tanggal_pengembalian" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>JENIS PEMBAYARAN</label>
-                                                    <select name="id_pengembalian" id="" class="form-control">
-                                                        <option value="" selected disabled>Pilih Jenis</option>
-                                                        @foreach ($pembayaran as $p)
-                                                        <option value="{{ $p->id_pembayaran }}">
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                <div class="form-group">
+                                <div class="container">
+                                    @foreach ($pembayaran as $p)
+                                        @if ($p->file)
+                                        <div class="photo-container" style="margin-top:-20px">
+                                            <br>
+                                            <img src="{{ url('foto') . '/' . $i->file }} "style="max-width: 170px; height: auto;" />                                </div>
+                                        @endif
+                                        <table class="table table-bordered mt-3">
+                                            <tbody>
+                                            <tr>
+                                                    <td class="fw-bolder">YANG DIKEMBALIKAN</td>
+                                                    <td>: {{$p->id_pembayaran}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">TOTAL MOBIL</td>
+                                                    <td>: {{ $p->total_mobil}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">TANGGAL PEMBAYARAN</td>
+                                                    <td>: {{$p->tanggal_pembayaran}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bolder">JENIS PEMBAYARAN</td>
+                                                    <td>: {{$p->jenis_pembayaran}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        @endforeach
                                         <div class="col-md-4 mt-3">
                                     <a href="#" onclick="window.history.back();" class="btn btn-success">KEMBALI</a>
                                         </div>
                                     </div>
+
 
                                     @csrf
                                 </div>

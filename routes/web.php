@@ -89,7 +89,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/detail/{id}', [PembayaranController::class, 'detail']);
             Route::get('/tambah', [PembayaranController::class, 'create'])->name('tambahPembayaran');
             Route::post('/simpan', [PembayaranController::class, 'store'])->name('simpanPembayaran');
-            Route::get('/edit{id}', [PembayaranController::class, 'edit'])->name('editPemabyaran');
+            Route::get('/edit/{id}', [PembayaranController::class, 'edit'])->name('editPemabyaran');
             Route::post('/edit/simpan', [PembayaranController::class, 'update'])->name('simpanEditPembayaran');
             Route::delete('/hapus', [PembayaranController::class, 'destroy'])->name('hapusPembayaran');
         });

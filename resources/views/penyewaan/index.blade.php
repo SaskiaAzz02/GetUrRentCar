@@ -13,9 +13,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <a href="penyewaan/tambah" class="btn btn-success">LAKUKAN PENYEWAAN</a>
+                            @if (!(Auth::user()->role=== 'customer'))
                             <a href="mobil/unduh">
                                 <btn class="btn btn-primary">CETAK PDF</btn>
                             </a>
+                            @endif
                         </div>
                        
                     </div>
@@ -43,10 +45,12 @@
                                         <a href="penyewaan/detail/{{ $p->id_penyewaan }}" >
                                             <button class="btn btn-warning">DETAIL</button>
                                         </a>
+                                    @if (!(Auth::user()->role=== 'customer'))
                                         <a href="penyewaan/edit/{{ $p->id_penyewaan }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"
                                             idPenyewa="{{ $p->id_penyewaan }}">HAPUS</button>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

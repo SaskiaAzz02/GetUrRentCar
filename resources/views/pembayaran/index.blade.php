@@ -31,14 +31,16 @@
                         @foreach ($pembayaran as $p)
                             <tr>
                                 <td>{{ $p->id_pembayaran }}</td>
-                                <td>{{ $p->total_mobil}}</td>
+                                <td>{{ $p->total}}</td>
                                 <td>{{ $p->tanggal_pembayaran}}</td>
                                 <td>{{ $p->jenis_pembayaran}}</td>
                                 <td>
                                     <a href="pembayaran/detail/{{ $p->id_pembayaran }}" ><button class="btn btn-warning">DETAIL</button></a>
+                                    @if (!(Auth::user()->role=== 'customer'))
                                     <a href="pembayaran/edit/{{ $p->id_pembayaran }}" class="btn btn-primary">EDIT</a>
                                     <button class="btn btn-danger btnHapus"
                                         idPembayaran="{{ $p->id_pembayaran }}">HAPUS</button>
+                                        @endif
                                 </td>
                             </tr>
                         @endforeach

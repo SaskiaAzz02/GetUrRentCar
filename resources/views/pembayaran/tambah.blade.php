@@ -26,15 +26,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>TOTAL MOBIL</label>
-                                    <input type="text" class="form-control" name="total_mobil" />
+                                    <input type="text" class="form-control" name="total" />
                                 </div>
                                 <div class="form-group">
-                                    <label>TANGGAL PENGEMBALIAN</label>
-                                    <input type="date" class="form-control" name="tanggal_pengembalian" />
+                                    <label>TANGGAL PEMBAYARAN</label>
+                                    <input type="date" class="form-control" name="tanggal_pembayaran" />
                                 </div>
                                 <div class="form-group">
                                     <label>JENIS PEMBAYARAN</label>
-                                    <select name="id_pengembalian" id="" class="form-control">
+                                    <select name="jenis_pembayaran" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
                                         <option value="BCA">BCA</option>
                                         <option value="dana">Dana</option>

@@ -179,7 +179,7 @@
                         <a href="/detail">Detail Sewa</a>
                     @endif
 
-                    @if ((Auth::check() && Auth::user()->role == 'admin') || Auth::user()->role == 'superadmin')
+                    @if ((Auth::check() && Auth::user()->role == 'admin') || Auth::user()->role == 'superadmin' || Auth::user()->role == 'customer')
                         <a href="/penyewaan">Penyewaan</a>
                         <a href="/pengembalian">Pengembalian</a>
                         <a href="/pembayaran">Pembayaran</a>

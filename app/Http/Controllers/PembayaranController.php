@@ -31,10 +31,7 @@ class PembayaranController extends Controller
     public function create(Pengembalian $pengembalian, Pembayaran $pembayaran)
     {
         $data = [
-            'pengembalian' => $pengembalian
-            ->join('mobil', 'pengembalian.id_mobil', '=', 'mobil.id_mobil')    
-            ->get(),
-            'pembayaran' => $pembayaran->all()
+          c
         ];
 
         // dd($data);
@@ -43,19 +40,21 @@ class PembayaranController extends Controller
 
     public function store(Request $request, Pembayaran $pengembalian)
     {
+        // dd($request->all());
+
         $request->validate([
             'id_pengembalian' => 'required',
-            'total_mobil' => 'required',
-            'tanggal_pengembalian' => 'required',
+            'total' => 'required',
+            'tanggal_pembayaran' => 'required',
             'jenis_pembayaran' => 'required',
         ]);
 
         $pembayaran = new Pembayaran();
 
-        $pembayaran->id_pengambalian = $request->id_pengembalian;
-        $pembayaran->total_mobil = $request->total_mobil;
-        $pembayaran->tanggal_peminjaman = $request->tanggal_peminjaman;
-        $pembayaran->jenis_pembayaran = $request->jumlah_sewa;
+        $pembayaran->id_pengembalian = $request->id_pengembalian;
+        $pembayaran->total = $request->total;
+        $pembayaran->tanggal_pembayaran = $request->tanggal_pembayaran;
+        $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
 
         $pembayaran->save();
 
@@ -71,12 +70,49 @@ class PembayaranController extends Controller
 
      // EDIT
 
-     public function edit(Pembayaran $pembayaran, string $id)
+     public function edit(String $id, Pengembalian $pengembalian, Pembayaran $pembayaran)
      {
-         $data = [
-             'pengembalian' => Pengembalian::where('id_pengembalian', $id)->first(),
-             'mobil'=> Mobil::all()
+        $id_pengembalian=DB::table('pembayaran')->select('id_pengembalian')->where('id_pembayaran', $id)->first();
+        $data = [
+            'pengembalian_before' => $pengembalian
+            ->join('mobil', 'pengembalian.id_mobil', '=', 'mobil.id_mobil')
+            ->where('id_pengembalian', $id_pengembalian->id_pengembalian)
+            ->first(),
+            'pengembalian'=>$pengembalian
+            ->join('mobil', 'pengembalian.id_mobil', '=', 'mobil.id_mobil')
+            ->get(),
+            'pembayaran' => $pembayaran->where('id_pembayaran', $id)->first()
          ];
          return view('pembayaran.edit', $data);
      }
+
+      // DETAIL
+
+    public function detail(Pembayaran $pembayaran, string $id)
+    {
+        $data = Pembayaran::where('id_pembayaran', $id)->get();
+        return view('pembayaran.detail', ['pembayaran' => $data]);
+    }
+
+    public function update(Request $request, Pembayaran $pembayaran)
+    {
+        $id_pembayaran = $request->input('id_pembayaran');
+
+        $data = $request->validate([
+            'id_pengembalian' => 'required',
+            'total' => 'required',
+            'tanggal_pembayaran' => 'required|date',
+            'jenis_pembayaran' => 'required',
+        ]);
+
+        if ($id_pembayaran !== null) {
+            $dataUpdate = $pembayaran->where('id_pembayaran', $id_pembayaran)->update($data);
+            return redirect('/pembayaran');
+            if ($dataUpdate) {
+                return redirect('/pembayaran');
+            }
+
+    }
+
+    }
 }

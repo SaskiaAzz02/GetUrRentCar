@@ -32,10 +32,12 @@
                                     <td>{{ $p->tanggal_pengembalian }}</td>
                                     <td>
                                         <a href="pengembalian/detail/{{ $p->id_pengembalian }}" ><button class="btn btn-warning">DETAIL</button></a>
+                                    @if (!(Auth::user()->role=== 'customer'))
                                         <a href="pengembalian/edit/{{ $p->id_pengembalian }}" class="btn btn-primary">EDIT</a>
                                         <button class="btn btn-danger btnHapus"
                                             idPengembalian="{{ $p->id_pengembalian }}">HAPUS</button>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
