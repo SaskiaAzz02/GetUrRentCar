@@ -40,6 +40,8 @@ class AkunController extends Controller
                 return redirect('mobil');
             } elseif ($user->role == 'admin') {
                 return redirect('penyewaan');
+            } elseif ($user->role == 'customer') {
+                return redirect('mobil');
             }
         }
 

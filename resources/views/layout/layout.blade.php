@@ -174,7 +174,7 @@
                 <!-- <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo"> -->
                 <div class="data-links nav-links">
 
-                    @if (Auth::check() && Auth::user()->role == 'superadmin')
+                    @if ((Auth::check() && Auth::user()->role == 'superadmin') || Auth::check() && Auth::user()->role == 'customer')
                         <a href="/mobil">Mobil</a>
                         <a href="/detail">Detail Sewa</a>
                     @endif
@@ -182,7 +182,9 @@
                     @if ((Auth::check() && Auth::user()->role == 'admin') || Auth::user()->role == 'superadmin')
                         <a href="/penyewaan">Penyewaan</a>
                         <a href="/pengembalian">Pengembalian</a>
+                        <a href="/pembayaran">Pembayaran</a>
                     @endif
+
 
                     <!-- <a href="">Contact Us</a> -->
                     <!-- <a href="">Search</a> -->

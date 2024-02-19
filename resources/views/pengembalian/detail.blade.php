@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <span class="h1">
-                        DETAIL DATA PENYEWAAN
+                        DETAIL DATA PENGEMBALIAN
                 </div>
                 <div class="card-body">
                         @csrf
@@ -28,7 +28,7 @@
                                                 </tr> --}}
                                                 <tr>
                                                     <td class="fw-bolder">MOBIL</td>
-                                                    <td>: {{$p->mobil}}</td>
+                                                    <td>: {{ $p->id_mobil }} {{ $p->merk }} {{ $p->plat_mobil }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TANGGAL PENGEMBALIAN</td>

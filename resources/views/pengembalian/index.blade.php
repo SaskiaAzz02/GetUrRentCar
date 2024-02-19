@@ -6,6 +6,9 @@
             <div class="card">
                 <div class="card-header">
                     <h1>DATA PENGEMBALIAN</h1>
+                    <span class="h5">
+                        Jumlah Pengembalian Yang Terdaftar : {{$jumlahPengembalian}}
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -34,6 +37,20 @@
                                             idPengembalian="{{ $p->id_pengembalian }}">HAPUS</button>
                                     </td>
                                 </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <table class="table table-hover table bordered">
+                        <thead>
+                            <tr>
+                                <th>Log activity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($log as $l)
+                            <tr>
+                                <td>{{ $l->log }}</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

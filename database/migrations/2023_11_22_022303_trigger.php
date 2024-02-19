@@ -25,74 +25,16 @@ return new class extends Migration
         INSERT INTO log (log)
          VALUES (CONCAT(
            COALESCE(aktor, ""),
-           "menambahkan jenis mobil", 
+           " menambahkan jenis mobil", 
            COALESCE(new.id_jenis_mobil, ""),
-           "menambahkan merk mobil",  
+           " menambahkan merk mobil",  
            COALESCE(new.merk, ""),
-           "menambahkan plat mobil",  
+           " menambahkan plat mobil",  
            COALESCE(new.plat_mobil, ""),
-           "menambahkan nomor rangka mobil",  
+           " menambahkan nomor rangka mobil",  
            COALESCE(new.nomor_rangka, "")
         ));
     END'
-);
-DB::unprepared('DROP TRIGGER IF EXISTS  insertPenyewaan');
-DB::unprepared(
-    'CREATE TRIGGER  insertPenyewaan AFTER INSERT ON penyewaan
-    FOR EACH ROW
-    BEGIN
-        DECLARE aktor VARCHAR(200);
-        SELECT username INTO aktor FROM akun WHERE id_akun = 4;
-
-        INSERT INTO log (log)
-        VALUES (CONCAT(
-            COALESCE(aktor, ""),
-            " menambahkan penyewaan dengan nama ",
-            COALESCE(new.tanggal_peminjaman, ""),
-            " pada tanggal ",
-            COALESCE(CURDATE(), "")
-        ));
-    END'
-);
-
-    DB::unprepared('DROP TRIGGER IF EXISTS  insertDetailSewa');
-    DB::unprepared(
-        'CREATE TRIGGER  insertDetailsewa AFTER INSERT ON detail_sewa
-        FOR EACH ROW
-        BEGIN
-            DECLARE aktor VARCHAR(200);
-            SELECT username INTO aktor FROM akun WHERE id_akun = 4;
-    
-            INSERT INTO log (log)
-            VALUES (CONCAT(
-                COALESCE(aktor, ""),
-                " menambahkan lampu ",
-                COALESCE(new.lampu, ""),
-                " menambahkan merk ",
-                COALESCE(new.merk, ""),
-                " menambahkan plat ",
-                COALESCE(new.plat, ""),
-                " menambahkan dongkrak kit ",
-                COALESCE(new.dongkrak_kit, ""),
-                " menambahkan klakson ",
-                COALESCE(new.klakson, ""),
-                " menambahkan head rest ",
-                COALESCE(new.head_rest, ""),
-                " menambahkan kebersihan mobil ",
-                COALESCE(new.kebersihan_mobil, ""),
-                " menambahkan seat belt ",
-                COALESCE(new.seat_belt, ""),
-                " menambahkan audio ",
-                COALESCE(new.audio, ""),
-                " menambahkan karpet mobil ",
-                COALESCE(new.karpet_mobil, ""),
-                " menambahkan ban serep ",
-                COALESCE(new.ban_serep, ""),
-                " menambahkan stnk ",
-                COALESCE(new.stnk, "")
-
-            ));
-            END'
         );
     }
 
@@ -124,7 +66,7 @@ DB::unprepared(
 public function down(): void
     {
         // DROP Trigger on Rollback
-        DB::unprepared('DROP TRIGGER IF EXISTS insertPenyewaan');
-        DB::unprepared('DROP TRIGGER IF EXISTS insertDetailSewa');
+        DB::unprepared('DROP TRIGGER IF EXISTS insertMobil');
     }
+
 };

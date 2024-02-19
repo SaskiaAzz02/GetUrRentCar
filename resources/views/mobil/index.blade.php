@@ -14,6 +14,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        @if (!(Auth::user()->role=== 'customer'))
                         <div class="col-md-4">
                             <a href="mobil/tambah">
                                 <btn class="btn btn-success">TAMBAH JENIS MOBIL</btn>
@@ -23,6 +24,7 @@
                             </a>
                             <br><br>
                         </div>
+                        @endif
                             <hr>
                             <div class=></div>
                         <table class="table table-hover table-bordered DataTable">
@@ -56,10 +58,12 @@
                                         <a href="mobil/detail/{{ $m->id_mobil }}">
                                             <button class="btn btn-warning">DETAIL</button>
                                         </a>
+                                        @if (!(Auth::user()->role=== 'customer'))
                                             <a href="mobil/edit/{{ $m->id_mobil }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
                                             <btn class="btn btn-danger btnHapus" idMobil="{{ $m->id_mobil }}">HAPUS</btn>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

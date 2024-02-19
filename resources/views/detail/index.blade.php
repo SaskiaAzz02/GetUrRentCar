@@ -14,10 +14,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        @if (!(Auth::user()->role=== 'customer'))
                         <div class="col-md-4">
                             <a href="detail/tambah">
                                 <btn class="btn btn-success">TAMBAH DETAIL SEWA</btn>
                             </a>
+                            @endif
                             <br><br>
                         </div>
                             <hr>
@@ -43,10 +45,15 @@
                                         <td>{{ $m->kebersihan_mobil }}</td>
 
                                         <td>
+                                            <a href="mobil/detail/{{ $m->id_mobil }}">
+                                                <button class="btn btn-warning">DETAIL</button>
+                                            </a>
+                                            @if (!(Auth::user()->role=== 'customer'))
                                             <a href="detail/edit/{{ $m->id_detail }}">
                                                 <btn class="btn btn-primary">EDIT</btn>
                                             </a>
                                             <btn class="btn btn-danger btnHapus" idDetail="{{ $m->id_detail }}">HAPUS</btn>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

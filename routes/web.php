@@ -5,6 +5,7 @@ use App\Http\Controllers\MobilController;
 use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\DetailSewaController;
 use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\PembayaranController;
 use App\Models\DetailSewa;
 use App\Models\Mobil;
 use App\Models\Pengembalian;
@@ -33,7 +34,7 @@ Route::prefix('login')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('mobil')
-        ->middleware(['akses:admin,superadmin'])
+        ->middleware(['akses:admin,superadmin,customer'])
         ->group(function () {
             Route::get('/', [MobilController::class, 'index'])->name('dataMobil');
             Route::get('/detail/{id}', [MobilController::class, 'detail']);
@@ -45,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/hapus', [MobilController::class, 'destroy'])->name('hapusMobil');
         });
     Route::prefix('detail')
-        ->middleware(['akses:admin,superadmin'])
+        ->middleware(['akses:admin,superadmin,customer'])
         ->group(function () {
             Route::get('/', [DetailSewaController::class, 'index'])->name('dataDetail');
             Route::get('/detail/{id}', [DetailSewaController::class, 'detail']);
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
     Route::prefix('penyewaan')
-        ->middleware(['akses:admin,superadmin'])
+        ->middleware(['akses:admin,superadmin,customer'])
         ->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
             Route::get('/detail/{id}', [PenyewaanController::class, 'detail']);
@@ -71,15 +72,27 @@ Route::middleware(['auth'])->group(function () {
         });
 
     Route::prefix('pengembalian')
-        ->middleware(['akses:admin,superadmin'])
+        ->middleware(['akses:admin,superadmin,customer'])
         ->group(function () {
             Route::get('/', [PengembalianController::class, 'index'])->name('dataPengembalian');
             Route::get('/detail/{id}', [PengembalianController::class, 'detail']);
             Route::get('/tambah', [PengembalianController::class, 'create'])->name('tambahPengembalian');
             Route::post('/simpan', [PengembalianController::class, 'store'])->name('simpanPengembalian');
-            Route::get('/edit{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');
+            Route::get('/edit/{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');
             Route::post('/edit/simpan', [PengembalianController::class, 'update'])->name('simpanEditPengembalian');
             Route::delete('/hapus', [PengembalianController::class, 'destroy'])->name('hapusPengembalian');
+        });
+
+    Route::prefix('pembayaran')
+        ->middleware(['akses:admin,superadmin,customer'])
+        ->group(function () {
+            Route::get('/', [PembayaranController::class, 'index'])->name('dataPembayaran');
+            Route::get('/detail/{id}', [PembayaranController::class, 'detail']);
+            Route::get('/tambah', [PembayaranController::class, 'create'])->name('tambahPembayaran');
+            Route::post('/simpan', [PembayaranController::class, 'store'])->name('simpanPembayaran');
+            Route::get('/edit{id}', [PembayaranController::class, 'edit'])->name('editPemabyaran');
+            Route::post('/edit/simpan', [PembayaranController::class, 'update'])->name('simpanEditPembayaran');
+            Route::delete('/hapus', [PembayaranController::class, 'destroy'])->name('hapusPembayaran');
         });
 
     Route::get('/logout', [AkunController::class, 'logout']);

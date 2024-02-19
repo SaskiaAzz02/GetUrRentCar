@@ -22,7 +22,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                </div><br>
+                                </div>
                                 @csrf 
                                 <div class="form-group">
                                     <label>MERK</label>
