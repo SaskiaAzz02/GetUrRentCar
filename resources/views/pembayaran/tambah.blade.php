@@ -17,9 +17,9 @@
                                 <div class="form-group">
                                     <label>YANG DIKEMBALIKAN</label>
                                     <select name="id_pengembalian" id="" class="form-control">
-                                        <option value="" selected disabled>Pilih Mobil</option>
-                                        @foreach ($pembayaran as $p)
-                                        <option value="{{ $p->id_pengembalian }}">
+                                        <option value="" selected disabled>Pilih Pengembalian</option>
+                                        @foreach ($pengembalian as $s)
+                                        <option value="{{ $s->id_pengembalian }}">{{ $s->merk }} {{ $s->plat_mobil }}
                                         </option>
                                         @endforeach
                                     </select>
@@ -36,10 +36,8 @@
                                     <label>JENIS PEMBAYARAN</label>
                                     <select name="id_pengembalian" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($pembayaran as $p)
-                                        <option value="{{ $p->id_pembayaran }}">
-                                        </option>
-                                        @endforeach
+                                        <option value="BCA">BCA</option>
+                                        <option value="dana">Dana</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 mt-3">

@@ -16,8 +16,7 @@ return new class extends Migration
             $table->integer('id_pengembalian')->nullable();
             $table->decimal('total', 5, 2);
             $table->date('tanggal_pembayaran');
-            $table->string('jenis_pembayaran', 100);
-
+            $table->enum('jenis_pembayaran', ['BCA', 'Dana']);
             // Foreign Key
             $table->foreign('id_pengembalian')->on('pengembalian')
             ->references('id_pengembalian')->onDelete('cascade')->onUpdate('cascade');
