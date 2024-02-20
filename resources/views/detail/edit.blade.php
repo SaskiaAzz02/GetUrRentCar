@@ -14,8 +14,8 @@
                       {{-- {{dd($detailSewa)}} --}}
                         <input type="hidden" class="form-control" name="id_detail" value="{{$info->id_detail}}" />
                         <div class="row">
-                            <div class="col-md-5">
-                              <div class="form-group">
+                            <div class="col-md-6">
+                              <div class="form-group col-md-2">
                                 <label>JENIS MOBIL</label>
                                 <select name="id_jenis_mobil" id="" class="form-control">
                                     @foreach ($jenis_mobil as $j)

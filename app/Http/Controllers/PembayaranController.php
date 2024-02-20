@@ -31,7 +31,8 @@ class PembayaranController extends Controller
     public function create(Pengembalian $pengembalian, Pembayaran $pembayaran)
     {
         $data = [
-          c
+            'pembayaran' => $pembayaran,
+            'pengembalian'=> Pengembalian::all()
         ];
 
         // dd($data);
@@ -115,4 +116,32 @@ class PembayaranController extends Controller
     }
 
     }
+
+    // HAPUS     
+
+    public function destroy(Request $request, Pembayaran $pembayaran)
+    {
+
+    $id_pembayaran = $request->input('id_pembayaran');
+
+    $aksi = $pembayaran->where('id_pengembalian', $id_pembayaran)->delete();
+
+    if ($aksi) {
+        // Pesan Berhasil
+        $pesan = [
+            'success' => true,
+            'pesan'   => 'Data pembayaran berhasil dihapus'
+        ];
+    } else {
+        // Pesan Gagal
+        $pesan = [
+            'success' => false,
+            'pesan'   => 'Data gagal dihapus'
+        ];
+        return response()->json($pesan);
+
+    }   
+    }
+
+    
 }

@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [DetailSewaController::class, 'index'])->name('dataDetail');
             Route::get('/detail/{id}', [DetailSewaController::class, 'detail']);
+            Route::get('/unduh', [DetailController::class, 'unduh']);
             Route::get('/tambah', [DetailSewaController::class, 'create'])->name('tambahDetail');
             Route::post('/simpan', [DetailSewaController::class, 'store'])->name('simpanDetail');
             Route::get('/edit/{id}', [DetailSewaController::class, 'edit'])->name('editDetail');
@@ -62,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [PenyewaanController::class, 'index'])->name('dataPenyewaan');
             Route::get('/detail/{id}', [PenyewaanController::class, 'detail']);
-            Route::get('/unduh', [MobilController::class, 'unduh']);
+            Route::get('/unduh', [PenyewaanController::class, 'unduh']);
             Route::get('/tambah', [PenyewaanController::class, 'create'])->name('tambahPenyewaan');
             Route::post('/simpan', [PenyewaanController::class, 'store'])->name('simpanPenyewaan');
             Route::get('/edit/{id}', [PenyewaanController::class, 'edit'])->name('editPenyewaan');
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [PengembalianController::class, 'index'])->name('dataPengembalian');
             Route::get('/detail/{id}', [PengembalianController::class, 'detail']);
+            Route::get('/unduh', [PengembalianController::class, 'unduh']);
             Route::get('/tambah', [PengembalianController::class, 'create'])->name('tambahPengembalian');
             Route::post('/simpan', [PengembalianController::class, 'store'])->name('simpanPengembalian');
             Route::get('/edit/{id}', [PengembalianController::class, 'edit'])->name('editPengembalian');
@@ -87,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
         ->group(function () {
             Route::get('/', [PembayaranController::class, 'index'])->name('dataPembayaran');
             Route::get('/detail/{id}', [PembayaranController::class, 'detail']);
+            Route::get('/unduh', [PembayaranController::class, 'unduh']);
             Route::get('/tambah', [PembayaranController::class, 'create'])->name('tambahPembayaran');
             Route::post('/simpan', [PembayaranController::class, 'store'])->name('simpanPembayaran');
             Route::get('/edit/{id}', [PembayaranController::class, 'edit'])->name('editPemabyaran');

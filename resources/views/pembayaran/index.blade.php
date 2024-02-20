@@ -82,7 +82,7 @@
                     type: 'DELETE',
                     url: 'pembayaran/hapus',
                     data: {
-                        id_pembayaran: idPepembayaran,
+                        id_pembayaran: idPembayaran,
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(data) {

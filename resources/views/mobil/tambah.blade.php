@@ -22,26 +22,28 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div><br>
                                 @csrf 
                                 <div class="form-group">
                                     <label>MERK</label>
                                     <input type="text" class="form-control" name="merk" />
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>PLAT MOBIL</label>
                                     <input type="text" class="form-control" name="plat_mobil" />
-                                </div> <div class="form-group">
+                                </div><br> 
+                                <div class="form-group">
                                     <label>NOMOR RANGKA</label>
                                     <input type="text" class="form-control" name="nomor_rangka" />
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>FOTO MOBIL</label>
                                     <input type="file" class="form-control" name="foto_mobil" />
-                                </div>  </div> <div class="form-group">
+                                </div>  <br>
+                                 <div class="form-group">
                                     <label>HARGA SEWA PER HARI</label>
                                     <input type="text" class="form-control" name="harga_sewa_per_hari" />
-                                </div>
+                                </div><br>
                                 <div class="col-md-4 mt-3">
                                     <button type="submit" class="btn btn-primary">SIMPAN</button>
                                     <a href="#" onclick="window.history.back();" class="btn btn-success">KEMBALI</a>
