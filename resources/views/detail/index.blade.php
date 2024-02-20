@@ -42,7 +42,7 @@
                                         <td>{{ $m->kebersihan_mobil }}</td>
 
                                         <td>
-                                            <a href="mobil/detail/{{ $m->id_mobil }}">
+                                            <a href="detail/detail/{{ $m->id_detail }}">
                                                 <button class="btn btn-warning">DETAIL</button>
                                             </a>
                                             @if (!(Auth::user()->role=== 'customer'))

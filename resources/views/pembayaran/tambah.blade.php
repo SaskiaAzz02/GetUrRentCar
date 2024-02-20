@@ -16,7 +16,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>YANG DIKEMBALIKAN</label>
-                                    <select name="id_pengembalian" id="" class="form-control">
+                                    <select name="id_pembayaran" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Pengembalian</option>
                                         @foreach ($pengembalian as $s)
                                         <option value="{{ $s->id_pengembalian }}">{{ $s->merk }} {{ $s->plat_mobil }}

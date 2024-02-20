@@ -111,13 +111,42 @@ class MobilController extends Controller
 
     // UNDUH
 
-    public function unduh(Mobil $mobil)
-    {
-    	$mobil = Mobil::all();
+    // public function unduh(Mobil $mobil)
+    // {
+    // 	$mobil = Mobil::all();
  
-    	$pdf = PDF::loadview('mobil.unduh',['mobil'=>$mobil]);
-    	return $pdf->download('laporan-mobil.pdf');
+    // 	$pdf = PDF::loadview('mobil.unduh',['mobil'=>$mobil]);
+    // 	return $pdf->download('laporan-mobil.pdf');
+    // }
+
+    public function generatePdf($id)
+    {
+        $mobil = Mobil::findOrFail($id);
+        
+        // Mengambil path gambar dari direktori storage atau direktori publik, sesuaikan dengan kebutuhan Anda
+        $imagePath = public_path('storage/pdf/mobil.jpeg');            
+        $signImage = public_path('storage/pdf/mobil.jpeg');
+    
+        // Membaca file gambar dan mengonversi ke base64
+        $base64Image = base64_encode(File::get($imagePath));
+        $base64SignImage = base64_encode(File::get($signImage));
+
+
+        // Load view dengan data SK Belum Menikah dan base64 gambar
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+                    ->loadView('admin.mobil.PDF', [
+                        'mobil' => $mobil,
+                        'base64Image' => $base64Image,
+                        'signImage' => $base64SignImage,
+                    ]);
+    
+        // Jika Anda ingin menampilkan PDF di browser tanpa mengunduhnya, gunakan method 'stream' 
+        return $pdf->stream('sk_tidak_mampu.pdf');
+    
+        // Jika Anda ingin mengunduh PDF, gunakan method 'download'
+        // return $pdf->download('sk_belum_menikah_' . $id . '.pdf');
     }
+
 
     /**
      * Update the specified resource in storage.

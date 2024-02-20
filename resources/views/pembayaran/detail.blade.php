@@ -28,7 +28,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TOTAL MOBIL</td>
-                                                    <td>: {{ $p->total_mobil}}</td>
+                                                    <td>: {{ $p->total}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">TANGGAL PEMBAYARAN</td>
