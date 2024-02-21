@@ -16,22 +16,22 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label>YANG DIKEMBALIKAN</label>
-                                    <select name="id_pembayaran" id="" class="form-control">
-                                        <option value="" selected disabled>Pilih Pengembalian</option>
-                                        @foreach ($pengembalian as $s)
-                                        <option value="{{ $s->id_pengembalian }}">{{ $s->merk }} {{ $s->plat_mobil }}
+                                    <select name="id_pengembalian" id="" class="form-control">
+                                        @foreach ($pengembalian as $p)
+                                        <option value="" selected disabled >Pilih Pengembalian</option>
+                                        <option value='{{ $p->id_pengembalian }}'>{{ $p->merk }} {{ $p->plat_mobil }} 
                                         </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>TOTAL MOBIL</label>
                                     <input type="text" class="form-control" name="total" />
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>TANGGAL PEMBAYARAN</label>
                                     <input type="date" class="form-control" name="tanggal_pembayaran" />
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>JENIS PEMBAYARAN</label>
                                     <select name="jenis_pembayaran" id="" class="form-control">

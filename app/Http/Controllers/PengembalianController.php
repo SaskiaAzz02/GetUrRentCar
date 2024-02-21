@@ -7,7 +7,7 @@ use App\Models\Mobil;
 use App\Models\Penyewaan;
 use App\Models\Pengembalian;
 use App\Models\Log;
-use Barryvdh\DomPDF\Facade\PDF;
+use PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -31,6 +31,7 @@ class PengembalianController extends Controller
 
     }
 
+    // MENAMBAH DATA
     public function create(Pengembalian $pengembalian, Mobil $mobil)
     {
         $data_pengembalian = $pengembalian->all();
@@ -41,6 +42,9 @@ class PengembalianController extends Controller
         ]);
     }
 
+
+
+    
     public function store(Request $request, Pengembalian $pengembalian)
     {
 
@@ -82,16 +86,29 @@ class PengembalianController extends Controller
         return view('pengembalian.edit', $data);
     }
 
-    // UNDUH
+    
 
-    // public function unduh (Pengembalian $pengembalian)
-    // {
-    // 	$pengembalian = Pengembalian::all();
+     // UNDUH
+     public function unduh(Pengembalian $pengembalian)
+     {
+         $imageDataArray = [];
+         $dataPengembalian = $pengembalian->all();
+     $data = [
+         'pengembalian' => $dataPengembalian
+     ];
  
-    // 	$pdf = PDF::loadview('pengembalian.unduh',['pengembalian'=>$pengembalian]);
-    // 	return $pdf->download('laporan-pengembalian.pdf');
-    // }
+         foreach($dataPengembalian as $dataGambar){
+             if($dataGambar->foto_mobil){
+                 $imageData = base64_encode(file_get_contents(public_path('foto'). '/' . $dataGambar->foto_mobil));
+                 $imageSrc = 'data.image/' . pathinfo($dataGambar->foto_mobil, PATHINFO_EXTENSION) . ';base64,' . $imageData;
+                 $imageDataArray[] = ['src' => $imageSrc, 'alt' => 'foto'];
+             }
+         }
+         $pdf = PDF::setOptions(['isHtmlParserEnabled' => true, 'isRemoteEnabled' => true])->loadview('pengembalian.unduh',['pengembalian'=>$dataPengembalian, 'imageDataArray'=>$imageDataArray]);
+         return $pdf->stream('data-pengembalian.pdf');
+     }
 
+    //  MENYIMPAN DATA SETELAH EDIT
     public function update(Pengembalian $pengembalian, Request $request)
     {
         $id_pengembalian = $request->input('id_pengembalian');
@@ -118,15 +135,6 @@ class PengembalianController extends Controller
         return view('pengembalian.detail', ['pengembalian' => $data]);
     }
 
-    // UNDUH
-
-    public function unduh(Pengembalian $pengembalian)
-    {
-    	$pengembalian = Pengembalian::all();
- 
-    	$pdf = PDF::loadview('pengembalian.unduh',['pengembalian'=>$pengembalian]);
-    	return $pdf->download('laporan-pengembalian.pdf');
-    }
 
     // Hapus 
 

@@ -14,8 +14,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <a href="pembayaran/tambah" class="btn btn-success">BAYAR</a>
+                        <a href="pembayaran/unduh">
+                            <btn class="btn btn-primary">CETAK PDF</btn>
+                        </a>
                     </div>
-                </div>
+
                 <hr>
                 <table class="table table-hover table-bordered DataTable">
                     <thead>
@@ -30,7 +33,7 @@
                     <tbody>
                         @foreach ($pembayaran as $p)
                             <tr>
-                                <td>{{ $p->id_pembayaran }}</td>
+                                <td>{{ $p->id_pengembalian }}{{ $p->merk }} {{ $p->plat_mobil }}</td>
                                 <td>{{ $p->total}}</td>
                                 <td>{{ $p->tanggal_pembayaran}}</td>
                                 <td>{{ $p->jenis_pembayaran}}</td>

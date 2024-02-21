@@ -20,6 +20,9 @@ class PenyewaanController extends Controller
         return view('penyewaan.index', $data);
     }
 
+
+
+    // TAMBAH
     public function create(Mobil $mobil, Penyewaan $penyewaan)
     {
         $data = [
@@ -33,6 +36,9 @@ class PenyewaanController extends Controller
         return view('penyewaan.tambah', $data);
     }
 
+
+
+    // MENYIMPAN DATA SETLAH TAMBAH DATA
     public function store(Request $request, Penyewaan $penyewaan)
     {
         $request->validate([
@@ -60,6 +66,10 @@ class PenyewaanController extends Controller
     
     }
 
+
+
+        // EDIT
+
     public function edit(Penyewaan $penyewaan, Mobil $mobil,  string $id)
     {
         $dataMobil = $mobil->all(); 
@@ -73,6 +83,9 @@ class PenyewaanController extends Controller
 
         return view('penyewaan.edit', $data);
     }
+
+
+
 
      // DETAIL
 
@@ -89,6 +102,9 @@ class PenyewaanController extends Controller
          return view('penyewaan.detail', ['penyewaan' => $data]);
      }
 
+
+
+    //  MENYIMPAN DATA SETELAH EDIT
     public function update(Request $request, Penyewaan $penyewaan)
     {
         $id_penyewaan = $request->input('id_penyewaan');
@@ -109,11 +125,13 @@ class PenyewaanController extends Controller
 
     }
 
+
+    
+    // HAPUS
     public function destroy(Penyewaan $penyewaan, Request $request)
     {
         $id_penyewaan = $request->input('id_penyewaan');
 
-        // Hapus 
         $aksi = $penyewaan->where('id_penyewaan', $id_penyewaan)->delete();
 
         if ($aksi) {

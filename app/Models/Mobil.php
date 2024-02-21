@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
     {
         use HasFactory;
         protected $table = 'mobil';
-        protected $fillable = ['id_jenis_mobil','merk', 'plat_mobil', 'nomor_rangka', 'foto_mobil', 'harga_sewa_per_hari'];
+        protected $fillable = ['jenis_mobil', 'merk', 'plat_mobil', 'nomor_rangka', 'foto_mobil', 'harga_sewa_per_hari'];
         protected $primaryKey = 'id_mobil';
         public $timestamps = false;
     

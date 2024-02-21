@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use App\Models\JenisMobil;
 use App\Models\Log;
 use App\Models\Mobil;
-use Barryvdh\DomPDF\Facade\pdf;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -59,8 +59,6 @@ class MobilController extends Controller
             'harga_sewa_per_hari' => 'required',
         ]);
 
-        // $user = Auth::user();
-        // $data['id_user'] = $user->id_user;
 
         if ($request->hasFile('foto_mobil')) {
             $foto_file = $request->file('foto_mobil');
@@ -82,17 +80,17 @@ class MobilController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+ 
+
+    
     public function show(Mobil $mobil)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
+
+    // EDIT
     public function edit(Mobil $mobil, string $id)
     {
         $data = [
@@ -100,6 +98,8 @@ class MobilController extends Controller
         ];
         return view('mobil.edit', $data);
     }
+
+
 
     // DETAIL
 
@@ -109,42 +109,31 @@ class MobilController extends Controller
         return view('mobil.detail', ['mobil' => $data]);
     }
 
+
+
+
     // UNDUH
 
-    // public function unduh(Mobil $mobil)
-    // {
-    // 	$mobil = Mobil::all();
- 
-    // 	$pdf = PDF::loadview('mobil.unduh',['mobil'=>$mobil]);
-    // 	return $pdf->download('laporan-mobil.pdf');
-    // }
-
-    public function generatePdf($id)
+    public function unduh(Mobil $mobil)
     {
-        $mobil = Mobil::findOrFail($id);
-        
-        // Mengambil path gambar dari direktori storage atau direktori publik, sesuaikan dengan kebutuhan Anda
-        $imagePath = public_path('storage/pdf/mobil.jpeg');            
-        $signImage = public_path('storage/pdf/mobil.jpeg');
-    
-        // Membaca file gambar dan mengonversi ke base64
-        $base64Image = base64_encode(File::get($imagePath));
-        $base64SignImage = base64_encode(File::get($signImage));
+        $data = $mobil->all();
+        $imageDataArray = [];
 
+        foreach ($data as $mobil) {
+            if ($mobil->foto_mobil) {
+                $imageData = base64_encode(file_get_contents(public_path('foto') . '/' . $mobil->foto_mobil));
+                $imageSrc = 'data:image/' . pathinfo($mobil->foto_mobil, PATHINFO_EXTENSION) . ';base64,' . $imageData;
 
-        // Load view dengan data SK Belum Menikah dan base64 gambar
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
-                    ->loadView('admin.mobil.PDF', [
-                        'mobil' => $mobil,
-                        'base64Image' => $base64Image,
-                        'signImage' => $base64SignImage,
-                    ]);
-    
-        // Jika Anda ingin menampilkan PDF di browser tanpa mengunduhnya, gunakan method 'stream' 
-        return $pdf->stream('sk_tidak_mampu.pdf');
-    
-        // Jika Anda ingin mengunduh PDF, gunakan method 'download'
-        // return $pdf->download('sk_belum_menikah_' . $id . '.pdf');
+                $imageDataArray[] = ['src' => $imageSrc, 'alt' => 'mobil'];
+            }
+        }
+
+        $pdf = PDF::setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ])->loadView('mobil.unduh', ['mobil' => $data, 'imageDataArray' => $imageDataArray]);
+
+        return $pdf->stream('data-mobil.pdf');
     }
 
 

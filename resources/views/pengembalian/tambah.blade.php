@@ -18,12 +18,12 @@
                                     <label>PILIH KENDARAAN</label>
                                     <select name="id_mobil" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($mobil as $s)
-                                        <option value="{{ $s->id_mobil }}">{{ $s->merk }} {{ $s->plat_mobil }}
-                                        </option>
+                                        @foreach($mobil as $p)
+                                        <option selected disabled hidden>Pilih Mobil</option>
+                                        <option value='{{$p->id_mobil}}'>{{$p->merk}}{{$p->plat_mobil}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div><br>
                                 <div class="form-group">
                                     <label>TANGGAL PENGEMBALIAN</label>
                                     <input type="date" class="form-control" name="tanggal_pengembalian" />

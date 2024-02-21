@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($mobil as $m)
                                     <tr>
-                                        <td>{{ $m->jenis_mobil }}</td>
+                                        <td>{{ $m->id_jenis_mobil }}</td>
                                         <td>{{ $m->merk }}</td>
                                         <td>{{ $m->plat_mobil }}</td>
                                         <td>{{ $m->nomor_rangka }}</td>

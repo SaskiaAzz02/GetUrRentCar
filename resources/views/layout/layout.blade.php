@@ -171,24 +171,24 @@
     <div class="header">
         <nav class="navbar">
             <div class="container-nav">
-                <!-- <img src="https://i.ibb.co/kGbqdSB/NEW-2.png" alt="Logo" class="logo"> -->
+                {{-- <img src="mobil.jpeg" alt="Logo" class="logo"> --}}
                 <div class="data-links nav-links">
 
                     @if ((Auth::check() && Auth::user()->role == 'superadmin') || Auth::check() && Auth::user()->role == 'customer')
-                        <a href="/mobil">Mobil</a>
-                        <a href="/detail">Detail Sewa</a>
+                        <a class="text-dark" href="/mobil">Mobil</a>
+                        <a class="text-dark" href="/detail">Detail Sewa</a>
                     @endif
 
                     @if ((Auth::check() && Auth::user()->role == 'admin') || Auth::user()->role == 'superadmin' || Auth::user()->role == 'customer')
-                        <a href="/penyewaan">Penyewaan</a>
-                        <a href="/pengembalian">Pengembalian</a>
-                        <a href="/pembayaran">Pembayaran</a>
+                        <a class="text-dark" href="/penyewaan">Penyewaan</a>
+                        <a class="text-dark" href="/pengembalian">Pengembalian</a>
+                        <a class="text-dark" href="/pembayaran">Pembayaran</a>
                     @endif
 
 
                     <!-- <a href="">Contact Us</a> -->
                     <!-- <a href="">Search</a> -->
-                    <a href="/logout">LogOut</a>
+                    <a class="text-dark" href="/logout">LogOut</a>
 
                 </div>
                 <div class="data-icons">

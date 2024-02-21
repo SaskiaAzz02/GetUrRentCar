@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
-
 use App\Models\Mobil;
 use App\Models\Log;
 use App\Models\Pengembalian;
-use Barryvdh\DomPDF\Facade\pdf;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,14 +30,15 @@ class PembayaranController extends Controller
     public function create(Pengembalian $pengembalian, Pembayaran $pembayaran)
     {
         $data = [
-            'pembayaran' => $pembayaran,
-            'pengembalian'=> Pengembalian::all()
+           'pengembalian'=>$pengembalian->join('mobil',
+           'pengembalian.id_pengembalian','=','mobil.id_mobil')->get()
         ];
 
         // dd($data);
         return view('pembayaran.tambah', $data);
     }
 
+    // MENYIMPAN DATA SETELAH TAMBAH
     public function store(Request $request, Pembayaran $pengembalian)
     {
         // dd($request->all());
@@ -95,6 +95,7 @@ class PembayaranController extends Controller
         return view('pembayaran.detail', ['pembayaran' => $data]);
     }
 
+    // MENYIMPAN DATA SETELAH EDIT
     public function update(Request $request, Pembayaran $pembayaran)
     {
         $id_pembayaran = $request->input('id_pembayaran');
@@ -116,6 +117,27 @@ class PembayaranController extends Controller
     }
 
     }
+
+    // UNDUH
+    public function unduh(Pembayaran $pembayaran)
+    {
+        $imageDataArray = [];
+        $dataPembayaran = $pembayaran::all();
+    $data = [
+        'pembayaran' => $dataPembayaran
+    ];
+
+        foreach($dataPembayaran as $dataGambar){
+            if($dataGambar->foto_mobil){
+                $imageData = base64_encode(file_get_contents(public_path('foto'). '/' . $dataGambar->foto_mobil));
+                $imageSrc = 'data.image/' . pathinfo($dataGambar->foto_mobil, PATHINFO_EXTENSION) . ';base64,' . $imageData;
+                $imageDataArray[] = ['src' => $imageSrc, 'alt' => 'foto'];
+            }
+        }
+        $pdf = PDF::setOptions(['isHtmlParserEnabled' => true, 'isRemoteEnabled' => true])->loadview('pembayaran.unduh',['pembayaran'=>$dataPembayaran, 'imageDataArray'=>$imageDataArray]);
+        return $pdf->stream('data-mobil.pdf');
+    }
+
 
     // HAPUS     
 

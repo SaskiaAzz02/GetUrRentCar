@@ -14,6 +14,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <a href="pengembalian/tambah" class="btn btn-success">PENGEMBALIAN SEWA</a>
+                        @if (!(Auth::user()->role=== 'customer'))
+                            <a href="pengembalian/unduh">
+                                <btn class="btn btn-primary">CETAK PDF</btn>
+                            </a>
+                            @endif
                         </div>
                     </div>
                     <hr>

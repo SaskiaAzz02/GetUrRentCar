@@ -25,7 +25,7 @@
                                         
                                                 <tr>
                                                     <td class="fw-bolder">JENIS MOBIL</td>
-                                                    <td>: {{$m->jenis_mobil}}</td>
+                                                    <td>: {{ $m->nama_jenis }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bolder">MERK</td>
