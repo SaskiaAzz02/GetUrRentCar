@@ -45,9 +45,9 @@ class MobilController extends Controller
         return view('mobil.tambah', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
+
+    // MENYIMPAN DATA SETELAH TAMBAH
     public function store(Request $request, Mobil $mobil)
     {
         $data = $request->validate([
@@ -67,9 +67,9 @@ class MobilController extends Controller
             $data['foto_mobil'] = $foto_nama;
         }
 
-        if ($mobil->create($data)) {
-            return redirect('mobil')->with('success', 'Data Mobil baru berhasil ditambah');
-        }
+        // if ($mobil->create($data)) {
+        //     return redirect('mobil')->with('success', 'Data Mobil baru berhasil ditambah');
+        // }
 
         return back()->with('error', 'Data mobil gagal ditambahkan');
 

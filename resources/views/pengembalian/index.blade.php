@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach ($pengembalian as $p)
                                 <tr>
-                                    <td>{{ $p->id_mobil }} {{ $p->merk }} {{ $p->plat_mobil }}</td>
+                                    <td>{{ $p->merk . ' ' . $p->plat_mobil }}</td>
                                     <td>{{ $p->tanggal_pengembalian }}</td>
                                     <td>
                                         <a href="pengembalian/detail/{{ $p->id_pengembalian }}" ><button class="btn btn-warning">DETAIL</button></a>
