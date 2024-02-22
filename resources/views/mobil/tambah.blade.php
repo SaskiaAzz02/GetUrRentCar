@@ -17,7 +17,7 @@
                                     <label>JENIS MOBIL</label>
                                     <select name="id_jenis_mobil" id="" class="form-control">
                                         <option value="" selected disabled>Pilih Jenis</option>
-                                        @foreach ($jenis_mobil as $j)
+                                        @foreach ($id_jenis_mobil as $j)
                                         <option value="{{ $j->id_jenis_mobil }}">{{ $j->nama_jenis }}
                                         </option>
                                         @endforeach

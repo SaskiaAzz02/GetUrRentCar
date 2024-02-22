@@ -67,9 +67,9 @@ class MobilController extends Controller
             $data['foto_mobil'] = $foto_nama;
         }
 
-        // if ($mobil->create($data)) {
-        //     return redirect('mobil')->with('success', 'Data Mobil baru berhasil ditambah');
-        // }
+        if ($mobil->create($data)) {
+            return redirect('mobil')->with('success', 'Data Mobil baru berhasil ditambah');
+        }
 
         return back()->with('error', 'Data mobil gagal ditambahkan');
 
